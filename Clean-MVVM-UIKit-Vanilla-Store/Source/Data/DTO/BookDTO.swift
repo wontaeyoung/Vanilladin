@@ -1,5 +1,9 @@
 import Foundation
 
+struct Result: Codable {
+    let item: [BookDTO]
+}
+
 struct BookDTO: DTOProtocol {
     let title: String
     let author: String
