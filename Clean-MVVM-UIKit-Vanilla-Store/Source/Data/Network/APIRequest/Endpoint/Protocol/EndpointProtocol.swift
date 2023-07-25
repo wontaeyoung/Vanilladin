@@ -8,3 +8,13 @@ protocol EndpointProtocol {
     var optionalQueryItems: [URLQueryItem] { get }
     var queryItems: [URLQueryItem] { get }
 }
+
+extension EndpointProtocol {
+    var path: String {
+        return defaultPath + optionalPath
+    }
+    
+    var queryItems: [URLQueryItem] {
+        defaultQueryItems + optionalQueryItems
+    }
+}

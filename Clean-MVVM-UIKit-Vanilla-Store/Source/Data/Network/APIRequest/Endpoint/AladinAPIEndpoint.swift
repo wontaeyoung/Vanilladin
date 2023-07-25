@@ -5,14 +5,6 @@ enum AladinAPIEndpoint: EndpointProtocol {
     case itemList(query: String, page: Int)
     case itemLookUp
     
-    var path: String {
-        return defaultPath + optionalPath
-    }
-    
-    var queryItems: [URLQueryItem] {
-        return defaultQueryItems + optionalQueryItems
-    }
-    
     var defaultPath: String {
         return "/ttb/api"
     }
