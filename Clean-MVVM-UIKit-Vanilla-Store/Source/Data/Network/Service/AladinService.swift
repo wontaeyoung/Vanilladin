@@ -23,7 +23,7 @@ final class AladinService: AladinServiceInterface {
         )
         
         let booksDTO: [BookDTO] = try await httpClient
-            .sendRequest(
+            .sendDTORequest(
                 apiRequest: apiRequest,
                 decodeType: Result.self
             )
