@@ -2,8 +2,8 @@ import UIKit
 
 protocol AladinServiceInterface {
     func requestBooks(
-        query: String,
-        page: Int
+        keyword: String,
+        page: UInt
     ) async throws -> [BookDTO]
     
     func requestCoverImage(

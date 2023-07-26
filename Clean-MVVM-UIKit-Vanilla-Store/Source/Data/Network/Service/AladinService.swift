@@ -11,16 +11,13 @@ final class AladinService: AladinServiceInterface {
     
     // MARK: - Method
     func requestBooks(
-        query: String,
-        page: Int
+        keyword: String,
+        page: UInt
     ) async throws -> [BookDTO] {
         let apiRequest: APIRequest = .init(
             scheme: .http,
             host: .aladin,
-            endpoint: AladinAPIEndpoint.itemList(
-                query: query,
-                page: page
-            )
+            endpoint: AladinAPIEndpoint.itemSearch(keyword: keyword, page: page)
         )
         
         let booksDTO: [BookDTO] = try await httpClient
