@@ -8,6 +8,8 @@ struct Result: Codable {
 }
 
 struct BookDTO: DTOProtocol {
+    typealias Entity = Book
+    
     let title: String
     let author: String
     let description: String
@@ -17,7 +19,7 @@ struct BookDTO: DTOProtocol {
     let cover: String
     let publisher: String
     
-    func asModel(image coverImage: UIImage) -> Book {
+    func asModel(with coverImage: UIImage) -> Book {
         .init(id: UUID(),
               title: title,
               author: author,
