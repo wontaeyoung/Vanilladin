@@ -1,3 +1,5 @@
+import UIKit
+
 final class AladinService: AladinServiceInterface {
     // MARK: - Stored Property
     private let httpClient: HTTPClientInterface
@@ -28,5 +30,15 @@ final class AladinService: AladinServiceInterface {
             .item
         
         return booksDTO
+    }
+    
+    func requestCoverImage(
+        _ urlStr: String
+    ) async throws -> UIImage {
+        guard let image = try await httpClient.sendImageRequest(urlStr: urlStr) else {
+            return UIImage(systemName: "text.book.closed.fill") ?? .actions
+        }
+        
+        return image
     }
 }
