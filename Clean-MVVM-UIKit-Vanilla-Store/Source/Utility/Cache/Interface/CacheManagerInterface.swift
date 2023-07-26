@@ -1,4 +1,4 @@
-protocol CacheManager {
+protocol CacheManagerInterface {
     associatedtype ObjectType
         
     func getObject(for key: String) -> ObjectType?
