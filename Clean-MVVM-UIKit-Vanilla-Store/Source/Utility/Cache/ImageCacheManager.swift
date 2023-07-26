@@ -28,4 +28,21 @@ final class ImageCacheManager: CacheManagerInterface {
             object: nil
         )
     }
+    
+    func getObject(for key: String) -> UIImage? {
+        let cacheKey: NSString = .init(string: key)
+        
+        let cachedImage: UIImage? = ImageCacheManager.shared.cache.object(forKey: cacheKey)
+        
+        return cachedImage
+    }
+    
+    func setObject(
+        _ object: UIImage,
+        for key: String
+    ) {
+        let cacheKey: NSString = .init(string: key)
+        
+        ImageCacheManager.shared.cache.setObject(object, forKey: cacheKey)
+    }
 }
