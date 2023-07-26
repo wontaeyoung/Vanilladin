@@ -1,6 +1,9 @@
 import UIKit
 
 struct Result: Codable {
+    let totalResults: Int
+    let startIndex: Int
+    let itemsPerPage: Int
     let item: [BookDTO]
 }
 
