@@ -1,8 +1,9 @@
-import Foundation
+import UIKit
 
 final class HTTPClient: HTTPClientInterface {
+    
     // MARK: - Method
-    func sendRequest<DTO: Decodable>(
+    func sendDTORequest<DTO: Decodable>(
         apiRequest: APIRequest,
         decodeType: DTO.Type
     ) async throws -> DTO {
@@ -13,6 +14,44 @@ final class HTTPClient: HTTPClientInterface {
             throw AladinAPIError.invalidURL
         }
         
+        let data: Data = try await sendRequestWithURL(url: url)
+        
+        guard let decodedDTO = try? JSONDecoder().decode(decodeType, from: data) else {
+            print(#function, AladinAPIError.failToDecoding.errorDescription)
+            throw AladinAPIError.failToDecoding
+        }
+        
+        return decodedDTO
+    }
+    
+    func sendImageRequest(
+        urlStr: String
+    ) async throws -> UIImage? {
+        guard let url = URL(string: urlStr) else {
+            print(#function, AladinAPIError.invalidURL.errorDescription)
+            throw AladinAPIError.invalidURL
+        }
+        
+        let data: Data = try await sendRequestWithURL(url: url)
+        
+        return UIImage(data: data)
+    }
+}
+
+private extension HTTPClient {
+    func getURLComponents(with apiRequest: APIRequest) -> URLComponents {
+        var components = URLComponents()
+        components.scheme = apiRequest.scheme.rawValue
+        components.host = apiRequest.host.rawValue
+        components.path = apiRequest.endpoint.path
+        components.queryItems = apiRequest.endpoint.queryItems
+        
+        return components
+    }
+    
+    func sendRequestWithURL(
+        url: URL
+    ) async throws -> Data {
         let request: URLRequest = .init(url: url)
         
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
@@ -27,23 +66,6 @@ final class HTTPClient: HTTPClientInterface {
             throw AladinAPIError.unexpectedStatusCode
         }
         
-        guard let decodedDTO = try? JSONDecoder().decode(decodeType, from: data) else {
-            print(#function, AladinAPIError.failToDecoding.errorDescription)
-            throw AladinAPIError.failToDecoding
-        }
-        
-        return decodedDTO
-    }
-}
-
-private extension HTTPClient {
-    func getURLComponents(with apiRequest: APIRequest) -> URLComponents {
-        var components = URLComponents()
-        components.scheme = apiRequest.scheme.rawValue
-        components.host = apiRequest.host.rawValue
-        components.path = apiRequest.endpoint.path
-        components.queryItems = apiRequest.endpoint.queryItems
-        
-        return components
+        return data
     }
 }
