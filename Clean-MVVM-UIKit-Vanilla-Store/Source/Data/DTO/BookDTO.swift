@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct Result: Codable {
     let item: [BookDTO]
@@ -14,7 +14,7 @@ struct BookDTO: DTOProtocol {
     let cover: String
     let publisher: String
     
-    func asModel(with coverImage: Data) -> Book {
+    func asModel(image coverImage: UIImage) -> Book {
         .init(id: UUID(),
               title: title,
               author: author,

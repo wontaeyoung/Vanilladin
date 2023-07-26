@@ -1,7 +1,7 @@
-import Foundation
+import UIKit
 
 protocol DTOProtocol: Codable {
     associatedtype Entity: EntityProtocol
     
-    func asModel(with coverImage: Data) -> Entity
+    func asModel(with coverImage: UIImage) -> Entity
 }
