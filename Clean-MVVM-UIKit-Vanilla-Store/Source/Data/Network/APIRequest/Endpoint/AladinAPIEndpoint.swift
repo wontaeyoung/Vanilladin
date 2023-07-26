@@ -1,8 +1,8 @@
 import Foundation
 
 enum AladinAPIEndpoint: EndpointProtocol {
-    case itemSearch
-    case itemList(query: String, page: Int)
+    case itemSearch(keyword: String, page: UInt)
+    case itemList
     case itemLookUp
     
     var defaultPath: String {
@@ -23,15 +23,15 @@ enum AladinAPIEndpoint: EndpointProtocol {
     var defaultQueryItems: [URLQueryItem] {
         switch self {
             case .itemSearch:
-                return []
-            case .itemList(_, _):
                 return [
-                    URLQueryItem(name: "ttbkey", value: ProcessInfo.processInfo.environment["TTB_KEY"]),
-                    URLQueryItem(name: "QueryType", value: "ItemNewAll"),
-                    URLQueryItem(name: "Cover", value: "Big"),
-                    URLQueryItem(name: "Output", value: "JS"),
-                    URLQueryItem(name: "Version", value: "20131101")
+                    URLQueryItem(name: AladinAPIParameter.ttbKey.name, value: AladinAPIConstant.ttbKey),
+                    URLQueryItem(name: AladinAPIParameter.QueryType.name, value: AladinAPIConstant.queryType),
+                    URLQueryItem(name: AladinAPIParameter.Cover.name, value: AladinAPIConstant.cover),
+                    URLQueryItem(name: AladinAPIParameter.Output.name, value: AladinAPIConstant.output),
+                    URLQueryItem(name: AladinAPIParameter.Version.name, value: AladinAPIConstant.version),
                 ]
+            case .itemList:
+                return []
             case .itemLookUp:
                 return []
         }
@@ -39,13 +39,13 @@ enum AladinAPIEndpoint: EndpointProtocol {
     
     var optionalQueryItems: [URLQueryItem] {
         switch self {
-            case .itemSearch:
-                return []
-            case .itemList(let query, let page):
+            case .itemSearch(let keyword, let page):
                 return [
-                    URLQueryItem(name: "query", value: query),
-                    URLQueryItem(name: "page", value: page.description),
+                    URLQueryItem(name: AladinAPIParameter.Query.name, value: keyword),
+                    URLQueryItem(name: AladinAPIParameter.Start.name, value: page.description),
                 ]
+            case .itemList:
+                return []
             case .itemLookUp:
                 return []
         }
