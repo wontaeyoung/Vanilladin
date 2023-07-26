@@ -15,7 +15,7 @@ final class ImageCacheManager: CacheManagerInterface {
         
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(removeAllObjects()),
+            selector: #selector(removeAllObjects),
             name: memoryWarningNotification,
             object: nil
         )
@@ -44,5 +44,14 @@ final class ImageCacheManager: CacheManagerInterface {
         let cacheKey: NSString = .init(string: key)
         
         ImageCacheManager.shared.cache.setObject(object, forKey: cacheKey)
+    }
+    
+    func removeObject(for key: String) {
+        let cacheKey: NSString = .init(string: key)
+        ImageCacheManager.shared.cache.removeObject(forKey: cacheKey)
+    }
+    
+    @objc func removeAllObjects() {
+        ImageCacheManager.shared.cache.removeAllObjects()
     }
 }
