@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct Book: EntityProtocol {
     let id: UUID
@@ -8,6 +8,6 @@ struct Book: EntityProtocol {
     let priceSales: Int
     let priceStandard: Int
     let mileage: Int
-    let coverImage: Data
+    let coverImage: UIImage
     let publisher: String
 }
