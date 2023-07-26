@@ -16,7 +16,7 @@ enum AladinAPIEndpoint: EndpointProtocol {
             case .itemList:
                 return "/ItemList.aspx"
             case .itemLookUp:
-                return "ItemLookUp.aspx"
+                return "/ItemLookUp.aspx"
         }
     }
     
