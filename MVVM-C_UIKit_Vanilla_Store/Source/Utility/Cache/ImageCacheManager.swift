@@ -1,7 +1,6 @@
 import UIKit
 
-final class ImageCacheManager: CacheManagerInterface {
-    typealias ObjectType = UIImage
+final class ImageCacheManager {
     
     // MARK: - Stored Property
     static let shared: ImageCacheManager = .init()
