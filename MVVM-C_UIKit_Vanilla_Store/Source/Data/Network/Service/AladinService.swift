@@ -1,12 +1,12 @@
 import UIKit
 
-final class AladinService: AladinServiceInterface {
+final class AladinService {
     // MARK: - Stored Property
-    private let httpClient: HTTPClientInterface
+    private let httpClient: HTTPClient
     
     // MARK: - Initializer
     init(
-        httpClient: HTTPClientInterface = HTTPClient()
+        httpClient: HTTPClient = HTTPClient()
     ) {
         self.httpClient = httpClient
     }

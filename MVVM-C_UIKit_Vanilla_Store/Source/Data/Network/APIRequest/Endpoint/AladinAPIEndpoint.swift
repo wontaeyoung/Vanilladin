@@ -50,6 +50,4 @@ enum AladinAPIEndpoint: EndpointProtocol {
                 return []
         }
     }
-    
-
 }
