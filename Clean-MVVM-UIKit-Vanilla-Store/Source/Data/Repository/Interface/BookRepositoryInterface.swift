@@ -1,6 +1,6 @@
 protocol BookRepositoryInterface {
     func fetchBooks(
-        query: String,
-        page: Int
+        keyword: String,
+        page: UInt
     ) async throws -> [Book]
 }
