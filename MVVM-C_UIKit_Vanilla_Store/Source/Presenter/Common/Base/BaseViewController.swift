@@ -3,6 +3,10 @@ import UIKit
 class BaseViewController: UIViewController {
     
     // MARK: - Method
+    func setHierarchy() { }
+    func setConstraints() { }
+    func setAttributes() { }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -13,10 +17,7 @@ class BaseViewController: UIViewController {
         setAttributes()
     }
     
-    func setHierarchy() { }
-    func setConstraints() { }
-    func setAttributes() { }
-    
+    // MARK: - Initializer
     init() {
         super.init(
             nibName: nil,
