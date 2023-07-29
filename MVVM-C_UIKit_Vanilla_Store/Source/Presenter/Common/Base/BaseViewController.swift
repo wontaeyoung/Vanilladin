@@ -4,8 +4,8 @@ class BaseViewController: UIViewController {
     
     // MARK: - Method
     func setHierarchy() { }
-    func setConstraints() { }
-    func setAttributes() { }
+    func setConstraint() { }
+    func setAttribute() { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,8 +13,8 @@ class BaseViewController: UIViewController {
         self.view.backgroundColor = .white
         
         setHierarchy()
-        setConstraints()
-        setAttributes()
+        setConstraint()
+        setAttribute()
     }
     
     // MARK: - Initializer

@@ -4,8 +4,8 @@ class BaseView: UIView {
 
     // MARK: - Method
     func setHierarchy() { }
-    func setConstraints() { }
-    func setAttributes() { }
+    func setConstraint() { }
+    func setAttribute() { }
     
     // MARK: - Initializer
     override init(frame: CGRect) {
@@ -14,8 +14,8 @@ class BaseView: UIView {
         self.backgroundColor = .white
         
         setHierarchy()
-        setConstraints()
-        setAttributes()
+        setConstraint()
+        setAttribute()
     }
     
     @available(*, unavailable)
