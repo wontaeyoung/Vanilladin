@@ -1,7 +1,11 @@
 final class DependencyContainer: DependencyContainerProtocol {
-
+    
     // MARK: - Stored Property
+    static let shared: DependencyContainer = .init()
     private var registry: [ObjectIdentifier : DependencyContainable] = [:]
+    
+    // MARK: - Initializer
+    private init() { }
     
     // MARK: - Method
     func register<T: DependencyContainable>(
