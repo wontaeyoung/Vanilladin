@@ -9,4 +9,6 @@ protocol DependencyContainerProtocol: DependencyContainable {
     func resolve<T: DependencyContainable>(
         _ factory: @escaping () -> T
     ) -> T
+    
+    func setDependency()
 }
