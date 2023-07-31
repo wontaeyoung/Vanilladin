@@ -1,6 +1,6 @@
 import UIKit
 
-final class BookRepository {
+final class BookRepository: DependencyContainable {
     // MARK: - Stored Property
     private let aladinService: AladinService
     

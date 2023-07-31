@@ -1,6 +1,6 @@
 import UIKit
 
-final class AladinService {
+final class AladinService: DependencyContainable {
     // MARK: - Stored Property
     private let httpClient: HTTPClient
     

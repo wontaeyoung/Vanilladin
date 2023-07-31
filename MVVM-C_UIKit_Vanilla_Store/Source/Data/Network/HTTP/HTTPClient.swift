@@ -1,6 +1,6 @@
 import UIKit
 
-final class HTTPClient {
+final class HTTPClient: DependencyContainable {
     
     // MARK: - Method
     func sendDTORequest<DTO: Decodable>(
