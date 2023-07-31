@@ -6,7 +6,7 @@ final class AladinService: DependencyContainable {
     
     // MARK: - Initializer
     init(
-        httpClient: HTTPClient = HTTPClient()
+        httpClient: HTTPClient
     ) {
         self.httpClient = httpClient
     }

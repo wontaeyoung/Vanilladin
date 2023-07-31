@@ -6,7 +6,7 @@ final class BookRepository: DependencyContainable {
     
     // MARK: - Initializer
     init(
-        aladinService: AladinService = .init()
+        aladinService: AladinService
     ) {
         self.aladinService = aladinService
     }
