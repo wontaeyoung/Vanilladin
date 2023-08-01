@@ -46,11 +46,13 @@ final class DependencyContainer: DependencyContainerProtocol {
         let httpClient: HTTPClient = .init()
         let aladinService: AladinService = .init(httpClient: httpClient)
         let bookRepository: BookRepository = .init(aladinService: aladinService)
-
+        let bookListViewModel: BookListViewModel = .init(coordinator: nil)
+        
         let modules: [DependencyContainable] = [
             httpClient,
             aladinService,
-            bookRepository
+            bookRepository,
+            bookListViewModel
         ]
         
         modules.forEach { module in
