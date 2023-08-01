@@ -3,6 +3,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var bookCoordinator: BookCoordinator?
 
     func scene(
         _ scene: UIScene,
@@ -16,11 +17,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else {
             return
         }
-        let initialViewController: UIViewController = InitialViewController()
+        
+        let rootNavigationController: UINavigationController = .init()
+        bookCoordinator = BookCoordinator(rootNavigationController)
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = initialViewController
+        window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
+        bookCoordinator?.start()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
