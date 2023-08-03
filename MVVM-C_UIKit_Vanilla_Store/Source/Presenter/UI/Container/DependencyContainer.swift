@@ -19,17 +19,11 @@ final class DependencyContainer: DependencyContainerProtocol {
         )
     }
     
-    func resolve<T: DependencyContainable>(
-        _ factory: @escaping () -> T
-    ) -> T {
+    func resolve<T: DependencyContainable>() throws -> T {
         let key: ObjectIdentifier = .init(T.self)
         
         guard let instance: T = registry[key] as? T else {
-            let newInstance: T = factory()
-            
-            register(instance: newInstance)
-            
-            return newInstance
+            throw DependencyContainerError.instanceNotRegistered
         }
         
         return instance
