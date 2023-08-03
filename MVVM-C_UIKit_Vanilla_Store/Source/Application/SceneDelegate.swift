@@ -24,6 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
+        
+        DependencyContainer.shared.setDependency()
         bookCoordinator?.start()
         
     }
