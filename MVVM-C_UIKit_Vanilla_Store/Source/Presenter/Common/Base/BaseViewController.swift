@@ -3,18 +3,18 @@ import UIKit
 class BaseViewController: UIViewController, DependencyContainable {
     
     // MARK: - Method
+    func setAttribute() { }
     func setHierarchy() { }
     func setConstraint() { }
-    func setAttribute() { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         
+        setAttribute()
         setHierarchy()
         setConstraint()
-        setAttribute()
     }
     
     // MARK: - Initializer
