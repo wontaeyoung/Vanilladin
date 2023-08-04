@@ -18,6 +18,17 @@ final class BookCoordinator: CoordinatorProtocol {
     
     // MARK: - Method
     func start() {
-        
+        presentBookListViewController()
+    }
+}
+
+private extension BookCoordinator {
+    func presentBookListViewController() {
+        do {
+            let bookListViewController: BookListViewController = try DependencyContainer.shared.resolve()
+            push(bookListViewController)
+        } catch {
+            
+        }
     }
 }
