@@ -28,3 +28,16 @@ extension AppCoordinator {
         self.navigationController.popToRootViewController(animated: true)
     }
 }
+
+private extension AppCoordinator {
+    
+    func pushBookListFlow() {
+        self.emptyOut()
+        
+        let bookCoordinator: BookCoordinator = .init(self.navigationController)
+        bookCoordinator.delegate = self
+        self.childCoordinators.append(bookCoordinator)
+        
+        bookCoordinator.start()
+    }
+}
