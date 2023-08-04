@@ -16,7 +16,8 @@ protocol CoordinatorProtocol: AnyObject {
     // MARK: - Method
     func start()
     func end()
-    func popViewController()
+    func push(_ viewController: BaseViewController)
+    func pop()
     func dismissModal()
 }
 
@@ -28,7 +29,11 @@ extension CoordinatorProtocol {
         delegate?.coordinatorDidEnd(self)
     }
     
-    func popViewController() {
+    func push(_ viewController: BaseViewController) {
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func pop() {
         navigationController.popViewController(animated: true)
     }
     
