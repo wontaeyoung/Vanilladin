@@ -1,4 +1,4 @@
-final class BookListViewModel: DependencyContainable {
+final class BookListViewModel: ViewModelProtocol {
 
     // MARK: - Stored Property
     private(set) var books: [Book]
