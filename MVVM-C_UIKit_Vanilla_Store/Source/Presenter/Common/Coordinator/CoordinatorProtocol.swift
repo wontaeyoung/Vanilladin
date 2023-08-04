@@ -19,6 +19,7 @@ protocol CoordinatorProtocol: AnyObject {
     func push(_ viewController: BaseViewController)
     func pop()
     func dismissModal()
+    func emptyOut()
 }
 
 extension CoordinatorProtocol {
@@ -39,5 +40,9 @@ extension CoordinatorProtocol {
     
     func dismissModal() {
         navigationController.dismiss(animated: true)
+    }
+    
+    func emptyOut() {
+        navigationController.viewControllers.removeAll()
     }
 }
