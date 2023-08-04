@@ -1,6 +1,6 @@
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, DependencyContainable {
     
     // MARK: - Method
     func setHierarchy() { }
