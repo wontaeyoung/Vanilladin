@@ -1,6 +1,6 @@
 import UIKit
 
-final class AppCoordinator: CoordinatorProtocol {
+final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegateProtocol {
     
     // MARK: - Stored Property
     weak var delegate: CoordinatorDelegateProtocol?
@@ -19,5 +19,12 @@ final class AppCoordinator: CoordinatorProtocol {
     // MARK: - Method
     func start() {
         
+    }
+}
+
+extension AppCoordinator {
+    
+    func coordinatorDidEnd(_ childCoordinator: CoordinatorProtocol) {
+        self.navigationController.popToRootViewController(animated: true)
     }
 }
