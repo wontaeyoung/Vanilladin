@@ -18,7 +18,7 @@ final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegateProtocol {
     
     // MARK: - Method
     func start() {
-        
+        pushBookListFlow()
     }
 }
 
