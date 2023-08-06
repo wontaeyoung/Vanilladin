@@ -26,9 +26,15 @@ private extension BookCoordinator {
     func presentBookListViewController() {
         do {
             let bookListViewController: BookListViewController = try DependencyContainer.shared.resolve()
+                        
             push(bookListViewController)
         } catch {
+            guard let error = error as? AppErrorProtocol else {
+                print(#function, "에러 타입캐스팅 실패!")
+                return
+            }
             
+            handle(error: error)
         }
     }
 }
