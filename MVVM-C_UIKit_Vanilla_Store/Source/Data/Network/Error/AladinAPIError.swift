@@ -1,4 +1,4 @@
-enum AladinAPIError: Error {
+enum AladinAPIError: AppErrorProtocol {
     case invalidURL
     case invalidResponse
     case failToDecoding
