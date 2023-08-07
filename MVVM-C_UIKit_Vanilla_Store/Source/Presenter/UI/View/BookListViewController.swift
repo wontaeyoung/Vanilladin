@@ -6,8 +6,8 @@ final class BookListViewController: BaseViewController {
     private let bookListViewModel: BookListViewModel
     private var text: UILabel = {
         let label: UILabel = .init()
-        label.text = "기본 텍스트"
-        label.textColor = .blue
+        label.text = "찾고싶은 책의 이름을 검색해주세요!"
+        label.textColor = .black
         
         return label
     }()
@@ -22,6 +22,17 @@ final class BookListViewController: BaseViewController {
     }
     
     // MARK: - Method
+    override func setAttribute() {
+        navigationItem.searchController = {
+            let searchController: UISearchController = .init()
+            let searchBar: UISearchBar = searchController.searchBar
+            
+            searchBar.placeholder = "Search Books"
+            
+            return searchController
+        }()
+    }
+    
     override func setHierarchy() {
         view.addSubview(text)
     }
@@ -32,8 +43,6 @@ final class BookListViewController: BaseViewController {
         NSLayoutConstraint.activate([
             text.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             text.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            text.widthAnchor.constraint(equalToConstant: 100),
-            text.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }
