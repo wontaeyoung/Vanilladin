@@ -1,25 +1,15 @@
 import UIKit
 
-final class BookListViewController: BaseViewController {
+final class SearchBookViewController: BaseViewController {
 
     // MARK: - Stored Property
-    private let bookListViewModel: BookListViewModel
-    private var text: UILabel = {
+    private var searchGuideText: UILabel = {
         let label: UILabel = .init()
         label.text = "찾고싶은 책의 이름을 검색해주세요!"
         label.textColor = .black
         
         return label
     }()
-    
-    // MARK: - Initializer
-    init(
-        bookListViewModel: BookListViewModel
-    ) {
-        self.bookListViewModel = bookListViewModel
-        
-        super.init()
-    }
     
     // MARK: - Method
     override func setAttribute() {
@@ -34,15 +24,15 @@ final class BookListViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubview(text)
+        view.addSubview(searchGuideText)
     }
     
     override func setConstraint() {
-        text.translatesAutoresizingMaskIntoConstraints = false
+        searchGuideText.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            text.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            text.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchGuideText.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
 }
