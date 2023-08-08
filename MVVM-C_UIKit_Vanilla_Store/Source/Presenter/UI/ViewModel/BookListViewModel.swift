@@ -7,7 +7,7 @@ final class BookListViewModel: ViewModelProtocol {
     // MARK: - Initializer
     init(
         books: [Book] = [],
-        coordinator: BookCoordinator?
+        coordinator: BookCoordinator? = nil
     ) {
         self.books = books
         self.coordinator = coordinator
