@@ -1,7 +1,13 @@
 final class BookDataSource: DataSourceProtocol {
     typealias Entity = Book
     
-    var entities: [Entity]
+    private weak var delegate: DataSourceDelegateProtocol?
+    
+    var entities: [Entity] {
+        didSet {
+            delegate?.entitiesDidUpdate()
+        }
+    }
     
     init(
         entities: [Book] = []
