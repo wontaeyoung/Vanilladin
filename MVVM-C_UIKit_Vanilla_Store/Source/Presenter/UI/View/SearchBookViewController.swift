@@ -3,6 +3,8 @@ import UIKit
 final class SearchBookViewController: BaseViewController {
 
     // MARK: - Stored Property
+    private let searchBookViewModel: SearchBookViewModel
+    private let bookListViewController: BookListViewController
     private var searchGuideText: UILabel = {
         let label: UILabel = .init()
         label.text = "찾고싶은 책의 이름을 검색해주세요!"
@@ -11,10 +13,19 @@ final class SearchBookViewController: BaseViewController {
         return label
     }()
     
+    // MARK: - Initializer
+    init(
+        searchBookViewModel: SearchBookViewModel,
+        bookListViewController: BookListViewController
+    ) {
+        self.searchBookViewModel = searchBookViewModel
+        self.bookListViewController = bookListViewController
+    }
+    
     // MARK: - Method
     override func setAttribute() {
         navigationItem.searchController = {
-            let searchController: UISearchController = .init()
+            let searchController: UISearchController = .init(searchResultsController: bookListViewController)
             let searchBar: UISearchBar = searchController.searchBar
             
             searchBar.placeholder = "Search Books"
