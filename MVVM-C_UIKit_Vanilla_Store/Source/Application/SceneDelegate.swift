@@ -25,8 +25,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-        DependencyContainer.shared.setDependency()
-        bookCoordinator?.start()
+        guard let bookCoordinator else {
+            return
+        }
+        
+        DependencyContainer.shared.setDependency(coordinator: bookCoordinator)
+        bookCoordinator.start()
         
     }
 
