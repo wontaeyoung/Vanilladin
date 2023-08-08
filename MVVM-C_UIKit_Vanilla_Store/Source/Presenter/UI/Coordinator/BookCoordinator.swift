@@ -25,7 +25,10 @@ final class BookCoordinator: CoordinatorProtocol {
 // MARK: 인스턴스 생성 + 네비게이션
 private extension BookCoordinator {
     func presentBookListViewController() {
-        let searchBookViewController: SearchBookViewController = makeInstance()
+        guard let searchBookViewController: SearchBookViewController = makeInstance() else {
+            print(#function, "인스턴스 생성 실패!")
+            return
+        }
                     
         push(searchBookViewController)
     }
@@ -33,7 +36,7 @@ private extension BookCoordinator {
 
 // MARK: 인스턴스 생성 및 에러 핸들링
 extension BookCoordinator {
-    func makeInstance<T: DependencyContainable>() -> T {
+    func makeInstance<T: DependencyContainable>() -> T? {
         do {
             let instance: T = try DependencyContainer.shared.resolve()
             
@@ -41,23 +44,12 @@ extension BookCoordinator {
         } catch {
             guard let error = error as? AppErrorProtocol else {
                 print(#function, "에러 타입캐스팅 실패!")
+                return nil
             }
             
             handle(error: error)
         }
-    }
-    
-    func makeBookListViewController() -> BookListViewController {
-        do {
-            let viewController: BookListViewController = try DependencyContainer.shared.resolve()
-            
-            return viewController
-        } catch {
-            guard let error = error as? AppErrorProtocol else {
-                print(#function, "에러 타입캐스팅 실패!")
-            }
-            
-            handle(error: error)
-        }
+        
+        return nil
     }
 }
