@@ -37,24 +37,51 @@ final class DependencyContainer: DependencyContainerProtocol {
      */
     func setDependency(coordinator: CoordinatorProtocol) {
         
+        // MARK: - Netowrk
         let httpClient: HTTPClient = .init()
         let aladinService: AladinService = .init(httpClient: httpClient)
+        
+        // MARK: - Repository
         let bookRepository: BookRepository = .init(aladinService: aladinService)
-        let bookListViewModel: BookListViewModel = .init(coordinator: coordinator as? BookCoordinator)
+        
+        // MARK: - DataSource
+        let bookDataSource: BookDataSource = .init()
+        
+        // MARK: - ViewModel
+        let bookListViewModel: BookListViewModel = .init(
+            coordinator: coordinator as? BookCoordinator,
+            bookDataSource: bookDataSource
+        )
+        let searchBookViewModel: SearchBookViewModel = .init(
+            coordinator: coordinator as? BookCoordinator,
+            bookRepository: bookRepository,
+            bookDataSource: bookDataSource
+        )
+        
+        // MARK: - ViewController
         let bookListViewController: BookListViewController = .init(bookListViewModel: bookListViewModel)
-        let searchBookViewModel: SearchBookViewModel = .init(coordinator: coordinator as? BookCoordinator)
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
             bookListViewController: bookListViewController
         )
         
         let modules: [DependencyContainable] = [
+            // MARK: - Netowrk
             httpClient,
             aladinService,
+            
+            // MARK: - Repository
             bookRepository,
+            
+            // MARK: - DataSource
+            bookDataSource,
+            
+            // MARK: - ViewModel
             bookListViewModel,
-            bookListViewController,
             searchBookViewModel,
+            
+            // MARK: - ViewController
+            bookListViewController,
             searchBookViewController
         ]
         
