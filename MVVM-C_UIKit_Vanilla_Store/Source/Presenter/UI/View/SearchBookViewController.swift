@@ -20,6 +20,8 @@ final class SearchBookViewController: BaseViewController {
     ) {
         self.searchBookViewModel = searchBookViewModel
         self.bookListViewController = bookListViewController
+        
+        super.init()
     }
     
     // MARK: - Method
