@@ -41,6 +41,7 @@ final class DependencyContainer: DependencyContainerProtocol {
         let aladinService: AladinService = .init(httpClient: httpClient)
         let bookRepository: BookRepository = .init(aladinService: aladinService)
         let bookListViewModel: BookListViewModel = .init(coordinator: nil)
+        let bookListViewController: BookListViewController = .init(bookListViewModel: bookListViewModel)
         let searchBookViewController: SearchBookViewController = .init()
         
         let modules: [DependencyContainable] = [
@@ -48,6 +49,7 @@ final class DependencyContainer: DependencyContainerProtocol {
             aladinService,
             bookRepository,
             bookListViewModel,
+            bookListViewController,
             searchBookViewController
         ]
         
