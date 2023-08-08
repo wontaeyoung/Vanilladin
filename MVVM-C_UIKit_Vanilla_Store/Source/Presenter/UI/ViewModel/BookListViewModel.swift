@@ -1,15 +1,15 @@
 final class BookListViewModel: ViewModelProtocol {
 
     // MARK: - Stored Property
-    private(set) var books: [Book]
     private weak var coordinator: BookCoordinator?
+    private let bookDataSource: BookDataSource
     
     // MARK: - Initializer
     init(
-        books: [Book] = [],
-        coordinator: BookCoordinator? = nil
+        coordinator: BookCoordinator? = nil,
+        bookDataSource: BookDataSource
     ) {
-        self.books = books
         self.coordinator = coordinator
+        self.bookDataSource = bookDataSource
     }
 }
