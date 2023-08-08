@@ -12,7 +12,4 @@ final class BookListViewModel: ViewModelProtocol {
         self.books = books
         self.coordinator = coordinator
     }
-    
-    // MARK: - Method
-    
 }
