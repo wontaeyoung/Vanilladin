@@ -22,7 +22,7 @@ final class BookCoordinator: CoordinatorProtocol {
     }
 }
 
-// MARK: 인스턴스 생성 및 에러 핸들링 + 네비게이션
+// MARK: 인스턴스 생성 + 네비게이션
 private extension BookCoordinator {
     func presentBookListViewController() {
         guard let searchBookViewController: SearchBookViewController = makeInstance() else {
