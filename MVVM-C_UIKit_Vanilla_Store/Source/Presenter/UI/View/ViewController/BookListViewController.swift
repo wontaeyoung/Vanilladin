@@ -4,6 +4,7 @@ final class BookListViewController: BaseViewController {
     // MARK: - Dependency
     private let bookListViewModel: BookListViewModel
     
+    // MARK: - UI
     private lazy var bookTableView: BookTableView = .init()
     
     // MARK: - Initializer
@@ -15,6 +16,7 @@ final class BookListViewController: BaseViewController {
         super.init()
     }
     
+    // MARK: - Method
     override func setAttribute() {
         bookTableView.delegate = self
         bookListViewModel.setDataSourceDelegate(self)
