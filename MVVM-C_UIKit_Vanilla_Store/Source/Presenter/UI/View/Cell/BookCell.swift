@@ -9,6 +9,7 @@ final class BookCell: BaseTableViewCell {
     }
     
     // MARK: - UI
+    private let paddingView: UIView = .init()
     private let bookImage: UIImageView = .init()
     private let titleLabel: UILabel = {
         let label: UILabel = .init()
@@ -46,4 +47,28 @@ final class BookCell: BaseTableViewCell {
         priceLabel.text = book?.priceSales.asPriceString
     }
     
+    override func setHierarchy() {
+        contentView.addSubview(paddingView)
+        paddingView.addSubviews(bookImage, infoStackView)
+    }
+    
+    override func setConstraint() {
+        setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, bookImage, infoStackView)
+        
+        paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
+        
+        NSLayoutConstraint.activate([
+            bookImage.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            bookImage.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            bookImage.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
+            bookImage.widthAnchor.constraint(equalTo: paddingView.widthAnchor, multiplier: 0.25)
+        ])
+        
+        NSLayoutConstraint.activate([
+            infoStackView.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 20),
+            infoStackView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+            infoStackView.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            infoStackView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
+        ])
+    }
 }
