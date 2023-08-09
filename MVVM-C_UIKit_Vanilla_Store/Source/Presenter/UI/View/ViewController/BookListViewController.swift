@@ -1,6 +1,10 @@
+import UIKit
+
 final class BookListViewController: BaseViewController {
     // MARK: - Dependency
     private let bookListViewModel: BookListViewModel
+    
+    private lazy var bookTableView: BookTableView = .init()
     
     // MARK: - Initializer
     init(
@@ -9,5 +13,15 @@ final class BookListViewController: BaseViewController {
         self.bookListViewModel = bookListViewModel
         
         super.init()
+    }
+    
+    override func setHierarchy() {
+        view.addSubview(bookTableView)
+    }
+    
+    override func setConstraint() {
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(bookTableView)
+        
+        bookTableView.setAutoLayoutAllEqual(to: view)
     }
 }
