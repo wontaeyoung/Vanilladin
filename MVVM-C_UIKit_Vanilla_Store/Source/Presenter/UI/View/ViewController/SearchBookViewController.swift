@@ -54,6 +54,8 @@ final class SearchBookViewController: BaseViewController {
 
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
+        Task {
+            await searchBookViewModel.fetchBooks(keyword: searchBar.text ?? "")
+        }
     }
 }
