@@ -12,7 +12,7 @@ final class BookRepository: DependencyContainable {
     }
     
     // MARK: - Method
-    func fetchBook(
+    func fetchBooks(
         keyword: String,
         page: UInt
     ) async throws -> [Book] {

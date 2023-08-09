@@ -19,7 +19,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: -Method
     func fetchBooks(keyword: String) async {
         do {
-            let books: [Book] = try await bookRepository.fetchBook(
+            let books: [Book] = try await bookRepository.fetchBooks(
                 keyword: keyword,
                 page: self.currentPage
             )
