@@ -2,10 +2,12 @@ import UIKit
 
 final class SearchBookViewController: BaseViewController {
 
-    // MARK: - Stored Property
+    // MARK: - Dependency
     private let searchBookViewModel: SearchBookViewModel
     private let bookListViewController: BookListViewController
-    private var searchGuideText: UILabel = {
+    
+    // MARK: - UI
+    private lazy var searchGuideText: UILabel = {
         let label: UILabel = .init()
         label.text = "찾고싶은 책의 이름을 검색해주세요!"
         label.textColor = .black
@@ -47,5 +49,11 @@ final class SearchBookViewController: BaseViewController {
             searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             searchGuideText.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
+    }
+}
+
+extension SearchBookViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
     }
 }

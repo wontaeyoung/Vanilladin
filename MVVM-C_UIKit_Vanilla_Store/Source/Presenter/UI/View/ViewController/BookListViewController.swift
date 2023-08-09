@@ -1,5 +1,5 @@
 final class BookListViewController: BaseViewController {
-    // MARK: - Stored Property
+    // MARK: - Dependency
     private let bookListViewModel: BookListViewModel
     
     // MARK: - Initializer
