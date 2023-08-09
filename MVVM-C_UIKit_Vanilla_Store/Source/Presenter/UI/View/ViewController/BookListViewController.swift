@@ -38,6 +38,8 @@ extension BookListViewController: UITableViewDelegate {
 
 extension BookListViewController: DataSourceDelegateProtocol {
     func entitiesDidUpdate() {
-        bookTableView.reloadData()
+        DispatchQueue.main.async {
+            self.bookTableView.reloadData()
+        }
     }
 }
