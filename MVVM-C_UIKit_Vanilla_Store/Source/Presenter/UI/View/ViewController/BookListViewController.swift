@@ -15,6 +15,12 @@ final class BookListViewController: BaseViewController {
         super.init()
     }
     
+    override func setAttribute() {
+        bookTableView.delegate = self
+        bookListViewModel.setDataSourceDelegate(self)
+        bookListViewModel.setTableViewDataSource(to: bookTableView)
+    }
+    
     override func setHierarchy() {
         view.addSubview(bookTableView)
     }
@@ -23,5 +29,15 @@ final class BookListViewController: BaseViewController {
         view.setTranslatesAutoresizingMaskIntoConstraintsOff(bookTableView)
         
         bookTableView.setAutoLayoutAllEqual(to: view)
+    }
+}
+
+extension BookListViewController: UITableViewDelegate {
+    
+}
+
+extension BookListViewController: DataSourceDelegateProtocol {
+    func entitiesDidUpdate() {
+        bookTableView.reloadData()
     }
 }

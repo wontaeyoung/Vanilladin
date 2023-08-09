@@ -12,4 +12,13 @@ final class BookListViewModel: ViewModelProtocol {
         self.coordinator = coordinator
         self.bookDataSource = bookDataSource
     }
+    
+    // MARK: - Method
+    func setDataSourceDelegate(_ delegate: DataSourceDelegateProtocol) {
+        bookDataSource.setDelegate(delegate)
+    }
+    
+    func setTableViewDataSource(to tableView: BaseTableView) {
+        bookDataSource.setTableViewDataSourceAsSelf(to: tableView)
+    }
 }
