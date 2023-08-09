@@ -1,11 +1,8 @@
 final class BookListViewModel: ViewModelProtocol {
 
-    // MARK: - Dependency
+    // MARK: - Property
     private weak var coordinator: BookCoordinator?
     private let bookDataSource: BookDataSource
-    
-    // MARK: - UI
-    private lazy var bookListTableView: UITableView
     
     // MARK: - Initializer
     init(

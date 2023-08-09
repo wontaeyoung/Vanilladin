@@ -1,5 +1,5 @@
 final class SearchBookViewModel: ViewModelProtocol {
-    // MARK: - Stored Property
+    // MARK: - Property
     private weak var coordinator: BookCoordinator?
     private let bookRepository: BookRepository
     private let bookDataSource: BookDataSource
