@@ -3,7 +3,6 @@ final class SearchBookViewModel: ViewModelProtocol {
     private weak var coordinator: BookCoordinator?
     private let bookRepository: BookRepository
     private let bookDataSource: BookDataSource
-    private var currentPage: UInt = 1
     
     // MARK: - Initializer
     init(
@@ -21,7 +20,7 @@ final class SearchBookViewModel: ViewModelProtocol {
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
                 keyword: keyword,
-                page: self.currentPage
+                page: bookDataSource.currentLoadPage
             )
             
             bookDataSource.entities = books

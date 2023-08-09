@@ -21,4 +21,8 @@ final class BookListViewModel: ViewModelProtocol {
     func setTableViewDataSource(to tableView: BaseTableView) {
         bookDataSource.setTableViewDataSourceAsSelf(to: tableView)
     }
+    
+    func increaseLoadPage() {
+        bookDataSource.increaseLoadPage()
+    }
 }

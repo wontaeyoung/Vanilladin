@@ -12,11 +12,14 @@ final class BookDataSource: NSObject, DataSourceProtocol {
         }
     }
     
+    private(set) var currentLoadPage: UInt
+    
     // MARK: - Initializer
     init(
         entities: [Book] = []
     ) {
         self.entities = entities
+        self.currentLoadPage = 1
     }
     
     // MARK: - Method
@@ -26,6 +29,10 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     func setTableViewDataSourceAsSelf(to tableView: BaseTableView) {
         tableView.dataSource = self
+    }
+    
+    func increaseLoadPage() {
+        self.currentLoadPage += 1
     }
 }
 
@@ -42,7 +49,7 @@ extension BookDataSource: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         guard let bookCell: BookCell = tableView.dequeueCell(BookCell.self, for: indexPath) as? BookCell else {
-            return tableView.dequeueCell(BookCell.self, for: indexPath)
+            return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
         }
 
         guard let book: Book = entity(at: indexPath.row) else {
