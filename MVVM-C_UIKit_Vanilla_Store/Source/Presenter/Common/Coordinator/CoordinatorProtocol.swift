@@ -62,10 +62,12 @@ extension CoordinatorProtocol {
         
         alertController.addAction(okAction)
         
-        self.navigationController
-            .present(
-                alertController,
-                animated: true
-            )
+        DispatchQueue.main.async {
+            self.navigationController
+                .present(
+                    alertController,
+                    animated: true
+                )
+        }
     }
 }
