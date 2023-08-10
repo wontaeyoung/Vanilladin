@@ -33,6 +33,7 @@ final class SearchBookViewController: BaseViewController {
             let searchBar: UISearchBar = searchController.searchBar
             
             searchBar.placeholder = "Search Books"
+            searchBar.delegate = self
             
             return searchController
         }()
