@@ -17,7 +17,7 @@ final class AladinService: DependencyContainable {
         page: UInt
     ) async throws -> [BookDTO] {
         let apiRequest: APIRequest = .init(
-            scheme: .http,
+            scheme: .https,
             host: .aladin,
             endpoint: AladinAPIEndpoint.itemSearch(keyword: keyword, page: page)
         )
