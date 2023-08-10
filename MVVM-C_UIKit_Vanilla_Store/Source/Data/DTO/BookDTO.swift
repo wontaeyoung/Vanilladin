@@ -13,8 +13,8 @@ struct BookDTO: DTOProtocol {
     let title: String
     let author: String
     let description: String
-    let pricesales: Int
-    let pricestandard: Int
+    let priceSales: Int
+    let priceStandard: Int
     let mileage: Int
     let cover: String
     let publisher: String
@@ -24,8 +24,8 @@ struct BookDTO: DTOProtocol {
               title: title,
               author: author,
               description: description,
-              priceSales: pricesales,
-              priceStandard: pricestandard,
+              priceSales: priceSales,
+              priceStandard: priceStandard,
               mileage: mileage,
               coverImage: coverImage,
               publisher: publisher
