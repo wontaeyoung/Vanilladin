@@ -10,27 +10,59 @@ final class BookCell: BaseTableViewCell {
     
     // MARK: - UI
     private let paddingView: UIView = .init()
-    private let bookImage: UIImageView = .init()
+    private let bookImageView: UIImageView = {
+        let imageView: UIImageView = .init()
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .boldSystemFont(ofSize: label.font.pointSize)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
+        label.numberOfLines = 0
         
         return label
     }()
-    private let descriptionLabel: UILabel = .init()
-    private let authorLabel: UILabel = .init()
-    private let publisherLabel: UILabel = .init()
-    private let priceLabel: UILabel = .init()
+    
+    private let authorLabel: UILabel = {
+        let label: UILabel = .init()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        
+        return label
+    }()
+    
+    private let publisherLabel: UILabel = {
+        let label: UILabel = .init()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        
+        return label
+    }()
+    
+    private let priceLabel: UILabel = {
+        let label: UILabel = .init()
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        
+        return label
+    }()
     
     private lazy var infoStackView: UIStackView = {
-        let stackView: UIStackView = .init(arrangedSubviews: [
-            titleLabel,
-            descriptionLabel,
-            authorLabel,
-            publisherLabel,
-            priceLabel
-        ])
+        let stackView: UIStackView = .init(
+            arrangedSubviews: [
+                titleLabel,
+                authorLabel,
+                publisherLabel,
+                priceLabel
+            ]
+        )
+        
         stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fillProportionally
         
         return stackView
     }()
@@ -39,33 +71,41 @@ final class BookCell: BaseTableViewCell {
     
     // MARK: - Method
     override func setAttribute() {
-        bookImage.image = book?.coverImage
-        titleLabel.text = book?.title
-        descriptionLabel.text = book?.description
+        bookImageView.image = book?.coverImage
+        titleLabel.attributedText = book?.title.attributedTitleText
         authorLabel.text = book?.author
         publisherLabel.text = book?.publisher
-        priceLabel.text = book?.priceSales.asPriceString
+        priceLabel.text = (book?.priceSales.asPriceString ?? "-") + "원"
+                
+//        paddingView.backgroundColor = .green
+//        bookImageView.backgroundColor = .blue
+//        titleLabel.backgroundColor = .gray
+//        authorLabel.backgroundColor = .brown
+//        publisherLabel.backgroundColor = .magenta
+//        priceLabel.backgroundColor = .orange
     }
     
     override func setHierarchy() {
         contentView.addSubview(paddingView)
-        paddingView.addSubviews(bookImage, infoStackView)
+        paddingView.addSubviews(bookImageView, infoStackView)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, bookImage, infoStackView)
         
-        paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, bookImageView, infoStackView)
+        
+        paddingView.setPaddingAutoLayout(to: contentView, padding: 10)
+        paddingView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         NSLayoutConstraint.activate([
-            bookImage.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
-            bookImage.topAnchor.constraint(equalTo: paddingView.topAnchor),
-            bookImage.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
-            bookImage.widthAnchor.constraint(equalTo: paddingView.widthAnchor, multiplier: 0.25)
+            bookImageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            bookImageView.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            bookImageView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
+            bookImageView.widthAnchor.constraint(equalTo: paddingView.widthAnchor, multiplier: 0.25),
         ])
         
         NSLayoutConstraint.activate([
-            infoStackView.leadingAnchor.constraint(equalTo: bookImage.trailingAnchor, constant: 20),
+            infoStackView.leadingAnchor.constraint(equalTo: bookImageView.trailingAnchor, constant: 10),
             infoStackView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             infoStackView.topAnchor.constraint(equalTo: paddingView.topAnchor),
             infoStackView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
