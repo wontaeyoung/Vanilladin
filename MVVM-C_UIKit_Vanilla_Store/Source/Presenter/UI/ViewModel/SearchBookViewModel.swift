@@ -4,6 +4,10 @@ final class SearchBookViewModel: ViewModelProtocol {
     private let bookRepository: BookRepository
     private let bookDataSource: BookDataSource
     
+    var isResultEmpty: Bool {
+        return bookDataSource.entities.isEmpty
+    }
+    
     // MARK: - Initializer
     init(
         coordinator: BookCoordinator? = nil,
