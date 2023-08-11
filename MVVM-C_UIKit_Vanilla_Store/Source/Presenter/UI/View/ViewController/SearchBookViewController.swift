@@ -34,6 +34,9 @@ final class SearchBookViewController: BaseViewController {
             
             searchBar.placeholder = "Search Books"
             searchBar.delegate = self
+            searchBar.autocapitalizationType = .none
+            searchBar.autocorrectionType = .no
+            searchBar.spellCheckingType = .no
             
             return searchController
         }()
