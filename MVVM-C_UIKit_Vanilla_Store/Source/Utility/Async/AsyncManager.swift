@@ -10,12 +10,12 @@ final class AsyncManager {
         from items: [T],
         transform: @escaping (T) async throws -> U
     ) async throws -> [U] {
-        var results: [U] = []
-        
-        try await withThrowingTaskGroup(of: U.self) { group in
-            for item in items {
+        var results: [(index: Int, value: U)] = []
+            
+        try await withThrowingTaskGroup(of: (Int, U).self) { group in
+            for (index, item) in items.enumerated() {
                 group.addTask {
-                    return try await transform(item)
+                    return try await (index, transform(item))
                 }
             }
             
@@ -25,5 +25,7 @@ final class AsyncManager {
         }
         
         return results
+            .sorted { $0.index < $1.index }
+            .map { $0.value }
     }
 }
