@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 final class SearchKeywordHistoryDataSource: NSObject {
     enum KeywordState {
@@ -64,5 +64,14 @@ final class SearchKeywordHistoryDataSource: NSObject {
         insertKeywordAtFirst(keyword, for: &keywords)
         
         setKeywords(keywords)
+    }
+}
+
+extension SearchKeywordHistoryDataSource: UITableViewDataSource {
+    func tableView(
+        _ tableView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        return keywords.count
     }
 }
