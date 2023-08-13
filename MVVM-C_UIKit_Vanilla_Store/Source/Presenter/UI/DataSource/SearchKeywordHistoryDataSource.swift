@@ -47,7 +47,10 @@ final class SearchKeywordHistoryDataSource: NSObject {
         return .lessThanMaxCount
     }
     
-    private func insertKeywordAtFirst(_ keyword: String, for keywords: inout [String]) {
+    private func insertKeywordAtFirst(
+        _ keyword: String,
+        for keywords: inout [String]
+    ) {
         keywords.insert(keyword, at: 0)
     }
     
@@ -65,6 +68,14 @@ final class SearchKeywordHistoryDataSource: NSObject {
         
         setKeywords(keywords)
     }
+    
+    func removeKeyword(at index: Int) {
+        var keywords: [String] = self.keywords
+        
+        keywords.remove(at: index)
+        
+        setKeywords(keywords)
+    }
 }
 
 extension SearchKeywordHistoryDataSource: UITableViewDataSource {
@@ -73,5 +84,29 @@ extension SearchKeywordHistoryDataSource: UITableViewDataSource {
         numberOfRowsInSection section: Int
     ) -> Int {
         return keywords.count
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let keywordCell: SearchKeywordCell = tableView.dequeueCell(SearchKeywordCell.self, for: indexPath) as? SearchKeywordCell else {
+            return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
+        }
+
+        guard let keyword: String = keywords.element(at: indexPath.row) else {
+            return keywordCell
+        }
+        
+        keywordCell.keyword = keyword
+        
+        keywordCell.deleteAction = { [weak self] in
+            guard let self = self else { return }
+            
+            removeKeyword(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        return keywordCell
     }
 }
