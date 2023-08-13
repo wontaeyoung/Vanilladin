@@ -31,4 +31,34 @@ final class SearchKeywordCell: BaseTableViewCell {
         
         return button
     }()
+    
+    // MARK: - Method
+    override func setAttribute() {
+        keywordLabel.text = keyword
+    }
+    
+    override func setHierarchy() {
+        contentView.addSubview(paddingView)
+        paddingView.addSubviews(keywordLabel, deleteButton)
+    }
+    
+    override func setConstraint() {
+        setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, keywordLabel, deleteButton)
+        
+        paddingView.setPaddingAutoLayout(to: contentView, padding: 5)
+        
+        NSLayoutConstraint.activate([
+            keywordLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor, constant: 10),
+            keywordLabel.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            deleteButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor, constant: -10),
+            keywordLabel.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor)
+        ])
+    }
+    
+    @objc private func deleteButtonDidTap() {
+        deleteAction?()
+    }
 }
