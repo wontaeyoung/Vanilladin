@@ -10,6 +10,7 @@ final class BookCell: BaseTableViewCell {
     
     // MARK: - UI
     private let paddingView: UIView = .init()
+    
     private let bookImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
