@@ -23,16 +23,19 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     }
     
     // MARK: - Method
+    func increaseLoadPage() {
+        self.currentLoadPage += 1
+    }
+}
+
+// MARK: - Set Dependency
+extension BookDataSource {
     func setDelegate(_ delegate: DataSourceDelegateProtocol) {
         self.delegate = delegate
     }
     
     func setTableViewDataSourceAsSelf(to tableView: BaseTableView) {
         tableView.dataSource = self
-    }
-    
-    func increaseLoadPage() {
-        self.currentLoadPage += 1
     }
 }
 
