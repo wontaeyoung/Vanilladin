@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchKeywordHistoryTableView: BaseTableView {
+final class SearchHistoryTableView: BaseTableView {
     
     // MARK: - Method
     override func registerCells() {

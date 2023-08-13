@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchKeywordHistoryDataSource: NSObject {
+final class SearchHistoryDataSource: NSObject {
     enum KeywordState {
         case containKeyword
         case greaterThanOrEqualMaxCount
@@ -78,7 +78,14 @@ final class SearchKeywordHistoryDataSource: NSObject {
     }
 }
 
-extension SearchKeywordHistoryDataSource: UITableViewDataSource {
+// MARK: - Set Dependency
+extension SearchHistoryDataSource {
+    func setTableViewDataSourceAsSelf(to tableView: BaseTableView) {
+        tableView.dataSource = self
+    }
+}
+
+extension SearchHistoryDataSource: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
@@ -104,6 +111,7 @@ extension SearchKeywordHistoryDataSource: UITableViewDataSource {
             guard let self = self else { return }
             
             removeKeyword(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         
