@@ -18,7 +18,6 @@ final class BookListViewController: BaseViewController {
     
     // MARK: - Method
     override func setAttribute() {
-        bookTableView.delegate = self
         bookListViewModel.setDataSourceDelegate(self)
         bookListViewModel.setTableViewDataSource(to: bookTableView)
     }
@@ -32,10 +31,6 @@ final class BookListViewController: BaseViewController {
         
         bookTableView.setAutoLayoutAllEqual(to: view)
     }
-}
-
-extension BookListViewController: UITableViewDelegate {
-    
 }
 
 extension BookListViewController: DataSourceDelegateProtocol {
