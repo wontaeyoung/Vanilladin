@@ -19,7 +19,7 @@ final class SearchBookViewModel: ViewModelProtocol {
         self.bookDataSource = bookDataSource
     }
     
-    // MARK: -Method
+    // MARK: - Method
     func fetchBooks(keyword: String) async {
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
