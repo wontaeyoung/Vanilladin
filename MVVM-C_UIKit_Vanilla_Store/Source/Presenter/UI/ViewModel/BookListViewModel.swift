@@ -2,7 +2,7 @@ final class BookListViewModel: ViewModelProtocol {
 
     // MARK: - Property
     private weak var coordinator: BookCoordinator?
-    private let bookDataSource: BookDataSource
+    private let dataSource: BookDataSource
     
     // MARK: - Initializer
     init(
@@ -10,19 +10,19 @@ final class BookListViewModel: ViewModelProtocol {
         bookDataSource: BookDataSource
     ) {
         self.coordinator = coordinator
-        self.bookDataSource = bookDataSource
+        self.dataSource = bookDataSource
     }
     
     // MARK: - Method
     func setDataSourceDelegate(_ delegate: DataSourceDelegateProtocol) {
-        bookDataSource.setDelegate(delegate)
+        dataSource.setDelegate(delegate)
     }
     
     func setTableViewDataSource(to tableView: BaseTableView) {
-        bookDataSource.setTableViewDataSourceAsSelf(to: tableView)
+        dataSource.setTableViewDataSourceAsSelf(to: tableView)
     }
     
     func increaseLoadPage() {
-        bookDataSource.increaseLoadPage()
+        dataSource.increaseLoadPage()
     }
 }
