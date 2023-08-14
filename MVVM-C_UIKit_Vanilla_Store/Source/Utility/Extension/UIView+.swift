@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - Configure UI
 extension UIView {
     func addSubviews(_ views: UIView...) {
         for view in views {
@@ -32,5 +33,18 @@ extension UIView {
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
+    }
+}
+
+// MARK: - Utility
+extension UIView {
+    @objc func handleTap() {
+        self.endEditing(true)
+    }
+    
+    func tapToEndEditing() {
+        var backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        
+        self.addGestureRecognizer(backgroundTapGesture)
     }
 }
