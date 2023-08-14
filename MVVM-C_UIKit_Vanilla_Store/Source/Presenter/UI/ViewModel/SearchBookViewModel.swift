@@ -2,21 +2,21 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: - Property
     private weak var coordinator: BookCoordinator?
     private let bookRepository: BookRepository
-    private let bookDataSource: BookDataSource
+    private let dataSource: BookDataSource
     
     var isResultEmpty: Bool {
-        return bookDataSource.entities.isEmpty
+        return dataSource.entities.isEmpty
     }
     
     // MARK: - Initializer
     init(
         coordinator: BookCoordinator? = nil,
         bookRepository: BookRepository,
-        bookDataSource: BookDataSource
+        dataSource: BookDataSource
     ) {
         self.coordinator = coordinator
         self.bookRepository = bookRepository
-        self.bookDataSource = bookDataSource
+        self.dataSource = dataSource
     }
     
     // MARK: - Method
@@ -24,10 +24,10 @@ final class SearchBookViewModel: ViewModelProtocol {
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
                 keyword: keyword,
-                page: bookDataSource.currentLoadPage
+                page: dataSource.currentLoadPage
             )
             
-            bookDataSource.entities = books
+            dataSource.entities = books
         } catch {
             guard let error = error as? AppErrorProtocol else {
                 print(#function, "에러 타입캐스팅 실패!")
