@@ -46,23 +46,21 @@ final class DependencyContainer: DependencyContainerProtocol {
         
         // MARK: - DataSource
         let bookDataSource: BookDataSource = .init()
+        let searchHistoryDataSource: SearchHistoryDataSource = .init()
         
         // MARK: - ViewModel
-        let bookListViewModel: BookListViewModel = .init(
-            coordinator: coordinator as? BookCoordinator,
-            bookDataSource: bookDataSource
-        )
-        let searchBookViewModel: SearchBookViewModel = .init(
-            coordinator: coordinator as? BookCoordinator,
-            bookRepository: bookRepository,
-            bookDataSource: bookDataSource
-        )
+        let bookListViewModel: BookListViewModel = .init(coordinator: coordinator as? BookCoordinator, bookDataSource: bookDataSource)
+        let searchHistoryViewmodel: SearchHistoryViewModel = .init(dataSource: searchHistoryDataSource)
+        let searchBookViewModel: SearchBookViewModel = .init(coordinator: coordinator as? BookCoordinator, bookRepository: bookRepository, dataSource: bookDataSource)
+        
         
         // MARK: - ViewController
+        let searchHistoryViewController: SearchHistoryViewController = .init(searchHistoryViewModel: searchHistoryViewmodel)
         let bookListViewController: BookListViewController = .init(bookListViewModel: bookListViewModel)
+        let searchResultContainerViewController: SearchResultContainerViewController = .init(searchHistoryViewController: searchHistoryViewController, bookListViewController: bookListViewController)
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
-            bookListViewController: bookListViewController
+            searchResultContainerViewController: searchResultContainerViewController
         )
         
         let modules: [DependencyContainable] = [
@@ -75,13 +73,17 @@ final class DependencyContainer: DependencyContainerProtocol {
             
             // MARK: - DataSource
             bookDataSource,
+            searchHistoryDataSource,
             
             // MARK: - ViewModel
             bookListViewModel,
+            searchHistoryViewmodel,
             searchBookViewModel,
             
             // MARK: - ViewController
             bookListViewController,
+            searchHistoryViewController,
+            searchResultContainerViewController,
             searchBookViewController
         ]
         
