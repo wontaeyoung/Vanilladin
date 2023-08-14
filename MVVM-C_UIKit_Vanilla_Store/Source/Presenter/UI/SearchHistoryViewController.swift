@@ -4,7 +4,7 @@ final class SearchHistoryViewController: BaseViewController {
     private let searchHistoryViewModel: SearchHistoryViewModel
     
     // MARK: - UI
-    private lazy var searchHistoryTableView: SearchHistoryTableView = .init()
+    private(set) lazy var searchHistoryTableView: SearchHistoryTableView = .init()
     
     // MARK: - Initializer
     init(

@@ -5,7 +5,7 @@ final class BookListViewController: BaseViewController {
     private let bookListViewModel: BookListViewModel
     
     // MARK: - UI
-    private lazy var bookTableView: BookTableView = .init()
+    private(set) lazy var bookTableView: BookTableView = .init()
     
     // MARK: - Initializer
     init(
