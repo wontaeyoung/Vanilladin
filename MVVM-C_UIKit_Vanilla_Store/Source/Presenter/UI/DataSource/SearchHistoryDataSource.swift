@@ -1,6 +1,6 @@
 import UIKit
 
-final class SearchHistoryDataSource: NSObject {
+final class SearchHistoryDataSource: NSObject, DependencyContainable {
     enum KeywordState {
         case containKeyword
         case greaterThanOrEqualMaxCount
