@@ -3,7 +3,7 @@ import UIKit
 final class BookCoordinator: CoordinatorProtocol {
     
     // MARK: - Stored Property
-    weak var delegate: CoordinatorDelegateProtocol?
+    weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [CoordinatorProtocol]
     
@@ -46,7 +46,7 @@ extension BookCoordinator {
                 print(#function, "에러 타입캐스팅 실패!")
                 return nil
             }
-            
+
             handle(error: error)
         }
         

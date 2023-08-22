@@ -1,9 +1,9 @@
 import UIKit
 
-final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegateProtocol {
+final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegate {
     
     // MARK: - Stored Property
-    weak var delegate: CoordinatorDelegateProtocol?
+    weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [CoordinatorProtocol]
     

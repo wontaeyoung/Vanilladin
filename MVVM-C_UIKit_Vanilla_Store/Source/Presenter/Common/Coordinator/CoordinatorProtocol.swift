@@ -3,7 +3,7 @@ import UIKit
 protocol CoordinatorProtocol: AnyObject {
     
     // MARK: - Property
-    var delegate: CoordinatorDelegateProtocol? { get set }
+    var delegate: CoordinatorDelegate? { get set }
     var navigationController: UINavigationController { get set }
     var childCoordinators: [CoordinatorProtocol] { get set }
     

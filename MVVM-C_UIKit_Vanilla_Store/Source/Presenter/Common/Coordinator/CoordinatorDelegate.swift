@@ -1,5 +1,5 @@
 import UIKit
 
-protocol CoordinatorDelegateProtocol: AnyObject {
+protocol CoordinatorDelegate: AnyObject {
     func coordinatorDidEnd(_ childCoordinator: CoordinatorProtocol)
 }
