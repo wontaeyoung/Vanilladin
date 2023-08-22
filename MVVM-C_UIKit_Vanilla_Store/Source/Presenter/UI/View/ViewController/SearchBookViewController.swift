@@ -4,7 +4,7 @@ final class SearchBookViewController: BaseViewController {
 
     // MARK: - Dependency
     private let searchBookViewModel: SearchBookViewModel
-    private let bookListViewController: BookListViewController
+    private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
     private lazy var searchGuideText: UILabel = {
@@ -18,10 +18,10 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Initializer
     init(
         searchBookViewModel: SearchBookViewModel,
-        bookListViewController: BookListViewController
+        searchResultContainerViewController: SearchResultContainerViewController
     ) {
         self.searchBookViewModel = searchBookViewModel
-        self.bookListViewController = bookListViewController
+        self.searchResultContainerViewController = searchResultContainerViewController
         
         super.init()
     }
@@ -29,7 +29,7 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Method
     override func setAttribute() {
         navigationItem.searchController = {
-            let searchController: UISearchController = .init(searchResultsController: bookListViewController)
+            let searchController: UISearchController = .init(searchResultsController: searchResultContainerViewController)
             let searchBar: UISearchBar = searchController.searchBar
             
             searchBar.placeholder = "Search Books"
@@ -43,11 +43,11 @@ final class SearchBookViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubview(searchGuideText)
+        view.addSubviews(searchGuideText)
     }
     
     override func setConstraint() {
-        searchGuideText.translatesAutoresizingMaskIntoConstraints = false
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideText)
         
         NSLayoutConstraint.activate([
             searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -56,12 +56,15 @@ final class SearchBookViewController: BaseViewController {
     }
 }
 
+// MARK: - Delegate
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         Task {
             await searchBookViewModel.fetchBooks(keyword: searchBar.text ?? "")
         }
     }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchResultContainerViewController.showSearchHistory()
     }
 }
