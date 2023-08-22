@@ -62,4 +62,6 @@ extension SearchBookViewController: UISearchBarDelegate {
             await searchBookViewModel.fetchBooks(keyword: searchBar.text ?? "")
         }
     }
+        searchResultContainerViewController.showSearchHistory()
+    }
 }
