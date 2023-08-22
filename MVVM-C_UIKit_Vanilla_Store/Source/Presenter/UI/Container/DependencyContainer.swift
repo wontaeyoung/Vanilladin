@@ -57,7 +57,10 @@ final class DependencyContainer: DependencyContainerProtocol {
         // MARK: - ViewController
         let searchHistoryViewController: SearchHistoryViewController = .init(searchHistoryViewModel: searchHistoryViewmodel)
         let bookListViewController: BookListViewController = .init(bookListViewModel: bookListViewModel)
-        let searchResultContainerViewController: SearchResultContainerViewController = .init(searchHistoryViewController: searchHistoryViewController, bookListViewController: bookListViewController)
+        let searchResultContainerViewController: SearchResultContainerViewController = .init(
+            searchHistoryViewController: searchHistoryViewController,
+            bookListViewController: bookListViewController
+        )
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
             searchResultContainerViewController: searchResultContainerViewController
