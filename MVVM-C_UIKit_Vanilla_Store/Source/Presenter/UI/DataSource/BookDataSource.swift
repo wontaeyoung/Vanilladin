@@ -4,7 +4,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     typealias Entity = Book
     
     // MARK: - Property
-    private weak var delegate: DataSourceDelegateProtocol?
+    private weak var delegate: DataSourceDelegate?
     
     var entities: [Entity] {
         didSet {
@@ -30,7 +30,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
 
 // MARK: - Set Dependency
 extension BookDataSource {
-    func setDelegate(_ delegate: DataSourceDelegateProtocol) {
+    func setDelegate(_ delegate: DataSourceDelegate) {
         self.delegate = delegate
     }
     

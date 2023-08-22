@@ -6,6 +6,7 @@ final class BookListViewController: BaseViewController {
     
     // MARK: - UI
     private(set) lazy var bookTableView: BookTableView = .init()
+    private var loadingIndicator: UIActivityIndicatorView = .init(style: .large)
     
     // MARK: - Initializer
     init(
@@ -33,7 +34,7 @@ final class BookListViewController: BaseViewController {
     }
 }
 
-extension BookListViewController: DataSourceDelegateProtocol {
+extension BookListViewController: DataSourceDelegate {
     func entitiesDidUpdate() {
         DispatchQueue.main.async {
             self.bookTableView.reloadData()

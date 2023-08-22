@@ -14,7 +14,7 @@ final class BookListViewModel: ViewModelProtocol {
     }
     
     // MARK: - Method
-    func setDataSourceDelegate(_ delegate: DataSourceDelegateProtocol) {
+    func setDataSourceDelegate(_ delegate: DataSourceDelegate) {
         dataSource.setDelegate(delegate)
     }
     
