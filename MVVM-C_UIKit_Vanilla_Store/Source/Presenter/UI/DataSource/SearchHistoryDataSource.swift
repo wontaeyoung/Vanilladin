@@ -27,33 +27,6 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
     }
     
     // MARK: - Method
-    private func setKeywords(_ keywords: [String]) {
-        userDefault.set(keywords, forKey: LogicConstant.UserDefault.searchKeywordKey)
-    }
-    
-    private func keywordIndex(_ keyword: String) -> Int? {
-        return keywords.firstIndex(of: keyword)
-    }
-    
-    private func checkKeywordState(_ keyword: String) -> KeywordState {
-        if keywords.contains(keyword) {
-            return .containKeyword
-        }
-        
-        if keywords.count >= LogicConstant.UserDefault.maxKeywordCount {
-            return .greaterThanOrEqualMaxCount
-        }
-        
-        return .lessThanMaxCount
-    }
-    
-    private func insertKeywordAtFirst(
-        _ keyword: String,
-        for keywords: inout [String]
-    ) {
-        keywords.insert(keyword, at: 0)
-    }
-    
     func saveKeyword(keyword: String) {
         var keywords: [String] = self.keywords
         
@@ -76,6 +49,40 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         
         setKeywords(keywords)
     }
+    
+    func removeAllKeywords() {
+        setKeywords([])
+    }
+}
+
+// MARK: - Private
+private extension SearchHistoryDataSource {
+    func setKeywords(_ keywords: [String]) {
+        userDefault.set(keywords, forKey: LogicConstant.UserDefault.searchKeywordKey)
+    }
+    
+    func keywordIndex(_ keyword: String) -> Int? {
+        return keywords.firstIndex(of: keyword)
+    }
+    
+    func checkKeywordState(_ keyword: String) -> KeywordState {
+        if keywords.contains(keyword) {
+            return .containKeyword
+        }
+        
+        if keywords.count >= LogicConstant.UserDefault.maxKeywordCount {
+            return .greaterThanOrEqualMaxCount
+        }
+        
+        return .lessThanMaxCount
+    }
+    
+    func insertKeywordAtFirst(
+        _ keyword: String,
+        for keywords: inout [String]
+    ) {
+        keywords.insert(keyword, at: 0)
+    }
 }
 
 // MARK: - Set Dependency
@@ -85,6 +92,7 @@ extension SearchHistoryDataSource {
     }
 }
 
+// MARK: - Table DataSource
 extension SearchHistoryDataSource: UITableViewDataSource {
     func tableView(
         _ tableView: UITableView,
