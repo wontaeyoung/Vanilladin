@@ -45,7 +45,7 @@ final class SearchKeywordCell: BaseTableViewCell {
     override func setConstraint() {
         setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, keywordLabel, deleteButton)
         
-        paddingView.setPaddingAutoLayout(to: contentView, padding: 5)
+        paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
         
         NSLayoutConstraint.activate([
             keywordLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor, constant: 10),
