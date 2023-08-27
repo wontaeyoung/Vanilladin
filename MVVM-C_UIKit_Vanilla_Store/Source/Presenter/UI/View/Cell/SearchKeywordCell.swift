@@ -20,11 +20,11 @@ final class SearchKeywordCell: BaseTableViewCell {
         return label
     }()
     
-    private let deleteButton: UIButton = {
+    private lazy var deleteButton: UIButton = {
         let button: UIButton = .init(type: .system)
         button.setTitle("삭제", for: .normal)
         button.addTarget(
-            SearchKeywordCell.self,
+            self,
             action: #selector(deleteButtonDidTap),
             for: .touchUpInside
         )
