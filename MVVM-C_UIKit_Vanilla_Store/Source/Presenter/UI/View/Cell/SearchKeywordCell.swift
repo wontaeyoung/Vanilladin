@@ -22,12 +22,13 @@ final class SearchKeywordCell: BaseTableViewCell {
     
     private lazy var deleteButton: UIButton = {
         let button: UIButton = .init(type: .system)
-        button.setTitle("삭제", for: .normal)
-        button.addTarget(
-            self,
-            action: #selector(deleteButtonDidTap),
-            for: .touchUpInside
-        )
+        let buttonImage = UIImage(systemName: "xmark")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        
+        button.setImage(buttonImage, for: .normal)
+        
+        button.addTarget(self,
+                         action: #selector(deleteButtonDidTap),
+                         for: .touchUpInside)
         
         return button
     }()
