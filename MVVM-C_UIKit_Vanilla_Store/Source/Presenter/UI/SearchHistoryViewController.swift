@@ -1,3 +1,5 @@
+import UIKit
+
 final class SearchHistoryViewController: BaseViewController {
     
     // MARK: - Dependency
@@ -18,6 +20,7 @@ final class SearchHistoryViewController: BaseViewController {
     // MARK: - Method
     override func setAttribute() {
         searchHistoryViewModel.setTableViewDataSource(to: searchHistoryTableView)
+        searchHistoryTableView.delegate = self
     }
     
     override func setHierarchy() {
@@ -28,5 +31,15 @@ final class SearchHistoryViewController: BaseViewController {
         view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchHistoryTableView)
         
         searchHistoryTableView.setAutoLayoutAllEqual(to: view)
+    }
+}
+
+extension SearchHistoryViewController: UITableViewDelegate {
+    // Cell이 선택되지 않음
+    func tableView(
+        _ tableView: UITableView,
+        willSelectRowAt indexPath: IndexPath
+    ) -> IndexPath? {
+        return nil
     }
 }
