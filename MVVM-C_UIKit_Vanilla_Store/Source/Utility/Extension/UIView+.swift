@@ -34,6 +34,19 @@ extension UIView {
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding)
         ])
     }
+    
+    func setPaddingAutoLayout(
+        to view: UIView,
+        horizontal: CGFloat = 0,
+        vertical: CGFloat = 0
+    ) {
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: view.topAnchor, constant: vertical),
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -vertical),
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: horizontal),
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -horizontal)
+        ])
+    }
 }
 
 // MARK: - Utility
