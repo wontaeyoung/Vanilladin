@@ -48,12 +48,12 @@ final class SearchKeywordCell: BaseTableViewCell {
         paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
         
         NSLayoutConstraint.activate([
-            keywordLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor, constant: 10),
+            keywordLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             keywordLabel.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            deleteButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor, constant: -10),
+            deleteButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             deleteButton.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor)
         ])
     }
