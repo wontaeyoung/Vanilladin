@@ -55,7 +55,9 @@ final class SearchKeywordCell: BaseTableViewCell {
         
         NSLayoutConstraint.activate([
             deleteButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            deleteButton.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor)
+            deleteButton.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor),
+            deleteButton.widthAnchor.constraint(equalToConstant: 15),
+            deleteButton.heightAnchor.constraint(equalToConstant: 15),
         ])
     }
     
