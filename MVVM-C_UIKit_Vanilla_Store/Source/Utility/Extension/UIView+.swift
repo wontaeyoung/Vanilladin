@@ -25,7 +25,7 @@ extension UIView {
     
     func setPaddingAutoLayout(
         to view: UIView,
-        padding: CGFloat
+        padding: CGFloat = 0
     ) {
         NSLayoutConstraint.activate([
             self.topAnchor.constraint(equalTo: view.topAnchor, constant: padding),
