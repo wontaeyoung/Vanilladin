@@ -94,6 +94,7 @@ extension SearchHistoryDataSource {
 
 // MARK: - Table DataSource
 extension SearchHistoryDataSource: UITableViewDataSource {
+    // Cell 갯수 설정
     func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
@@ -101,6 +102,7 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         return keywords.count
     }
     
+    // Cell 생성 및 재사용
     func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
@@ -126,6 +128,7 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         return keywordCell
     }
     
+    // Header 문자 설정
     func tableView(
         _ tableView: UITableView,
         titleForHeaderInSection section: Int
