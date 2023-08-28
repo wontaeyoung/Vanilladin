@@ -4,6 +4,7 @@ final class SearchHistoryViewController: BaseViewController {
     
     // MARK: - Dependency
     private let searchHistoryViewModel: SearchHistoryViewModel
+    var delegate: SearchHistoryViewDelegate?
     
     // MARK: - UI
     private(set) lazy var searchHistoryTableView: SearchHistoryTableView = .init()
