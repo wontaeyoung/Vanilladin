@@ -29,7 +29,6 @@ final class DependencyContainer: DependencyContainerProtocol {
         return instance
     }
     
-    
     /**
      App 내에서 사용하는 Module이 추가되면 함수 내에서 인스턴스 생성 + modules 배열에 추가가 필요합니다.
      
@@ -63,6 +62,7 @@ final class DependencyContainer: DependencyContainerProtocol {
         )
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
+            searchHistoryViewModel: searchHistoryViewmodel,
             searchResultContainerViewController: searchResultContainerViewController
         )
         

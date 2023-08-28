@@ -4,6 +4,7 @@ final class SearchBookViewController: BaseViewController {
 
     // MARK: - Dependency
     private let searchBookViewModel: SearchBookViewModel
+    private let searchHistoryViewModel: SearchHistoryViewModel
     private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
@@ -18,9 +19,11 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Initializer
     init(
         searchBookViewModel: SearchBookViewModel,
+        searchHistoryViewModel: SearchHistoryViewModel,
         searchResultContainerViewController: SearchResultContainerViewController
     ) {
         self.searchBookViewModel = searchBookViewModel
+        self.searchHistoryViewModel = searchHistoryViewModel
         self.searchResultContainerViewController = searchResultContainerViewController
         
         super.init()
