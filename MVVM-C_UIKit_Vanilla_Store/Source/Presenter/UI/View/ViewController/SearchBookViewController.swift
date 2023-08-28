@@ -63,8 +63,11 @@ final class SearchBookViewController: BaseViewController {
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         Task {
+            guard let searchText: String = searchBar.text else { return }
+            
+            searchHistoryViewModel.saveKeyword(searchText)
             searchResultContainerViewController.showBookList()
-            await searchBookViewModel.fetchBooks(keyword: searchBar.text ?? "")
+            await searchBookViewModel.fetchBooks(keyword: searchText)
         }
     }
 
