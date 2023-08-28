@@ -27,6 +27,10 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
     }
     
     // MARK: - Method
+    func getKeyword(at index: Int) -> String? {
+        return keywords.element(at: index)
+    }
+    
     func saveKeyword(keyword: String) {
         var keywords: [String] = self.keywords
         
