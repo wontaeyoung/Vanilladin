@@ -40,9 +40,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
             case .greaterThanOrEqualMaxCount: keywords.removeLast()
             case .lessThanMaxCount: break
         }
-        
         insertKeywordAtFirst(keyword, for: &keywords)
-        
         setKeywords(keywords)
     }
     
@@ -54,8 +52,8 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         setKeywords(keywords)
     }
     
-    func removeAllKeywords() {
-        setKeywords([])
+    func clearKeywords() {
+        removeAllKeywords()
     }
 }
 
@@ -86,6 +84,10 @@ private extension SearchHistoryDataSource {
         for keywords: inout [String]
     ) {
         keywords.insert(keyword, at: 0)
+    }
+    
+    func removeAllKeywords() {
+        userDefault.removeObject(forKey: LogicConstant.UserDefault.searchKeywordKey)
     }
 }
 
