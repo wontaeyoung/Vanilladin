@@ -26,10 +26,8 @@ final class SearchResultContainerViewController: BaseViewController {
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(
-            searchHistoryViewController.view,
-            bookListViewController.view
-        )
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchHistoryViewController.view,
+                                                             bookListViewController.view)
         
         searchHistoryViewController.view.setAutoLayoutAllEqual(to: view)
         bookListViewController.view.setAutoLayoutAllEqual(to: view)
