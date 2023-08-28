@@ -46,9 +46,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
     
     func removeKeyword(at index: Int) {
         var keywords: [String] = self.keywords
-        
         keywords.remove(at: index)
-        
         setKeywords(keywords)
     }
     
