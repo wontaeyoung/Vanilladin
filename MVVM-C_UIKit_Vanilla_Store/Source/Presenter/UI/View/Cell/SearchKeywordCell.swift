@@ -1,6 +1,7 @@
 import UIKit
 
 final class SearchKeywordCell: BaseTableViewCell {
+    
     // MARK: - Property
     var keyword: String? {
         didSet {
@@ -22,7 +23,7 @@ final class SearchKeywordCell: BaseTableViewCell {
     
     private lazy var deleteButton: UIButton = {
         let button: UIButton = .init(type: .system)
-        let buttonImage = UIImage(systemName: "xmark")?.withTintColor(.gray, renderingMode: .alwaysOriginal)
+        let buttonImage = UIImage(systemName: UIConstant.SFSymbol.xMark)?.withTintColor(.gray, renderingMode: .alwaysOriginal)
         
         button.setImage(buttonImage, for: .normal)
         

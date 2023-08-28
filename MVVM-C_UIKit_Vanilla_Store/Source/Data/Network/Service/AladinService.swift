@@ -36,7 +36,7 @@ final class AladinService: DependencyContainable {
         _ urlStr: String
     ) async throws -> UIImage {
         guard let image = try await httpClient.sendImageRequest(urlStr: urlStr) else {
-            return UIImage(systemName: "text.book.closed.fill") ?? .actions
+            return UIImage(systemName: UIConstant.SFSymbol.textBookClosedFill) ?? .actions
         }
         
         return image
