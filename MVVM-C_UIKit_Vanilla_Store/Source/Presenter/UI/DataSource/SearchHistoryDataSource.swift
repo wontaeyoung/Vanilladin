@@ -9,6 +9,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
     
     // MARK: - Stored Property
     let userDefault: UserDefaults
+    private weak var delegate: DataSourceDelegate?
     
     // MARK: - Computed Property
     private var keywords: [String] {
@@ -42,6 +43,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         }
         insertKeywordAtFirst(keyword, for: &keywords)
         setKeywords(keywords)
+        delegate?.entitiesDidUpdate()
     }
     
     func removeKeyword(at index: Int) {
@@ -91,6 +93,10 @@ private extension SearchHistoryDataSource {
 
 // MARK: - Set Dependency
 extension SearchHistoryDataSource {
+    func setDelegate(_ delegate: DataSourceDelegate) {
+        self.delegate = delegate
+    }
+    
     func setTableViewDataSourceAsSelf(to tableView: BaseTableView) {
         tableView.dataSource = self
     }

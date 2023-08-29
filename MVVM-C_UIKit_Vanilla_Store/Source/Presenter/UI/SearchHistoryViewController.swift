@@ -35,6 +35,14 @@ final class SearchHistoryViewController: BaseViewController {
     }
 }
 
+extension SearchHistoryViewController: DataSourceDelegate {
+    func entitiesDidUpdate() {
+        DispatchQueue.main.async {
+            self.searchHistoryTableView.reloadData()
+        }
+    }
+}
+
 extension SearchHistoryViewController: UITableViewDelegate {
     func tableView(
         _ tableView: UITableView,

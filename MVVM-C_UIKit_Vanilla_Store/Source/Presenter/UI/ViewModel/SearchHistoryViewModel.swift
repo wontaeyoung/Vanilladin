@@ -11,6 +11,10 @@ final class SearchHistoryViewModel: ViewModelProtocol {
     }
     
     // MARK: - Method
+    func setDataSourceDelegate(_ delegate: DataSourceDelegate) {
+        dataSource.setDelegate(delegate)
+    }
+    
     func setTableViewDataSource(to tableView: BaseTableView) {
         dataSource.setTableViewDataSourceAsSelf(to: tableView)
     }
