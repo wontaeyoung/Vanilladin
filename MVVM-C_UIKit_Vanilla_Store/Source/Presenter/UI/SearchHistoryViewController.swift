@@ -36,11 +36,12 @@ final class SearchHistoryViewController: BaseViewController {
 }
 
 extension SearchHistoryViewController: UITableViewDelegate {
-    // Cell이 선택되지 않음
     func tableView(
         _ tableView: UITableView,
-        willSelectRowAt indexPath: IndexPath
-    ) -> IndexPath? {
-        return nil
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        guard let keyword: String = searchHistoryViewModel.getKeyword(at: indexPath.row) else { return }
+        delegate?.submitKeyword(keyword)
     }
 }
+

@@ -59,6 +59,17 @@ final class SearchBookViewController: BaseViewController {
     }
 }
 
+// MARK: - Interface
+extension SearchBookViewController: SearchHistoryViewDelegate {
+    func submitKeyword(_ keyword: String) {
+        guard let searchBar = navigationItem.searchController?.searchBar else { return }
+        searchBar.text = keyword
+        searchBar.resignFirstResponder()
+        
+        searchBarSearchButtonClicked(searchBar)
+    }
+}
+        
 // MARK: - Delegate
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
