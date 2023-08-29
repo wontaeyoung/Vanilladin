@@ -36,25 +36,13 @@ final class SearchResultContainerViewController: BaseViewController {
 
 // MARK: - Showing View
 extension SearchResultContainerViewController {
-    private func addChileViewController(_ child: BaseViewController) {
-        addChild(child)
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-    }
-    
-    private func removeChildViewController(_ child: BaseViewController) {
-        child.willMove(toParent: nil)
-        child.view.removeFromSuperview()
-        child.removeFromParent()
-    }
-    
     func showSearchHistory() {
-        removeChildViewController(bookListViewController)
-        addChileViewController(searchHistoryViewController)
+        bookListViewController.view.isHidden = true
+        searchHistoryViewController.view.isHidden = false
     }
     
     func showBookList() {
-        removeChildViewController(searchHistoryViewController)
-        addChileViewController(bookListViewController)
+        searchHistoryViewController.view.isHidden = true
+        bookListViewController.view.isHidden = false
     }
 }
