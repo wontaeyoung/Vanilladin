@@ -75,14 +75,12 @@ extension SearchBookViewController: SearchHistoryViewDelegate {
 // MARK: - Delegate
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // 검색 키워드 저장
         guard let searchText: String = searchBar.text else { return }
-        searchHistoryViewModel.saveKeyword(searchText)
         
-        // 검색 내용으로 쿼리 요청
         Task {
             await searchBookViewModel.fetchBooks(keyword: searchText)
             searchResultContainerViewController.showBookList()
+            searchHistoryViewModel.saveKeyword(searchText)
         }
     }
 
