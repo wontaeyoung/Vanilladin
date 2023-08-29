@@ -66,6 +66,8 @@ final class DependencyContainer: DependencyContainerProtocol {
             searchResultContainerViewController: searchResultContainerViewController
         )
         
+        searchHistoryViewController.delegate = searchBookViewController
+        
         let modules: [DependencyContainable] = [
             // MARK: - Netowrk
             httpClient,
