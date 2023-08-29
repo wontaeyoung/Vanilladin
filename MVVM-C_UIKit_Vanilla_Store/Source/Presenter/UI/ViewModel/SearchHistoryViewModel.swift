@@ -26,4 +26,8 @@ final class SearchHistoryViewModel: ViewModelProtocol {
     func removeAllKeywords() {
         dataSource.clearKeywords()
     }
+    
+    func getKeyword(at index: Int) -> String? {
+        return dataSource.getKeyword(at: index)
+    }
 }
