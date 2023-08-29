@@ -43,6 +43,8 @@ final class SearchBookViewController: BaseViewController {
             
             return searchController
         }()
+        
+        searchResultContainerViewController.setViewControllerDelegate(self)
     }
     
     override func setHierarchy() {

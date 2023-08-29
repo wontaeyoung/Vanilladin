@@ -4,7 +4,7 @@ final class SearchHistoryViewController: BaseViewController {
     
     // MARK: - Dependency
     private let searchHistoryViewModel: SearchHistoryViewModel
-    var delegate: SearchHistoryViewDelegate?
+    private weak var delegate: SearchHistoryViewDelegate?
     
     // MARK: - UI
     private(set) lazy var searchHistoryTableView: SearchHistoryTableView = .init()
@@ -20,6 +20,7 @@ final class SearchHistoryViewController: BaseViewController {
     
     // MARK: - Method
     override func setAttribute() {
+        searchHistoryViewModel.setDataSourceDelegate(self)
         searchHistoryViewModel.setTableViewDataSource(to: searchHistoryTableView)
         searchHistoryTableView.delegate = self
     }
@@ -53,3 +54,8 @@ extension SearchHistoryViewController: UITableViewDelegate {
     }
 }
 
+extension SearchHistoryViewController {
+    func setDelegate(_ delegate: SearchHistoryViewDelegate) {
+        self.delegate = delegate
+    }
+}

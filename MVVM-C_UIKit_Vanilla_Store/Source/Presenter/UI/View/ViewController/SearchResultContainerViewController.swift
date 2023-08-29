@@ -46,3 +46,9 @@ extension SearchResultContainerViewController {
         bookListViewController.view.isHidden = false
     }
 }
+
+extension SearchResultContainerViewController {
+    func setViewControllerDelegate(_ delegate: SearchHistoryViewDelegate) {
+        searchHistoryViewController.setDelegate(delegate)
+    }
+}
