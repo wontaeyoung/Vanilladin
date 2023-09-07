@@ -45,7 +45,11 @@ final class SearchKeywordCell: BaseTableViewCell {
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, keywordLabel, deleteButton)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(
+          paddingView,
+          keywordLabel,
+          deleteButton
+        )
         
         paddingView.setPaddingAutoLayout(to: contentView, horizontal: 20)
         
