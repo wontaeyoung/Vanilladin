@@ -23,7 +23,9 @@ final class BookRepository: DependencyContainable {
         
         let books: [Book] = try await AsyncManager.shared.mapConcurrently(from: booksDTO) { dto in
             
-            guard let cacheImage: UIImage = ImageCacheManager.shared.getObject(for: dto.cover) else {
+            guard
+                let cacheImage: UIImage = ImageCacheManager.shared.getObject(for: dto.cover)
+            else {
                 let coverImage: UIImage = try await self.aladinService.requestCoverImage(dto.cover)
                 ImageCacheManager.shared.setObject(coverImage, for: dto.cover)
                 
