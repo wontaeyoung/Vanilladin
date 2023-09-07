@@ -10,9 +10,7 @@ final class BookListViewController: BaseViewController {
     private var loadingIndicator: UIActivityIndicatorView = .init(style: .large)
     
     // MARK: - Initializer
-    init(
-        bookListViewModel: BookListViewModel
-    ) {
+    init(bookListViewModel: BookListViewModel) {
         self.bookListViewModel = bookListViewModel
         
         super.init()
