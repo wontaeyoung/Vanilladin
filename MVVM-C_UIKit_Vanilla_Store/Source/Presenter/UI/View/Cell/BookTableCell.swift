@@ -1,6 +1,6 @@
 import UIKit
 
-final class BookCell: BaseTableViewCell {
+final class BookTableCell: BaseTableViewCell {
     // MARK: - Dependency
     var book: Book? {
         didSet {
