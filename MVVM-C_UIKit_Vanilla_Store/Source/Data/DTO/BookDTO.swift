@@ -20,15 +20,16 @@ struct BookDTO: DTOProtocol {
     let publisher: String
     
     func asModel(with coverImage: UIImage) -> Book {
-        .init(id: UUID(),
-              title: title,
-              author: author,
-              description: description,
-              priceSales: priceSales,
-              priceStandard: priceStandard,
-              mileage: mileage,
-              coverImage: coverImage,
-              publisher: publisher
+        .init(
+            id: UUID(),
+            title: title,
+            author: author,
+            description: description,
+            priceSales: priceSales,
+            priceStandard: priceStandard,
+            mileage: mileage,
+            coverImage: coverImage,
+            publisher: publisher
         )
     }
 }
