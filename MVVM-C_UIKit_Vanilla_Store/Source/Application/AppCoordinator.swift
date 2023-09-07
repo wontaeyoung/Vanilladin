@@ -1,8 +1,7 @@
 import UIKit
 
-final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegate {
-    
-    // MARK: - Stored Property
+final class AppCoordinator: CoordinatorProtocol {
+    // MARK: - Property
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [CoordinatorProtocol]
@@ -22,15 +21,13 @@ final class AppCoordinator: CoordinatorProtocol, CoordinatorDelegate {
     }
 }
 
-extension AppCoordinator {
-    
+extension AppCoordinator: CoordinatorDelegate {
     func coordinatorDidEnd(_ childCoordinator: CoordinatorProtocol) {
         self.navigationController.popToRootViewController(animated: true)
     }
 }
 
 private extension AppCoordinator {
-    
     func pushBookListFlow() {
         self.emptyOut()
         

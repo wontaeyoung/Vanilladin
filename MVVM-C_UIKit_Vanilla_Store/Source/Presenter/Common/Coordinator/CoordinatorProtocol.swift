@@ -1,7 +1,6 @@
 import UIKit
 
 protocol CoordinatorProtocol: AnyObject {
-    
     // MARK: - Property
     var delegate: CoordinatorDelegate? { get set }
     var navigationController: UINavigationController { get set }

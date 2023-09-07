@@ -1,7 +1,6 @@
 import UIKit
 
 final class HTTPClient: DependencyContainable {
-    
     // MARK: - Method
     func sendDTORequest<DTO: Decodable>(
         apiRequest: APIRequest,
@@ -49,9 +48,7 @@ private extension HTTPClient {
         return components
     }
     
-    func sendRequestWithURL(
-        url: URL
-    ) async throws -> Data {
+    func sendRequestWithURL(url: URL) async throws -> Data {
         let request: URLRequest = .init(url: url)
         
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
