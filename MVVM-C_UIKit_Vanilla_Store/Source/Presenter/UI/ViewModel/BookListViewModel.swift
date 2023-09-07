@@ -1,7 +1,13 @@
 final class BookListViewModel: ViewModelProtocol {
+    enum ListType {
+        case table
+        case collection
+    }
+    
     // MARK: - Property
     private weak var coordinator: BookCoordinator?
     private let dataSource: BookDataSource
+    private(set) var listType: ListType
     
     // MARK: - Initializer
     init(
@@ -10,6 +16,7 @@ final class BookListViewModel: ViewModelProtocol {
     ) {
         self.coordinator = coordinator
         self.dataSource = bookDataSource
+        self.listType = .table
     }
     
     // MARK: - Method
@@ -23,5 +30,9 @@ final class BookListViewModel: ViewModelProtocol {
     
     func increaseLoadPage() {
         dataSource.increaseLoadPage()
+    }
+    
+    func toggleListType(_ type: ListType) {
+        self.listType = type
     }
 }
