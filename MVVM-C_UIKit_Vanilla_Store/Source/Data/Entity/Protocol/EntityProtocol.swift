@@ -1,3 +1,1 @@
-protocol EntityProtocol: Identifiable {
-
-}
+protocol EntityProtocol: Identifiable { }
