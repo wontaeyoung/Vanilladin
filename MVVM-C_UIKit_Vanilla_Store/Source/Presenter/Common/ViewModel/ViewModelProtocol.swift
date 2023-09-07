@@ -1,3 +1,1 @@
-protocol ViewModelProtocol: DependencyContainable {
-    
-}
+protocol ViewModelProtocol: DependencyContainable { }
