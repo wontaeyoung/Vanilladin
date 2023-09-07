@@ -15,6 +15,6 @@ extension EndpointProtocol {
     }
     
     var queryItems: [URLQueryItem] {
-        defaultQueryItems + optionalQueryItems
+        return defaultQueryItems + optionalQueryItems
     }
 }
