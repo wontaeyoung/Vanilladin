@@ -25,7 +25,7 @@ final class AladinService: DependencyContainable {
         let booksDTO: [BookDTO] = try await httpClient
             .sendDTORequest(
                 apiRequest: apiRequest,
-                decodeType: Result.self
+                decodeType: BookResult.self
             )
             .item
         
