@@ -1,9 +1,11 @@
 import UIKit
 
 final class SearchResultContainerViewController: BaseViewController {
+    // MARK: - Property
     private let searchHistoryViewController: SearchHistoryViewController
     private let bookListViewController: BookListViewController
     
+    // MARK: - Initializer
     init(
         searchHistoryViewController: SearchHistoryViewController,
         bookListViewController: BookListViewController
@@ -14,20 +16,23 @@ final class SearchResultContainerViewController: BaseViewController {
         super.init()
     }
     
+    // MARK: - Method
     override func setAttribute() {
-        addChilds(searchHistoryViewController, bookListViewController)
+        addChilds(
+            searchHistoryViewController,
+            bookListViewController)
     }
     
     override func setHierarchy() {
         view.addSubviews(
             searchHistoryViewController.view,
-            bookListViewController.view
-        )
+            bookListViewController.view)
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchHistoryViewController.view,
-                                                             bookListViewController.view)
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(
+            searchHistoryViewController.view,
+            bookListViewController.view)
         
         searchHistoryViewController.view.setAutoLayoutAllEqual(to: view)
         bookListViewController.view.setAutoLayoutAllEqual(to: view)

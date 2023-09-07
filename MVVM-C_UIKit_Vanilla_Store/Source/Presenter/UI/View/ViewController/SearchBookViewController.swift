@@ -1,8 +1,7 @@
 import UIKit
 
 final class SearchBookViewController: BaseViewController {
-
-    // MARK: - Dependency
+    // MARK: - Property
     private let searchBookViewModel: SearchBookViewModel
     private let searchHistoryViewModel: SearchHistoryViewModel
     private let searchResultContainerViewController: SearchResultContainerViewController
@@ -33,8 +32,8 @@ final class SearchBookViewController: BaseViewController {
     override func setAttribute() {
         navigationItem.searchController = {
             let searchController: UISearchController = .init(searchResultsController: searchResultContainerViewController)
-            let searchBar: UISearchBar = searchController.searchBar
             
+            let searchBar: UISearchBar = searchController.searchBar
             searchBar.placeholder = "Search Books"
             searchBar.delegate = self
             searchBar.autocapitalizationType = .none
@@ -75,7 +74,7 @@ extension SearchBookViewController: SearchHistoryViewDelegate {
 // MARK: - Delegate
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText: String = searchBar.text else { return }
+        guard let searchText = searchBar.text else { return }
         
         Task {
             await searchBookViewModel.fetchBooks(keyword: searchText)

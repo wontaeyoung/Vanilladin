@@ -56,7 +56,10 @@ extension UIView {
     }
     
     func tapToEndEditing() {
-        let backgroundTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let backgroundTapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap)
+        )
         
         self.addGestureRecognizer(backgroundTapGesture)
     }

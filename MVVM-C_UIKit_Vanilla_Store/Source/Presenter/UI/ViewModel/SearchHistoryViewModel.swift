@@ -1,12 +1,9 @@
 final class SearchHistoryViewModel: ViewModelProtocol {
-    
     // MARK: - Property
     private let dataSource: SearchHistoryDataSource
     
     // MARK: - Initializer
-    init(
-        dataSource: SearchHistoryDataSource
-    ) {
+    init(dataSource: SearchHistoryDataSource) {
         self.dataSource = dataSource
     }
     

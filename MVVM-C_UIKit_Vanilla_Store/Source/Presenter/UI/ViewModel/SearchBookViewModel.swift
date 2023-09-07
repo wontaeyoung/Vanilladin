@@ -24,8 +24,7 @@ final class SearchBookViewModel: ViewModelProtocol {
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
                 keyword: keyword,
-                page: dataSource.currentLoadPage
-            )
+                page: dataSource.currentLoadPage)
             
             dataSource.entities = books
         } catch {

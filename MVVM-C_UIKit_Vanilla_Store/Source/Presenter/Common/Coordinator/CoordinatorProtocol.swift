@@ -7,10 +7,7 @@ protocol CoordinatorProtocol: AnyObject {
     var childCoordinators: [CoordinatorProtocol] { get set }
     
     // MARK: - Initializer
-    init(
-        _ navigationController: UINavigationController,
-        childCoordinators: [CoordinatorProtocol]
-    )
+    init(_ navigationController: UINavigationController, childCoordinators: [CoordinatorProtocol])
     
     // MARK: - Method
     func start()
@@ -23,8 +20,6 @@ protocol CoordinatorProtocol: AnyObject {
 }
 
 extension CoordinatorProtocol {
-    
-    // MARK: - Method
     func end() {
         childCoordinators.removeAll()
         delegate?.coordinatorDidEnd(self)
@@ -47,26 +42,19 @@ extension CoordinatorProtocol {
     }
     
     func handle(error: AppErrorProtocol) {
-        
         let alertController: UIAlertController = .init(
             title: "오류 발생",
             message: error.errorDescription,
-            preferredStyle: .alert
-        )
+            preferredStyle: .alert)
         
         let okAction: UIAlertAction = .init(
             title: "확인",
-            style: .default
-        )
+            style: .default)
         
         alertController.addAction(okAction)
         
         DispatchQueue.main.async {
-            self.navigationController
-                .present(
-                    alertController,
-                    animated: true
-                )
+            self.navigationController.present(alertController, animated: true)
         }
     }
 }

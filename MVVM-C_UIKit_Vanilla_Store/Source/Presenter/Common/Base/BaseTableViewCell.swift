@@ -1,12 +1,6 @@
 import UIKit
 
 class BaseTableViewCell: UITableViewCell {
-    
-    // MARK: - Method
-    func setHierarchy() { }
-    func setConstraint() { }
-    func setAttribute() { }
-    
     // MARK: - Initializer
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -18,6 +12,11 @@ class BaseTableViewCell: UITableViewCell {
     
     @available(*, unavailable)
     required init(coder: NSCoder) {
-        fatalError("NSCoding initializer")
+        fatalError("init(coder:) BaseTableViewCell")
     }
+    
+    // MARK: - Method
+    func setHierarchy() { }
+    func setConstraint() { }
+    func setAttribute() { }
 }

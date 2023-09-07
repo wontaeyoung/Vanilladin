@@ -1,12 +1,6 @@
 import UIKit
 
 class BaseView: UIView {
-
-    // MARK: - Method
-    func setHierarchy() { }
-    func setConstraint() { }
-    func setAttribute() { }
-    
     // MARK: - Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +14,12 @@ class BaseView: UIView {
     
     @available(*, unavailable)
     required init(coder: NSCoder) {
-        fatalError("NSCoding initializer")
+        fatalError("init(coder:) BaseCollectionViewCell")
     }
+    
+    // MARK: - Method
+    func setHierarchy() { }
+    func setConstraint() { }
+    func setAttribute() { }
 }
 

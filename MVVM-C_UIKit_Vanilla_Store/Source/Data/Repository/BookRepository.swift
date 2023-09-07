@@ -1,13 +1,11 @@
 import UIKit
 
 final class BookRepository: DependencyContainable {
-    // MARK: - Stored Property
+    // MARK: - Property
     private let aladinService: AladinService
     
     // MARK: - Initializer
-    init(
-        aladinService: AladinService
-    ) {
+    init(aladinService: AladinService) {
         self.aladinService = aladinService
     }
     
@@ -18,11 +16,9 @@ final class BookRepository: DependencyContainable {
     ) async throws -> [Book] {
         let booksDTO: [BookDTO] = try await aladinService.requestBooks(
             keyword: keyword,
-            page: page
-        )
+            page: page)
         
         let books: [Book] = try await AsyncManager.shared.mapConcurrently(from: booksDTO) { dto in
-            
             guard
                 let cacheImage: UIImage = ImageCacheManager.shared.getObject(for: dto.cover)
             else {

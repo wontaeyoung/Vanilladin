@@ -1,7 +1,6 @@
 import UIKit
 
 final class BookCoordinator: CoordinatorProtocol {
-    
     // MARK: - Stored Property
     weak var delegate: CoordinatorDelegate?
     var navigationController: UINavigationController

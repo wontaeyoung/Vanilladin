@@ -1,22 +1,16 @@
 final class DependencyContainer: DependencyContainerProtocol {
-    
-    // MARK: - Stored Property
+    // MARK: - Property
     static let shared: DependencyContainer = .init()
-    private var registry: [ObjectIdentifier : DependencyContainable] = [:]
+    private var registry: [ObjectIdentifier: DependencyContainable] = [:]
     
     // MARK: - Initializer
     private init() { }
     
     // MARK: - Method
-    func register<T: DependencyContainable>(
-        instance: T
-    ) {
+    func register<T: DependencyContainable>(instance: T) {
         let key: ObjectIdentifier = .init(T.self)
         
-        registry.updateValue(
-            instance,
-            forKey: key
-        )
+        registry.updateValue(instance, forKey: key)
     }
     
     func resolve<T: DependencyContainable>() throws -> T {
@@ -35,7 +29,6 @@ final class DependencyContainer: DependencyContainerProtocol {
      DependencyModules 열거형 케이스를 전달받아서 자동으로 추가하는 방법을 구현 시도했으나, 인스턴스 초기화 의존성을 추상화하지 못해서 폐기되었습니다.
      */
     func setDependency(coordinator: CoordinatorProtocol) {
-        
         // MARK: - Netowrk
         let httpClient: HTTPClient = .init()
         let aladinService: AladinService = .init(httpClient: httpClient)
@@ -48,9 +41,14 @@ final class DependencyContainer: DependencyContainerProtocol {
         let searchHistoryDataSource: SearchHistoryDataSource = .init()
         
         // MARK: - ViewModel
-        let bookListViewModel: BookListViewModel = .init(coordinator: coordinator as? BookCoordinator, bookDataSource: bookDataSource)
+        let bookListViewModel: BookListViewModel = .init(
+            coordinator: coordinator as? BookCoordinator,
+            bookDataSource: bookDataSource)
         let searchHistoryViewmodel: SearchHistoryViewModel = .init(dataSource: searchHistoryDataSource)
-        let searchBookViewModel: SearchBookViewModel = .init(coordinator: coordinator as? BookCoordinator, bookRepository: bookRepository, dataSource: bookDataSource)
+        let searchBookViewModel: SearchBookViewModel = .init(
+            coordinator: coordinator as? BookCoordinator,
+            bookRepository: bookRepository,
+            dataSource: bookDataSource)
         
         
         // MARK: - ViewController
@@ -58,13 +56,11 @@ final class DependencyContainer: DependencyContainerProtocol {
         let bookListViewController: BookListViewController = .init(bookListViewModel: bookListViewModel)
         let searchResultContainerViewController: SearchResultContainerViewController = .init(
             searchHistoryViewController: searchHistoryViewController,
-            bookListViewController: bookListViewController
-        )
+            bookListViewController: bookListViewController)
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
             searchHistoryViewModel: searchHistoryViewmodel,
-            searchResultContainerViewController: searchResultContainerViewController
-        )
+            searchResultContainerViewController: searchResultContainerViewController)
         
         let modules: [DependencyContainable] = [
             // MARK: - Netowrk

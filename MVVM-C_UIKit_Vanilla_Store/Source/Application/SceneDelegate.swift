@@ -13,9 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        guard let windowScene = scene as? UIWindowScene else {
-            return
-        }
+        guard let windowScene = scene as? UIWindowScene else { return }
         
         let rootNavigationController: UINavigationController = .init()
         bookCoordinator = BookCoordinator(rootNavigationController)
@@ -24,13 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-        guard let bookCoordinator else {
-            return
-        }
+        guard let bookCoordinator else { return }
         
         DependencyContainer.shared.setDependency(coordinator: bookCoordinator)
         bookCoordinator.start()
-        
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

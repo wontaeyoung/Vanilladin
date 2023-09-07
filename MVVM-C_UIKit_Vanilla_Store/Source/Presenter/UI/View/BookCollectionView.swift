@@ -1,6 +1,6 @@
 final class BookCollectionView: BaseCollectionView {
-  // MARK: - Method
-  override func registerCells() {
-    register(BookCollectionCell.self)
-  }
+    // MARK: - Method
+    override func registerCells() {
+        register(BookCollectionCell.self)
+    }
 }

@@ -1,7 +1,7 @@
 import UIKit
 
 final class BookTableCell: BaseTableViewCell {
-    // MARK: - Dependency
+    // MARK: - Property
     var book: Book? {
         didSet {
             self.setAttribute()
@@ -68,8 +68,6 @@ final class BookTableCell: BaseTableViewCell {
         return stackView
     }()
     
-    // MARK: - Initializer
-    
     // MARK: - Method
     override func setAttribute() {
         bookImageView.image = book?.coverImage
@@ -77,13 +75,6 @@ final class BookTableCell: BaseTableViewCell {
         authorLabel.text = book?.author
         publisherLabel.text = book?.publisher
         priceLabel.text = (book?.priceSales.asPriceString ?? "-") + "원"
-                
-//        paddingView.backgroundColor = .green
-//        bookImageView.backgroundColor = .blue
-//        titleLabel.backgroundColor = .gray
-//        authorLabel.backgroundColor = .brown
-//        publisherLabel.backgroundColor = .magenta
-//        priceLabel.backgroundColor = .orange
     }
     
     override func setHierarchy() {

@@ -23,9 +23,7 @@ final class HTTPClient: DependencyContainable {
         return decodedDTO
     }
     
-    func sendImageRequest(
-        urlStr: String
-    ) async throws -> UIImage? {
+    func sendImageRequest(urlStr: String) async throws -> UIImage? {
         guard let url = URL(string: urlStr) else {
             print(#function, AladinAPIError.invalidURL.errorDescription)
             throw AladinAPIError.invalidURL
@@ -39,7 +37,7 @@ final class HTTPClient: DependencyContainable {
 
 private extension HTTPClient {
     func getURLComponents(with apiRequest: APIRequest) -> URLComponents {
-        var components = URLComponents()
+        var components: URLComponents = .init()
         components.scheme = apiRequest.scheme.rawValue
         components.host = apiRequest.host.rawValue
         components.path = apiRequest.endpoint.path
@@ -50,7 +48,6 @@ private extension HTTPClient {
     
     func sendRequestWithURL(url: URL) async throws -> Data {
         let request: URLRequest = .init(url: url)
-        
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
         
         guard let response = response as? HTTPURLResponse else {

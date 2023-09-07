@@ -1,8 +1,7 @@
 import UIKit
 
 final class SearchHistoryViewController: BaseViewController {
-    
-    // MARK: - Dependency
+    // MARK: - Property
     private let searchHistoryViewModel: SearchHistoryViewModel
     private weak var delegate: SearchHistoryViewDelegate?
     
@@ -10,9 +9,7 @@ final class SearchHistoryViewController: BaseViewController {
     private(set) lazy var searchHistoryTableView: SearchHistoryTableView = .init()
     
     // MARK: - Initializer
-    init(
-        searchHistoryViewModel: SearchHistoryViewModel
-    ) {
+    init(searchHistoryViewModel: SearchHistoryViewModel) {
         self.searchHistoryViewModel = searchHistoryViewModel
         
         super.init()
@@ -49,7 +46,8 @@ extension SearchHistoryViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        guard let keyword: String = searchHistoryViewModel.getKeyword(at: indexPath.row) else { return }
+        guard let keyword = searchHistoryViewModel.getKeyword(at: indexPath.row) else { return }
+        
         delegate?.submitKeyword(keyword)
     }
 }

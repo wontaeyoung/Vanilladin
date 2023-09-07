@@ -1,26 +1,25 @@
 import UIKit
 
 class BaseCollectionViewCell: UICollectionViewCell {
-  
-  // MARK: - Method
-  func setHierarchy() { }
-  func setConstraint() { }
-  func setAttribute() { }
-  
-  // MARK: - Initializer
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+    // MARK: - Initializer
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.backgroundColor = .white
+        
+        setHierarchy()
+        setConstraint()
+        setAttribute()
+    }
     
-    self.backgroundColor = .white
+    @available(*, unavailable)
+    required init(coder: NSCoder) {
+        fatalError("init(coder:) BaseCollectionViewCell")
+    }
     
-    setHierarchy()
-    setConstraint()
-    setAttribute()
-  }
-  
-  @available(*, unavailable)
-  required init(coder: NSCoder) {
-    fatalError("NSCoding initializer")
-  }
+    // MARK: - Method
+    func setHierarchy() { }
+    func setConstraint() { }
+    func setAttribute() { }
 }
 

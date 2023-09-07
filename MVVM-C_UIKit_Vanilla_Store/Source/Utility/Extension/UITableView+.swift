@@ -8,8 +8,7 @@ extension UITableView {
         let identifier: String = .init(describing: cellClass)
         let cell: UITableViewCell = self.dequeueReusableCell(
             withIdentifier: identifier,
-            for: indexPath
-        )
+            for: indexPath)
         
         return cell
     }

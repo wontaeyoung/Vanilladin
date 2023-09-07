@@ -1,8 +1,7 @@
 import UIKit
 
 final class BookListViewController: BaseViewController {
-    
-    // MARK: - Dependency
+    // MARK: - Property
     private let bookListViewModel: BookListViewModel
     
     // MARK: - UI
