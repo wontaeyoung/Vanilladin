@@ -20,6 +20,7 @@ final class BookListViewController: BaseViewController {
     override func setAttribute() {
         bookListViewModel.setDataSourceDelegate(self)
         bookListViewModel.setTableViewDataSource(to: bookTableView)
+        bookListViewModel.setCollectionViewDataSource(to: bookCollectionView)
         
         guard
             let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout

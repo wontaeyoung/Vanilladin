@@ -34,6 +34,10 @@ extension BookDataSource {
     func setTableViewDataSourceAsSelf(to tableView: BaseTableView) {
         tableView.dataSource = self
     }
+    
+    func setCollectionViewDataSourceAsSelf(to collectionView: BaseCollectionView) {
+        collectionView.dataSource = self
+    }
 }
 
 extension BookDataSource: UITableViewDataSource {
@@ -49,9 +53,41 @@ extension BookDataSource: UITableViewDataSource {
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
         guard
-            let bookCell = tableView.dequeueCell(BookTableCell.self, for: indexPath) as? BookTableCell
+            let bookCell = tableView.dequeueCell(
+                BookTableCell.self,
+                for: indexPath) as? BookTableCell
         else {
             return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
+        }
+        
+        guard let book = entity(at: indexPath.row) else {
+            return bookCell
+        }
+        
+        bookCell.book = book
+        
+        return bookCell
+    }
+}
+
+extension BookDataSource: UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return entities.count
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
+        guard
+            let bookCell = collectionView.dequeueCell(
+                BookCollectionCell.self,
+                for: indexPath) as? BookCollectionCell
+        else {
+            return collectionView.dequeueCell(UICollectionViewCell.self, for: indexPath)
         }
         
         guard let book = entity(at: indexPath.row) else {

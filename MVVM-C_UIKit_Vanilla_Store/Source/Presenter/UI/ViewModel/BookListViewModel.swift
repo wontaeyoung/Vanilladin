@@ -28,6 +28,10 @@ final class BookListViewModel: ViewModelProtocol {
         dataSource.setTableViewDataSourceAsSelf(to: tableView)
     }
     
+    func setCollectionViewDataSource(to collectionView: BaseCollectionView) {
+        dataSource.setCollectionViewDataSourceAsSelf(to: collectionView)
+    }
+    
     func increaseLoadPage() {
         dataSource.increaseLoadPage()
     }
