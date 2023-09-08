@@ -19,10 +19,12 @@ final class BookListViewController: BaseViewController {
     
     // MARK: - Method
     override func setAttribute() {
+        // DataSource, Delegate 설정
         bookListViewModel.setDataSourceDelegate(self)
         bookListViewModel.setTableViewDataSource(to: bookTableView)
         bookListViewModel.setCollectionViewDataSource(to: bookCollectionView)
         
+        // CollectionView Grid 레이아웃 설정
         guard
             let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
         else { return }
@@ -36,8 +38,20 @@ final class BookListViewController: BaseViewController {
             inset: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
         
+        // 시작 List Style 설정
+        bookCollectionView.isHidden = true
+        
+        // List Style Toggle에 대한 Action 전달
         selectListTypeView.toggleAction = {
-            self.bookListViewModel.toggleListType()
+            let currentType: BookListViewModel.ListType = self.bookListViewModel.toggleListType()
+            
+            switch currentType {
+            case .table:
+                self.showListView()
+                
+            case .collection:
+                self.showGridView()
+            }
         }
     }
     
@@ -74,6 +88,22 @@ final class BookListViewController: BaseViewController {
     }
 }
 
+// MARK: - Show List / Grid
+extension BookListViewController {
+    func showListView() {
+        bookTableView.contentOffset = .zero
+        bookTableView.isHidden = false
+        bookCollectionView.isHidden = true
+    }
+    
+    func showGridView() {
+        bookCollectionView.contentOffset = .zero
+        bookTableView.isHidden = true
+        bookCollectionView.isHidden = false
+    }
+}
+
+// MARK: - Delegate
 extension BookListViewController: DataSourceDelegate {
     func entitiesDidUpdate() {
         DispatchQueue.main.async {
