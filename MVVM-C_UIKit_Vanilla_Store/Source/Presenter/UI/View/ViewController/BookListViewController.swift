@@ -21,14 +21,16 @@ final class BookListViewController: BaseViewController {
         bookListViewModel.setDataSourceDelegate(self)
         bookListViewModel.setTableViewDataSource(to: bookTableView)
         
-        guard let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        guard
+            let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        else { return }
         
         laytout.setAttribute(
             direction: .vertical,
             width: UIConstant.DeviceSize.width * 0.45,
-            height: UIConstant.DeviceSize.width,
-            lineSpacing: 20,
-            itemSpacing: 20,
+            height: UIConstant.DeviceSize.width * 0.8,
+            lineSpacing: 10,
+            itemSpacing: 0,
             inset: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
     }
