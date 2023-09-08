@@ -83,7 +83,6 @@ final class BookTableCell: BaseTableViewCell {
     }
     
     override func setConstraint() {
-        
         setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, bookImageView, infoStackView)
         
         paddingView.setPaddingAutoLayout(to: contentView, padding: 10)
