@@ -62,6 +62,7 @@ final class BookCollectionCell: BaseCollectionViewCell {
         stackView.axis = .vertical
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
+        stackView.spacing = 5
         
         return stackView
     }()
@@ -88,19 +89,17 @@ final class BookCollectionCell: BaseCollectionViewCell {
         )
         
         paddingView.setPaddingAutoLayout(to: contentView, padding: 10)
-        //    paddingView.heightAnchor.constraint(equalToConstant: 300).isActive = true
         
         NSLayoutConstraint.activate([
             bookImageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             bookImageView.topAnchor.constraint(equalTo: paddingView.topAnchor),
             bookImageView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            //      bookImageView.widthAnchor.constraint(equalTo: paddingView.heightAnchor, multiplier: 0.25),
         ])
         
         NSLayoutConstraint.activate([
             infoStackView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             infoStackView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            infoStackView.topAnchor.constraint(equalTo: bookImageView.topAnchor, constant: 10),
+            infoStackView.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 10),
             infoStackView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor),
         ])
     }
