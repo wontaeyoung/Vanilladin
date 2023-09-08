@@ -36,11 +36,13 @@ final class BookListViewModel: ViewModelProtocol {
         dataSource.increaseLoadPage()
     }
     
-    func toggleListType() {
+    func toggleListType() -> ListType {
         if listType == .table {
             listType = .collection
         } else {
             listType = .table
         }
+        
+        return listType
     }
 }
