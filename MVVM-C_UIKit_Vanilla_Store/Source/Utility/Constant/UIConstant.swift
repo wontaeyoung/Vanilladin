@@ -14,5 +14,7 @@ enum UIConstant {
     enum SFSymbol {
         static let xMark: String = "xmark"
         static let textBookClosedFill: String = "text.book.closed.fill"
+        static let listBullet: String = "list.bullet"
+        static let tableCellsFill: String = "tablecells.fill"
     }
 }
