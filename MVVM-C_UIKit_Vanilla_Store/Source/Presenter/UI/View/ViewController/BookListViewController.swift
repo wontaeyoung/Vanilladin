@@ -46,7 +46,10 @@ final class BookListViewController: BaseViewController {
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(bookTableView ,bookCollectionView, selectListTypeView)
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(
+            bookTableView,
+            bookCollectionView,
+            selectListTypeView)
         
         NSLayoutConstraint.activate([
             selectListTypeView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -74,8 +77,13 @@ final class BookListViewController: BaseViewController {
 extension BookListViewController: DataSourceDelegate {
     func entitiesDidUpdate() {
         DispatchQueue.main.async {
-            self.bookCollectionView.reloadData()
-            self.bookTableView.reloadData()
+            switch self.bookListViewModel.listType {
+            case .table:
+                self.bookTableView.reloadData()
+                
+            case .collection:
+                self.bookCollectionView.reloadData()
+            }
         }
     }
 }
