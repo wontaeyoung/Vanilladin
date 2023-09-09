@@ -23,8 +23,6 @@ final class SelectListTypeView: BaseView {
     // MARK: - Method
     override func setHierarchy() {
         addSubview(selectTypeSegment)
-        
-//        self.backgroundColor = .red
     }
     
     override func setConstraint() {
