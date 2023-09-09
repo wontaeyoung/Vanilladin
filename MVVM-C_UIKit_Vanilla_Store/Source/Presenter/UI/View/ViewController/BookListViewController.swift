@@ -38,8 +38,9 @@ final class BookListViewController: BaseViewController {
             inset: .init(top: 10, left: 10, bottom: 10, right: 10)
         )
         
-        // 시작 List Style 설정
+        // List Style부터 시작하도록 설정
         bookCollectionView.isHidden = true
+        
         
         // List Style Toggle에 대한 Action 전달
         selectListTypeView.toggleAction = {
@@ -90,12 +91,14 @@ final class BookListViewController: BaseViewController {
 
 // MARK: - Show List / Grid
 extension BookListViewController {
+    /// List 스크롤 초기화, Grid 숨기기
     func showListView() {
         bookTableView.contentOffset = .zero
         bookTableView.isHidden = false
         bookCollectionView.isHidden = true
     }
     
+    /// Grid 스크롤 초기화, List 숨기기
     func showGridView() {
         bookCollectionView.contentOffset = .zero
         bookTableView.isHidden = true
@@ -107,12 +110,15 @@ extension BookListViewController {
 extension BookListViewController: DataSourceDelegate {
     func entitiesDidUpdate() {
         DispatchQueue.main.async {
+            self.bookTableView.reloadData()
+            self.bookCollectionView.reloadData()
+            
             switch self.bookListViewModel.listType {
             case .table:
-                self.bookTableView.reloadData()
-                
+                self.bookTableView.contentOffset = .zero
+
             case .collection:
-                self.bookCollectionView.reloadData()
+                self.bookCollectionView.contentOffset = .zero
             }
         }
     }
