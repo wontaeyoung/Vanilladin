@@ -35,7 +35,7 @@ final class SearchResultContainerViewController: BaseViewController {
             bookListViewController.view)
         
         searchHistoryViewController.view.setAutoLayoutAllEqual(to: view)
-//        bookListViewController.view.setAutoLayoutAllEqual(to: view)
+        
         NSLayoutConstraint.activate([
             bookListViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
             bookListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -58,6 +58,7 @@ extension SearchResultContainerViewController {
     }
 }
 
+// MARK: - Dependency
 extension SearchResultContainerViewController {
     func setViewControllerDelegate(_ delegate: SearchHistoryViewDelegate) {
         searchHistoryViewController.setDelegate(delegate)

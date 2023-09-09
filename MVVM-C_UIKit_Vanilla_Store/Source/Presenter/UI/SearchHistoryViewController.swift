@@ -33,6 +33,7 @@ final class SearchHistoryViewController: BaseViewController {
     }
 }
 
+// MARK: - Delegate
 extension SearchHistoryViewController: DataSourceDelegate {
     func entitiesDidUpdate() {
         DispatchQueue.main.async {
@@ -52,6 +53,7 @@ extension SearchHistoryViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - Dependency
 extension SearchHistoryViewController {
     func setDelegate(_ delegate: SearchHistoryViewDelegate) {
         self.delegate = delegate
