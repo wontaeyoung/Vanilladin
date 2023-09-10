@@ -32,10 +32,6 @@ final class BookListViewModel: ViewModelProtocol {
         dataSource.setCollectionViewDataSourceAsSelf(to: collectionView)
     }
     
-    func increaseLoadPage() {
-        dataSource.increaseLoadPage()
-    }
-    
     func toggleListType() -> ListType {
         if listType == .table {
             listType = .collection

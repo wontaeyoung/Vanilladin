@@ -42,4 +42,8 @@ final class SearchBookViewModel: ViewModelProtocol {
     func saveSearchKeyword(keyword: String) {
         self.searchKeyword = keyword
     }
+    
+    func increaseLoadPage() {
+        dataSource.increaseLoadPage()
+    }
 }
