@@ -2,6 +2,7 @@ import UIKit
 
 final class BookListViewController: BaseViewController {
     // MARK: - Property
+    private let searchBookViewModel: SearchBookViewModel
     private let bookListViewModel: BookListViewModel
     
     // MARK: - UI
@@ -11,7 +12,11 @@ final class BookListViewController: BaseViewController {
     private let selectListTypeView: SelectListTypeView = .init()
     
     // MARK: - Initializer
-    init(bookListViewModel: BookListViewModel) {
+    init(
+        searchBookViewModel: SearchBookViewModel,
+        bookListViewModel: BookListViewModel
+    ) {
+        self.searchBookViewModel = searchBookViewModel
         self.bookListViewModel = bookListViewModel
         
         super.init()
