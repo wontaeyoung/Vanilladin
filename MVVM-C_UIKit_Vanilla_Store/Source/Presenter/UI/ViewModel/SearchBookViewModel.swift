@@ -25,6 +25,13 @@ final class SearchBookViewModel: ViewModelProtocol {
     }
     
     // MARK: - Method
+    func searchNewBooks(keyword: String) async {
+        self.searchKeyword = keyword
+        dataSource.clearEntities()
+        dataSource.resetLoadPage()
+        await fetchBooks()
+    }
+    
     func fetchBooks() async {
         startLoading()
         
