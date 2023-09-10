@@ -13,12 +13,12 @@ final class BookRepository: DependencyContainable {
     func fetchBooks(
         keyword: String,
         page: UInt
-    ) async throws -> [Book] {
-        let booksDTO: [BookDTO] = try await aladinService.requestBooks(
-            keyword: keyword,
-            page: page)
+    ) async throws -> (totalItem: UInt, data: [Book]) {
+        let bookResult: BookResult = try await aladinService.requestBooks(keyword: keyword, page: page)
         
-        let books: [Book] = try await AsyncManager.shared.mapConcurrently(from: booksDTO) { dto in
+        let totalItem: UInt = UInt(bookResult.totalResults)
+        
+        let books: [Book] = try await AsyncManager.shared.mapConcurrently(from: bookResult.item) { dto in
             guard
                 let cacheImage: UIImage = ImageCacheManager.shared.getObject(for: dto.cover)
             else {
@@ -31,6 +31,6 @@ final class BookRepository: DependencyContainable {
             return dto.asModel(with: cacheImage)
         }
         
-        return books
+        return (totalItem, books)
     }
 }

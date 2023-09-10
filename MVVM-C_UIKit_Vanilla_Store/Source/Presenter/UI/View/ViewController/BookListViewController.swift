@@ -136,10 +136,12 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
         let contentHeight: CGFloat = scrollView.contentSize.height // 스크롤뷰 전체 높이
         let frameHeight: CGFloat = scrollView.frame.height // 스크린에서 표시되는 높이
         
-        // 스크롤이 끝 지점에서 화면 높이 1/3 지점에 도달하면
-        guard offsetY >= contentHeight - (frameHeight + frameHeight / 3) else { return }
-        
-        guard searchBookViewModel.isLoading == false else { return }
+        // 스크롤이 끝 지점에서 화면 높이 1/3 지점에 도달 + 로딩 중 X + 추가로 요청할 데이터가 서버에 있음
+        guard
+            offsetY >= contentHeight - (frameHeight + frameHeight / 3),
+            searchBookViewModel.isLoading == false,
+            searchBookViewModel.hasMoreData
+        else { return }
         
         Task {
             searchBookViewModel.increaseLoadPage()

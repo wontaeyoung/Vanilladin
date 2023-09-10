@@ -5,6 +5,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     private let dataSource: BookDataSource
     private var searchKeyword: String
     private(set) var isLoading: Bool
+    private(set) var hasMoreData: Bool
     
     var isResultEmpty: Bool {
         return dataSource.entities.isEmpty
@@ -22,6 +23,7 @@ final class SearchBookViewModel: ViewModelProtocol {
         
         self.searchKeyword = ""
         self.isLoading = false
+        self.hasMoreData = true
     }
     
     // MARK: - Method
@@ -36,11 +38,13 @@ final class SearchBookViewModel: ViewModelProtocol {
         startLoading()
         
         do {
-            let books: [Book] = try await bookRepository.fetchBooks(
+            let books: (totalItem: UInt, data: [Book]) = try await bookRepository.fetchBooks(
                 keyword: searchKeyword,
                 page: dataSource.currentLoadPage)
             
-            dataSource.entities.append(contentsOf: books)
+            dataSource.entities.append(contentsOf: books.data)
+            
+            hasMoreData = checkMoreData(totalItem: books.totalItem)
         } catch {
             guard let error = error as? AppErrorProtocol else {
                 print(#function, "에러 타입캐스팅 실패!")
@@ -53,19 +57,25 @@ final class SearchBookViewModel: ViewModelProtocol {
         stopLoading()
     }
     
-    func updateSearchKeyword(keyword: String) {
-        self.searchKeyword = keyword
-    }
-    
+    // MARK: Interface
     func increaseLoadPage() {
         dataSource.increaseLoadPage()
     }
     
-    func startLoading() {
+    // MARK: Private
+    private func startLoading() {
         isLoading = true
     }
     
-    func stopLoading() {
+    private func stopLoading() {
         isLoading = false
+    }
+    
+    private func checkMoreData(totalItem: UInt) -> Bool {
+        guard let itemsPerPage = UInt(AladinAPIConstant.maxResults) else {
+            return false
+        }
+        
+        return totalItem > dataSource.currentLoadPage * itemsPerPage
     }
 }
