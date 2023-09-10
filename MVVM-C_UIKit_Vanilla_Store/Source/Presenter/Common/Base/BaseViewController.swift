@@ -12,9 +12,9 @@ class BaseViewController: UIViewController, DependencyContainable {
     }
     
     // MARK: - Method
-    func setAttribute() { }
-    func setHierarchy() { }
-    func setConstraint() { }
+    @MainActor func setAttribute() { }
+    @MainActor func setHierarchy() { }
+    @MainActor func setConstraint() { }
     
     override func viewDidLoad() {
         super.viewDidLoad()

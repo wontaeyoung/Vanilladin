@@ -14,8 +14,8 @@ class BaseTableView: UITableView {
     }
     
     // MARK: - Method
-    func registerCells() { }
-    func register(_ cellClass: UITableViewCell.Type) {
+    @MainActor func registerCells() { }
+    @MainActor func register(_ cellClass: UITableViewCell.Type) {
         let identifier: String = .init(describing: cellClass)
         
         self.register(cellClass.self, forCellReuseIdentifier: identifier)

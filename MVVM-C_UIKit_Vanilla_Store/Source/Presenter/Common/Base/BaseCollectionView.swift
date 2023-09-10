@@ -14,8 +14,8 @@ class BaseCollectionView: UICollectionView {
     }
     
     // MARK: - Method
-    func registerCells() { }
-    func register(_ cellClass: UICollectionViewCell.Type) {
+    @MainActor func registerCells() { }
+    @MainActor func register(_ cellClass: UICollectionViewCell.Type) {
         let identifier: String = .init(describing: cellClass)
         
         self.register(cellClass.self, forCellWithReuseIdentifier: identifier)

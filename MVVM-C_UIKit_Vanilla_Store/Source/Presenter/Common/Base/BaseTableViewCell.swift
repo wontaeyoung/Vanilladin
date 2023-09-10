@@ -16,7 +16,7 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     // MARK: - Method
-    func setHierarchy() { }
-    func setConstraint() { }
-    func setAttribute() { }
+    @MainActor func setHierarchy() { }
+    @MainActor func setConstraint() { }
+    @MainActor func setAttribute() { }
 }
