@@ -23,6 +23,14 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     func increaseLoadPage() {
         self.currentLoadPage += 1
     }
+    
+    func clearEntities() {
+        self.entities.removeAll()
+    }
+    
+    func resetLoadPage() {
+        self.currentLoadPage = 1
+    }
 }
 
 // MARK: Set Dependency
