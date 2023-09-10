@@ -28,6 +28,8 @@ final class BookListViewController: BaseViewController {
         bookListViewModel.setDataSourceDelegate(self)
         bookListViewModel.setTableViewDataSource(to: bookTableView)
         bookListViewModel.setCollectionViewDataSource(to: bookCollectionView)
+        bookTableView.delegate = self
+        bookCollectionView.delegate = self
         
         // CollectionView Grid 레이아웃 설정
         guard
@@ -45,7 +47,6 @@ final class BookListViewController: BaseViewController {
         
         // List Style부터 시작하도록 설정
         bookCollectionView.isHidden = true
-        
         
         // List Style Toggle에 대한 Action 전달
         selectListTypeView.toggleAction = {
@@ -129,18 +130,20 @@ extension BookListViewController: DataSourceDelegate {
     }
 }
 
-extension BookListViewController: UIScrollViewDelegate {
+extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY: CGFloat = scrollView.contentOffset.y // 현재 스크롤 위치
         let contentHeight: CGFloat = scrollView.contentSize.height // 스크롤뷰 전체 높이
         let frameHeight: CGFloat = scrollView.frame.height // 스크린에서 표시되는 높이
         
         // 스크롤이 끝 지점에서 화면 높이 1/3 지점에 도달하면
-        if offsetY >= contentHeight - (frameHeight + frameHeight / 3) {
-            Task {
-                searchBookViewModel.increaseLoadPage()
-                await searchBookViewModel.fetchBooks()
-            }
+        guard offsetY >= contentHeight - (frameHeight + frameHeight / 3) else { return }
+        
+        guard searchBookViewModel.isLoading == false else { return }
+        
+        Task {
+            searchBookViewModel.increaseLoadPage()
+            await searchBookViewModel.fetchBooks()
         }
     }
 }
