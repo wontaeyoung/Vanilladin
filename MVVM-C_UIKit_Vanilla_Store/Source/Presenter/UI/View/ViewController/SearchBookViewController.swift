@@ -76,7 +76,7 @@ extension SearchBookViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else { return }
         
         Task {
-            searchBookViewModel.saveSearchKeyword(keyword: searchText)
+            searchBookViewModel.updateSearchKeyword(keyword: searchText)
             await searchBookViewModel.fetchBooks()
             searchResultContainerViewController.showBookList()
             searchHistoryViewModel.saveKeyword(searchText)

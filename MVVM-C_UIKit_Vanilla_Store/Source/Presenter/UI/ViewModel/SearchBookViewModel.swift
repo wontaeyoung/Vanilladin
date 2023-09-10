@@ -46,7 +46,7 @@ final class SearchBookViewModel: ViewModelProtocol {
         stopLoading()
     }
     
-    func saveSearchKeyword(keyword: String) {
+    func updateSearchKeyword(keyword: String) {
         self.searchKeyword = keyword
     }
     
