@@ -54,9 +54,11 @@ final class BookListViewController: BaseViewController {
             
             switch currentType {
             case .table:
+                self.bookTableView.contentOffset = .zero
                 self.showListView()
                 
             case .collection:
+                self.bookCollectionView.contentOffset = .zero
                 self.showGridView()
             }
         }
@@ -118,14 +120,6 @@ extension BookListViewController: DataSourceDelegate {
         DispatchQueue.main.async {
             self.bookTableView.reloadData()
             self.bookCollectionView.reloadData()
-            
-            switch self.bookListViewModel.listType {
-            case .table:
-                self.bookTableView.contentOffset = .zero
-
-            case .collection:
-                self.bookCollectionView.contentOffset = .zero
-            }
         }
     }
 }
