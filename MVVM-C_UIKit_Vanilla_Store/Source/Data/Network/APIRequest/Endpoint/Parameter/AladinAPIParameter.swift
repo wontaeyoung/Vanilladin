@@ -6,6 +6,7 @@ enum AladinAPIParameter: String {
     case Version
     case Query
     case Start
+    case MaxResults
     
     var name: String {
         return self.rawValue

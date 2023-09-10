@@ -41,6 +41,9 @@ enum AladinAPIEndpoint: EndpointProtocol {
                 URLQueryItem(
                     name: AladinAPIParameter.Version.name,
                     value: AladinAPIConstant.version),
+                URLQueryItem(
+                    name: AladinAPIParameter.MaxResults.name,
+                    value: AladinAPIConstant.maxResults),
             ]
             
         case .itemList:

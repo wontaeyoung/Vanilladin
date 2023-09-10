@@ -6,4 +6,5 @@ enum AladinAPIConstant {
     static let cover: String = "Big"
     static let output: String = "JS"
     static let version: String = "20131101"
+    static let maxResults: String = "10"
 }
