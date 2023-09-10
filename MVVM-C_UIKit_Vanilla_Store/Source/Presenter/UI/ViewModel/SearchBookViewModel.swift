@@ -4,6 +4,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     private let bookRepository: BookRepository
     private let dataSource: BookDataSource
     private var searchKeyword: String
+    private(set) var isLoading: Bool
     
     var isResultEmpty: Bool {
         return dataSource.entities.isEmpty
@@ -18,17 +19,21 @@ final class SearchBookViewModel: ViewModelProtocol {
         self.coordinator = coordinator
         self.bookRepository = bookRepository
         self.dataSource = dataSource
+        
         self.searchKeyword = ""
+        self.isLoading = false
     }
     
     // MARK: - Method
     func fetchBooks() async {
+        startLoading()
+        
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
                 keyword: searchKeyword,
                 page: dataSource.currentLoadPage)
             
-            dataSource.entities = books
+            dataSource.entities.append(contentsOf: books)
         } catch {
             guard let error = error as? AppErrorProtocol else {
                 print(#function, "에러 타입캐스팅 실패!")
@@ -37,6 +42,8 @@ final class SearchBookViewModel: ViewModelProtocol {
             
             coordinator?.handle(error: error)
         }
+        
+        stopLoading()
     }
     
     func saveSearchKeyword(keyword: String) {
@@ -45,5 +52,13 @@ final class SearchBookViewModel: ViewModelProtocol {
     
     func increaseLoadPage() {
         dataSource.increaseLoadPage()
+    }
+    
+    func startLoading() {
+        isLoading = true
+    }
+    
+    func stopLoading() {
+        isLoading = false
     }
 }
