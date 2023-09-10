@@ -3,6 +3,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     private weak var coordinator: BookCoordinator?
     private let bookRepository: BookRepository
     private let dataSource: BookDataSource
+    private var searchKeyword: String
     
     var isResultEmpty: Bool {
         return dataSource.entities.isEmpty
@@ -17,13 +18,14 @@ final class SearchBookViewModel: ViewModelProtocol {
         self.coordinator = coordinator
         self.bookRepository = bookRepository
         self.dataSource = dataSource
+        self.searchKeyword = ""
     }
     
     // MARK: - Method
-    func fetchBooks(keyword: String) async {
+    func fetchBooks() async {
         do {
             let books: [Book] = try await bookRepository.fetchBooks(
-                keyword: keyword,
+                keyword: searchKeyword,
                 page: dataSource.currentLoadPage)
             
             dataSource.entities = books
@@ -35,5 +37,9 @@ final class SearchBookViewModel: ViewModelProtocol {
             
             coordinator?.handle(error: error)
         }
+    }
+    
+    func saveSearchKeyword(keyword: String) {
+        self.searchKeyword = keyword
     }
 }
