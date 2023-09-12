@@ -10,7 +10,7 @@ final class AladinService: DependencyContainable {
     }
     
     // MARK: - Method
-    func requestBooks(keyword: String, page: UInt) async throws -> BookResult {
+    func requestBooks(keyword: String, page: UInt) async throws -> SearchBookResult {
         let apiRequest: APIRequest = .init(
             scheme: .https,
             host: .aladin,
@@ -19,10 +19,10 @@ final class AladinService: DependencyContainable {
                 page: page)
         )
         
-        let bookResult: BookResult = try await httpClient
+        let bookResult: SearchBookResult = try await httpClient
             .sendDTORequest(
                 apiRequest: apiRequest,
-                decodeType: BookResult.self)
+                decodeType: SearchBookResult.self)
         
         return bookResult
     }

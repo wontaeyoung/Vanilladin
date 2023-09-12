@@ -14,7 +14,7 @@ final class BookRepository: DependencyContainable {
         keyword: String,
         page: UInt
     ) async throws -> (totalItem: UInt, data: [Book]) {
-        let bookResult: BookResult = try await aladinService.requestBooks(keyword: keyword, page: page)
+        let bookResult: SearchBookResult = try await aladinService.requestBooks(keyword: keyword, page: page)
         
         let totalItem: UInt = UInt(bookResult.totalResults)
         

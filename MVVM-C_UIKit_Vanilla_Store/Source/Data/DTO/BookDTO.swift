@@ -1,6 +1,6 @@
 import UIKit
 
-struct BookResult: Codable {
+struct SearchBookResult: Codable {
     let totalResults: Int
     let startIndex: Int
     let itemsPerPage: Int
