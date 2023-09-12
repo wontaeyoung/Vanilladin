@@ -2,7 +2,6 @@ import Foundation
 
 struct BookDetail: EntityProtocol {
     let id: UUID
-    
     let itemPage: Int
     let ratingScore: Double
     let ratingCount: Int

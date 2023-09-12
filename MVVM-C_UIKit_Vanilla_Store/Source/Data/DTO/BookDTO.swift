@@ -8,8 +8,6 @@ struct SearchBookResult: Codable {
 }
 
 struct BookDTO: DTOProtocol {
-    typealias Entity = Book
-    
     let title: String
     let author: String
     let description: String

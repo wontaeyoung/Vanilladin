@@ -72,7 +72,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     }
     
     private func checkMoreData(totalItem: UInt) -> Bool {
-        guard let itemsPerPage = UInt(AladinAPIConstant.maxResults) else {
+        guard let itemsPerPage = UInt(AladinAPIConstant.ItemSearch.maxResults) else {
             return false
         }
         
