@@ -20,7 +20,7 @@ struct BookDTO: DTOProtocol {
     let publisher: String
     let isbn13: String
     
-    func asModel(with coverImage: UIImage) -> Book {
+    func asModel(with coverImage: UIImage?) -> Book {
         .init(
             id: UUID(),
             title: title,

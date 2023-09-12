@@ -8,7 +8,7 @@ struct Book: EntityProtocol {
     let priceSales: Int
     let priceStandard: Int
     let mileage: Int
-    let coverImage: UIImage
+    let coverImage: UIImage?
     let publisher: String
     let isbn13: String
 }
