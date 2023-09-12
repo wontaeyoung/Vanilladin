@@ -7,6 +7,17 @@ struct BookResult: Codable {
     let item: [BookDTO]
 }
 
+struct SubInfo: Codable {
+    let ratingInfo: RatingInfo
+}
+
+struct RatingInfo: Codable {
+    let ratingScore: Double
+    let ratingCount: Int
+    let commentReviewCount: Int
+    let myReviewCount: Int
+}
+
 struct BookDTO: DTOProtocol {
     typealias Entity = Book
     
@@ -18,6 +29,7 @@ struct BookDTO: DTOProtocol {
     let mileage: Int
     let cover: String
     let publisher: String
+    let subInfo: SubInfo
     
     func asModel(with coverImage: UIImage) -> Book {
         .init(
@@ -29,7 +41,10 @@ struct BookDTO: DTOProtocol {
             priceStandard: priceStandard,
             mileage: mileage,
             coverImage: coverImage,
-            publisher: publisher
-        )
+            publisher: publisher,
+            ratingScore: subInfo.ratingInfo.ratingScore,
+            ratingCount: subInfo.ratingInfo.ratingCount,
+            commentReviewCount: subInfo.ratingInfo.commentReviewCount,
+            myReviewCount: subInfo.ratingInfo.myReviewCount)
     }
 }
