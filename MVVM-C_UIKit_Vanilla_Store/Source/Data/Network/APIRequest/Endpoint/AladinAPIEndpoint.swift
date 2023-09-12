@@ -22,7 +22,7 @@ enum AladinAPIEndpoint: EndpointProtocol {
         }
     }
     
-    var defaultQueryItems: [URLQueryItem] {
+    var requiredQueryItems: [URLQueryItem] {
         switch self {
         case .itemSearch:
             return [
