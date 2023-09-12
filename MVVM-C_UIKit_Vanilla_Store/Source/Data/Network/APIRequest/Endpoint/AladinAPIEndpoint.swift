@@ -2,8 +2,7 @@ import Foundation
 
 enum AladinAPIEndpoint: EndpointProtocol {
     case itemSearch(keyword: String, page: UInt)
-    case itemList
-    case itemLookUp
+    case itemLookUp(isbn13: String)
     
     var defaultPath: String {
         return "/ttb/api"
@@ -13,9 +12,6 @@ enum AladinAPIEndpoint: EndpointProtocol {
         switch self {
         case .itemSearch:
             return "/ItemSearch.aspx"
-            
-        case .itemList:
-            return "/ItemList.aspx"
             
         case .itemLookUp:
             return "/ItemLookUp.aspx"
@@ -27,30 +23,43 @@ enum AladinAPIEndpoint: EndpointProtocol {
         case .itemSearch:
             return [
                 URLQueryItem(
-                    name: AladinAPIParameter.ttbKey.name,
+                    name: AladinAPIParameter.Common.ttbKey.name,
                     value: AladinAPIConstant.Common.ttbKey),
                 URLQueryItem(
-                    name: AladinAPIParameter.Output.name,
+                    name: AladinAPIParameter.Common.output.name,
                     value: AladinAPIConstant.Common.output),
                 URLQueryItem(
-                    name: AladinAPIParameter.Version.name,
+                    name: AladinAPIParameter.Common.version.name,
                     value: AladinAPIConstant.Common.version),
                 URLQueryItem(
-                    name: AladinAPIParameter.QueryType.name,
+                    name: AladinAPIParameter.ItemSearch.queryType.name,
                     value: AladinAPIConstant.ItemSearch.queryType),
                 URLQueryItem(
-                    name: AladinAPIParameter.Cover.name,
+                    name: AladinAPIParameter.ItemSearch.cover.name,
                     value: AladinAPIConstant.ItemSearch.cover),
                 URLQueryItem(
-                    name: AladinAPIParameter.MaxResults.name,
+                    name: AladinAPIParameter.ItemSearch.maxResults.name,
                     value: AladinAPIConstant.ItemSearch.maxResults),
             ]
             
-        case .itemList:
-            return []
-            
         case .itemLookUp:
-            return []
+            return [
+                URLQueryItem(
+                    name: AladinAPIParameter.Common.ttbKey.name,
+                    value: AladinAPIConstant.Common.ttbKey),
+                URLQueryItem(
+                    name: AladinAPIParameter.Common.output.name,
+                    value: AladinAPIConstant.Common.output),
+                URLQueryItem(
+                    name: AladinAPIParameter.Common.version.name,
+                    value: AladinAPIConstant.Common.version),
+                URLQueryItem(
+                    name: AladinAPIParameter.ItemLookUp.itemIDType.name,
+                    value: AladinAPIConstant.ItemLookUp.itemIDType),
+                URLQueryItem(
+                    name: AladinAPIParameter.ItemLookUp.optResult.name,
+                    value: AladinAPIConstant.ItemLookUp.optResult),
+            ]
         }
     }
     
@@ -59,18 +68,19 @@ enum AladinAPIEndpoint: EndpointProtocol {
         case .itemSearch(let keyword, let page):
             return [
                 URLQueryItem(
-                    name: AladinAPIParameter.Query.name,
+                    name: AladinAPIParameter.ItemSearch.query.name,
                     value: keyword),
                 URLQueryItem(
-                    name: AladinAPIParameter.Start.name,
+                    name: AladinAPIParameter.ItemSearch.start.name,
                     value: page.description),
             ]
             
-        case .itemList:
-            return []
-            
-        case .itemLookUp:
-            return []
+        case .itemLookUp(let isbn13):
+            return [
+                URLQueryItem(
+                    name: AladinAPIParameter.ItemLookUp.itemID.name,
+                    value: isbn13),
+            ]
         }
     }
 }
