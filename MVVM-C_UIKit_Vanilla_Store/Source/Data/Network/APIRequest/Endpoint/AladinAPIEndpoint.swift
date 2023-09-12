@@ -22,28 +22,28 @@ enum AladinAPIEndpoint: EndpointProtocol {
         }
     }
     
-    var requiredQueryItems: [URLQueryItem] {
+    var fixedQueryItems: [URLQueryItem] {
         switch self {
         case .itemSearch:
             return [
                 URLQueryItem(
                     name: AladinAPIParameter.ttbKey.name,
-                    value: AladinAPIConstant.ttbKey),
-                URLQueryItem(
-                    name: AladinAPIParameter.QueryType.name,
-                    value: AladinAPIConstant.queryType),
-                URLQueryItem(
-                    name: AladinAPIParameter.Cover.name,
-                    value: AladinAPIConstant.cover),
+                    value: AladinAPIConstant.Common.ttbKey),
                 URLQueryItem(
                     name: AladinAPIParameter.Output.name,
-                    value: AladinAPIConstant.output),
+                    value: AladinAPIConstant.Common.output),
                 URLQueryItem(
                     name: AladinAPIParameter.Version.name,
-                    value: AladinAPIConstant.version),
+                    value: AladinAPIConstant.Common.version),
+                URLQueryItem(
+                    name: AladinAPIParameter.QueryType.name,
+                    value: AladinAPIConstant.ItemSearch.queryType),
+                URLQueryItem(
+                    name: AladinAPIParameter.Cover.name,
+                    value: AladinAPIConstant.ItemSearch.cover),
                 URLQueryItem(
                     name: AladinAPIParameter.MaxResults.name,
-                    value: AladinAPIConstant.maxResults),
+                    value: AladinAPIConstant.ItemSearch.maxResults),
             ]
             
         case .itemList:

@@ -4,7 +4,7 @@ protocol EndpointProtocol {
     var defaultPath: String { get }
     var optionalPath: String { get }
     var path: String { get }
-    var requiredQueryItems: [URLQueryItem] { get }
+    var fixedQueryItems: [URLQueryItem] { get }
     var optionalQueryItems: [URLQueryItem] { get }
     var queryItems: [URLQueryItem] { get }
 }
@@ -15,6 +15,6 @@ extension EndpointProtocol {
     }
     
     var queryItems: [URLQueryItem] {
-        return requiredQueryItems + optionalQueryItems
+        return fixedQueryItems + optionalQueryItems
     }
 }
