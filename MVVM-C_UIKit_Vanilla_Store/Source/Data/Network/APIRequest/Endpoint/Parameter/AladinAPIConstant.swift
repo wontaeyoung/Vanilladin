@@ -15,5 +15,6 @@ enum AladinAPIConstant {
     
     enum ItemLookUp {
         static let itemIDType: String = "ISBN13"
+        static let optResult: String = "ratingInfo,packing"
     }
 }
