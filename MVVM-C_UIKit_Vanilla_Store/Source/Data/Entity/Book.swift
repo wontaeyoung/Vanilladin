@@ -10,9 +10,5 @@ struct Book: EntityProtocol {
     let mileage: Int
     let coverImage: UIImage
     let publisher: String
-    
-    let ratingScore: Double
-    let ratingCount: Int
-    let commentReviewCount: Int
-    let myReviewCount: Int
+    let isbn13: String
 }
