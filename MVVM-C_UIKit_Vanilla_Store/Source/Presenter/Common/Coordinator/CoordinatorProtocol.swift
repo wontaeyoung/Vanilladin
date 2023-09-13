@@ -10,13 +10,13 @@ protocol CoordinatorProtocol: AnyObject {
     init(_ navigationController: UINavigationController, childCoordinators: [CoordinatorProtocol])
     
     // MARK: - Method
-    func start()
-    func end()
-    func push(_ viewController: BaseViewController)
-    func pop()
-    func dismissModal()
-    func emptyOut()
-    func handle(error: AppErrorProtocol)
+    @MainActor func start()
+    @MainActor func end()
+    @MainActor func push(_ viewController: BaseViewController)
+    @MainActor func pop()
+    @MainActor func dismissModal()
+    @MainActor func emptyOut()
+    @MainActor func handle(error: AppErrorProtocol)
 }
 
 extension CoordinatorProtocol {
@@ -53,8 +53,6 @@ extension CoordinatorProtocol {
         
         alertController.addAction(okAction)
         
-        DispatchQueue.main.async {
-            self.navigationController.present(alertController, animated: true)
-        }
+        self.navigationController.present(alertController, animated: true)
     }
 }

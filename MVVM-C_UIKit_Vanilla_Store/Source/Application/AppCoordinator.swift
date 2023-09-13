@@ -35,6 +35,8 @@ private extension AppCoordinator {
         bookCoordinator.delegate = self
         self.childCoordinators.append(bookCoordinator)
         
-        bookCoordinator.start()
+        Task {
+            await bookCoordinator.start()
+        }
     }
 }
