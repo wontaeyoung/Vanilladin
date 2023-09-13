@@ -34,4 +34,18 @@ final class AladinService: DependencyContainable {
         
         return image
     }
+    
+    func requestBookDetail(isbn13: String) async throws -> LookupBookResult {
+        let apiRequest: APIRequest = .init(
+            scheme: .https,
+            host: .aladin,
+            endpoint: AladinAPIEndpoint.itemLookUp(isbn13: isbn13)
+        )
+        
+        let bookResult: LookupBookResult = try await httpClient.sendDTORequest(
+            apiRequest: apiRequest,
+            decodeType: LookupBookResult.self)
+        
+        return bookResult
+    }
 }
