@@ -2,7 +2,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    var bookCoordinator: BookCoordinator?
+    var appCoordinator: AppCoordinator?
     
     func scene(
         _ scene: UIScene,
@@ -16,16 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = scene as? UIWindowScene else { return }
         
         let rootNavigationController: UINavigationController = .init()
-        bookCoordinator = BookCoordinator(rootNavigationController)
+        appCoordinator = AppCoordinator(rootNavigationController)
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
-        guard let bookCoordinator else { return }
+        guard let appCoordinator else { return }
         
-        DependencyContainer.shared.setDependency(coordinator: bookCoordinator)
-        bookCoordinator.start()
+        DependencyContainer.shared.setDependency(coordinator: appCoordinator)
+        appCoordinator.start()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -56,4 +56,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 }
-
