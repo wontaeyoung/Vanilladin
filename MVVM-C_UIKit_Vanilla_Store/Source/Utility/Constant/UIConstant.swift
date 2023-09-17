@@ -16,6 +16,9 @@ enum UIConstant {
         static let textBookClosedFill: String = "text.book.closed.fill"
         static let listBullet: String = "list.bullet"
         static let tableCellsFill: String = "tablecells.fill"
+        static let star: String = "star"
+        static let starFill: String = "star.fill"
+        static let starLeadinghalfFill: String = "star.leainghalf.fill"
     }
     
     enum Rating {
