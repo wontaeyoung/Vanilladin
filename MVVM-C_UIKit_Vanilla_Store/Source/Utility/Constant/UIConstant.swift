@@ -17,4 +17,8 @@ enum UIConstant {
         static let listBullet: String = "list.bullet"
         static let tableCellsFill: String = "tablecells.fill"
     }
+    
+    enum Rating {
+        static let maxStarRatingCount: Int = 5
+    }
 }
