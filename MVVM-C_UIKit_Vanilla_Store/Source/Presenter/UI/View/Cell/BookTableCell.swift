@@ -29,24 +29,24 @@ final class BookTableCell: BaseTableViewCell {
     
     private let authorLabel: UILabel = {
         let label: UILabel = .init()
-        label.numberOfLines = 0
         label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = 0
         
         return label
     }()
     
     private let publisherLabel: UILabel = {
         let label: UILabel = .init()
-        label.numberOfLines = 0
         label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = 0
         
         return label
     }()
     
     private let priceLabel: UILabel = {
         let label: UILabel = .init()
-        label.numberOfLines = 0
         label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = 0
         
         return label
     }()
