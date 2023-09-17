@@ -8,7 +8,9 @@ protocol DataSourceProtocol: DependencyContainable {
 
 extension DataSourceProtocol {
     func entity(at index: Int) -> Entity? {
-        guard index < entities.count else { return nil }
+        guard index < entities.count else {
+            return nil
+        }
         
         return entities[index]
     }
