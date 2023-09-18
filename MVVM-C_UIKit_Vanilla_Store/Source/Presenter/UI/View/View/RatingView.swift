@@ -2,7 +2,7 @@ import UIKit
 
 final class RatingView: BaseView {
     // MARK: - Property
-    private let ratingScore: Int
+    private let ratingScore: Double
     
     // MARK: - UI
     private let starStackView: UIStackView = {
@@ -14,7 +14,7 @@ final class RatingView: BaseView {
     
     // MARK: - Initializer
     init(ratingScore: Double) {
-        self.ratingScore = Int(ratingScore)
+        self.ratingScore = ratingScore
         
         super.init()
     }
