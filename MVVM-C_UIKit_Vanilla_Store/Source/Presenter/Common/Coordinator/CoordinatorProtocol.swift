@@ -41,7 +41,16 @@ extension CoordinatorProtocol {
         navigationController.viewControllers.removeAll()
     }
     
-    func handle(error: AppErrorProtocol) {
+    func handle(error: Error) {
+        guard let appError = error as? AppErrorProtocol else {
+            showErrorAlert(error: CoordinatorError.undefiendError)
+            return
+        }
+        
+        showErrorAlert(error: appError)
+    }
+    
+    private func showErrorAlert(error: AppErrorProtocol) {
         let alertController: UIAlertController = .init(
             title: "오류 발생",
             message: error.errorDescription,
