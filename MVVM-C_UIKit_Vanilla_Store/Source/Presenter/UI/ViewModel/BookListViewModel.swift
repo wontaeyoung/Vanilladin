@@ -41,4 +41,8 @@ final class BookListViewModel: ViewModelProtocol {
         
         return listType
     }
+    
+    func getBook(at index: Int) -> Book? {
+        return dataSource.getBook(at: index)
+    }
 }

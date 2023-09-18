@@ -31,6 +31,10 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     func resetLoadPage() {
         self.currentLoadPage = 1
     }
+    
+    func getBook(at index: Int) -> Book? {
+        return entities.element(at: index)
+    }
 }
 
 // MARK: Set Dependency
