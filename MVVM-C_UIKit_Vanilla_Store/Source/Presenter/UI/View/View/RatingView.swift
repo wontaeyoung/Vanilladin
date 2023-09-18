@@ -2,7 +2,7 @@ import UIKit
 
 final class RatingView: BaseView {
     // MARK: - Property
-    private var ratingScore: Double? {
+    var ratingScore: Double? {
         didSet {
             self.setAttribute()
         }
