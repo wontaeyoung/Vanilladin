@@ -12,6 +12,13 @@ final class RatingView: BaseView {
         return stackView
     }()
     
+    private let ratingLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        
+        return label
+    }()
+    
     // MARK: - Initializer
     init(ratingScore: Double) {
         self.ratingScore = ratingScore
