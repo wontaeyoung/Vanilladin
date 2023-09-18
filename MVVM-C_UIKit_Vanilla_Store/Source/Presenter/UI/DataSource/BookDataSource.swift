@@ -32,8 +32,12 @@ final class BookDataSource: NSObject, DataSourceProtocol {
         self.currentLoadPage = 1
     }
     
-    func getBook(at index: Int) -> Book? {
-        return entities.element(at: index)
+    func getBook(at index: Int) throws -> Book {
+        guard let entity = entities.element(at: index) else {
+            throw DataSourceError.loadBookFailed
+        }
+        
+        return entity
     }
 }
 
