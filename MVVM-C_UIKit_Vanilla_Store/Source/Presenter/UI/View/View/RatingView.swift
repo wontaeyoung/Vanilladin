@@ -28,6 +28,32 @@ final class RatingView: BaseView {
     }
     
     // MARK: - Method
+    override func setAttribute() {
+        setStars(ratingScore: Int(ratingScore))
+        ratingLabel.text = (ratingScore / 2).string(rounded: 1)
+    }
+    
+    override func setHierarchy() {
+        addSubviews(starStackView, ratingLabel)
+    }
+    
+    override func setConstraint() {
+        setTranslatesAutoresizingMaskIntoConstraintsOff(starStackView, ratingLabel)
+        
+        NSLayoutConstraint.activate([
+            starStackView.topAnchor.constraint(equalTo: self.topAnchor),
+            starStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            starStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            ratingLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            ratingLabel.leadingAnchor.constraint(equalTo: starStackView.trailingAnchor),
+            ratingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
+    
     private func setStars(ratingScore: Int) {
         let fullStarCount: Int = ratingScore / 2
         let hasHalfStar: Bool = ratingScore % 2 == 1
