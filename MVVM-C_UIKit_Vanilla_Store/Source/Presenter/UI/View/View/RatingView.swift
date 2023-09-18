@@ -8,6 +8,7 @@ final class RatingView: BaseView {
     private let starStackView: UIStackView = {
         let stackView: UIStackView = .init()
         stackView.axis = .horizontal
+        stackView.spacing = 2
         
         return stackView
     }()
