@@ -16,7 +16,7 @@ protocol CoordinatorProtocol: AnyObject {
     @MainActor func pop()
     @MainActor func dismissModal()
     @MainActor func emptyOut()
-    @MainActor func handle(error: AppErrorProtocol)
+    @MainActor func handle(error: Error)
 }
 
 extension CoordinatorProtocol {
