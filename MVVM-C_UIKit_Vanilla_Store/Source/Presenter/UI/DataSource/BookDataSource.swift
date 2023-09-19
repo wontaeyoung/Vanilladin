@@ -34,7 +34,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     func getBook(at index: Int) throws -> Book {
         guard let entity = entities.element(at: index) else {
-            throw DataSourceError.loadBookFailed
+            throw DataSourceError.findEntityFailed
         }
         
         return entity
