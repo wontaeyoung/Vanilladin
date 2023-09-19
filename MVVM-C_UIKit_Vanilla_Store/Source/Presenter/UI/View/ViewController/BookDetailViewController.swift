@@ -7,6 +7,12 @@ final class BookDetailViewController: BaseViewController {
     private let bookDetailViewModel: BookDetailViewModel
     
     // MARK: - UI
+    private let scrollView: UIScrollView = {
+        let scrollView: UIScrollView = .init()
+        
+        return scrollView
+    }()
+    
     private let bookImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
@@ -30,6 +36,16 @@ final class BookDetailViewController: BaseViewController {
         
         return label
     }()
+    
+    private let priceLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = .zero
+        
+        return label
+    }()
+    
+    private lazy var ratingView: RatingView = .init()
     
     // MARK: - Initializer
     init(
