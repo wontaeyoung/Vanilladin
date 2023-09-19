@@ -142,4 +142,11 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
             await searchBookViewModel.fetchBooks()
         }
     }
+    
+    func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        
+    }
 }
