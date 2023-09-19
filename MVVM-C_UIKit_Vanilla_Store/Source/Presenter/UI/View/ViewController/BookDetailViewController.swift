@@ -61,4 +61,44 @@ final class BookDetailViewController: BaseViewController {
     }
     
     // MARK: - Method
+    override func setAttribute() {
+        ratingView.ratingScore = bookDetail.ratingScore
+        titleLabel.attributedText = book.title.attributedTitleText
+        authorPublisherLabel.text = book.author + " - " + book.publisher
+    }
+    
+    override func setHierarchy() {
+        view.addSubviews(
+            scrollView,
+            bookImageView,
+            titleLabel,
+            authorPublisherLabel,
+            priceLabel,
+            ratingView)
+    }
+    
+    override func setConstraint() {
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(
+            scrollView,
+            bookImageView,
+            titleLabel,
+            authorPublisherLabel,
+            priceLabel,
+            ratingView)
+        
+        scrollView.setAutoLayoutAllEqual(to: view)
+        
+        NSLayoutConstraint.activate([
+            bookImageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            bookImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            bookImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            ratingView.topAnchor.constraint(equalTo: bookImageView.bottomAnchor),
+            ratingView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            ratingView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            ratingView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+    }
 }
