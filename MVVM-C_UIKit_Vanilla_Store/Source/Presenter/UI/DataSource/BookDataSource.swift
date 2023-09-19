@@ -5,8 +5,8 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     // MARK: - Property
     private weak var delegate: DataSourceDelegate?
-    private(set) var currentLoadPage: UInt
     private var searchKeyword: String
+    private(set) var currentLoadPage: UInt
     private(set) var hasMoreData: Bool
     
     var entities: [Entity] {
@@ -19,8 +19,8 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     init(entities: [Book] = []) {
         self.entities = entities
         
-        self.currentLoadPage = 1
         self.searchKeyword = ""
+        self.currentLoadPage = 1
         self.hasMoreData = true
     }
     
