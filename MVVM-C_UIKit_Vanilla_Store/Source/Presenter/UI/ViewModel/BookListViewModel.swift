@@ -42,7 +42,12 @@ final class BookListViewModel: ViewModelProtocol {
         return listType
     }
     
-    func getBook(at index: Int) -> Book? {
-        return dataSource.getBook(at: index)
+    func showBookDetailView(at index: Int) {
+        do {
+            let book: Book = try dataSource.getBook(at: index)
+            
+        } catch {
+            coordinator?.handle(error: error)
+        }
     }
 }
