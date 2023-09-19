@@ -6,6 +6,8 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     // MARK: - Property
     private weak var delegate: DataSourceDelegate?
     private(set) var currentLoadPage: UInt
+    private var searchKeyword: String
+    private(set) var hasMoreData: Bool
     
     var entities: [Entity] {
         didSet {
@@ -16,10 +18,30 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     // MARK: - Initializer
     init(entities: [Book] = []) {
         self.entities = entities
+        
         self.currentLoadPage = 1
+        self.searchKeyword = ""
+        self.hasMoreData = true
     }
     
     // MARK: - Method
+    func searchNewBooks(keyword: String) async {
+        self.searchKeyword = keyword
+        clearEntities()
+        resetLoadPage()
+    }
+    
+    func getBook(at index: Int) throws -> Book {
+        guard let entity = entities.element(at: index) else {
+            throw DataSourceError.findEntityFailed(entityName: "책")
+        }
+        
+        return entity
+    }
+}
+
+// MARK: - Private
+private extension BookDataSource {
     func increaseLoadPage() {
         self.currentLoadPage += 1
     }
@@ -30,14 +52,6 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     func resetLoadPage() {
         self.currentLoadPage = 1
-    }
-    
-    func getBook(at index: Int) throws -> Book {
-        guard let entity = entities.element(at: index) else {
-            throw DataSourceError.findEntityFailed
-        }
-        
-        return entity
     }
 }
 

@@ -3,9 +3,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     private weak var coordinator: BookCoordinator?
     private let bookRepository: BookRepository
     private let dataSource: BookDataSource
-    private var searchKeyword: String
     private(set) var isLoading: Bool
-    private(set) var hasMoreData: Bool
     
     var isResultEmpty: Bool {
         return dataSource.entities.isEmpty
@@ -21,16 +19,11 @@ final class SearchBookViewModel: ViewModelProtocol {
         self.bookRepository = bookRepository
         self.dataSource = dataSource
         
-        self.searchKeyword = ""
         self.isLoading = false
-        self.hasMoreData = true
     }
     
     // MARK: - Method
     func searchNewBooks(keyword: String) async {
-        self.searchKeyword = keyword
-        dataSource.clearEntities()
-        dataSource.resetLoadPage()
         await fetchBooks()
     }
     
@@ -55,11 +48,6 @@ final class SearchBookViewModel: ViewModelProtocol {
         }
         
         stopLoading()
-    }
-    
-    // MARK: Interface
-    func increaseLoadPage() {
-        dataSource.increaseLoadPage()
     }
     
     // MARK: Private
