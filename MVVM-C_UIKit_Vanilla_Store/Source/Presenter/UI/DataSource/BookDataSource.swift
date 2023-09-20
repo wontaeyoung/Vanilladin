@@ -84,6 +84,7 @@ private extension BookDataSource {
     func checkMoreData(totalItem: UInt) {
         guard let itemsPerPage = UInt(AladinAPIConstant.ItemSearch.maxResults) else {
             self.hasMoreData = false
+            return
         }
         
         self.hasMoreData = (totalItem > currentLoadPage * itemsPerPage)
