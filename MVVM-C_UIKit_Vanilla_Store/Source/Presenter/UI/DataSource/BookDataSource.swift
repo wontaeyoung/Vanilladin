@@ -44,12 +44,6 @@ final class BookDataSource: NSObject, DataSourceProtocol {
         checkMoreData(totalItem: books.totalItem)
     }
     
-    func getBook(at index: Int) throws -> Book {
-        guard let entity = entities.element(at: index) else {
-            throw DataSourceError.findEntityFailed(entityName: "책")
-        }
-        
-        return entity
     }
 }
 
@@ -88,6 +82,14 @@ private extension BookDataSource {
         }
         
         self.hasMoreData = (totalItem > currentLoadPage * itemsPerPage)
+    }
+    
+    func getBook(at index: Int) throws -> Book {
+        guard let entity = entities.element(at: index) else {
+            throw DataSourceError.findEntityFailed(entityName: "책")
+        }
+        
+        return entity
     }
 }
 
