@@ -44,9 +44,10 @@ final class BookDataSource: NSObject, DataSourceProtocol {
         checkMoreData(totalItem: books.totalItem)
     }
     
-    func requestBookDetail(at index: Int) async throws -> BookDetail {
-        let isbn13: String = try getBook(at: index).isbn13
-        return try await bookRepository.fetchBookDetail(isbn13: isbn13)
+    func requestBookDetail(at index: Int) async throws -> (Book, BookDetail) {
+        let book: Book = try getBook(at: index)
+        let bookDetail: BookDetail = try await bookRepository.fetchBookDetail(isbn13: book.isbn13)
+        return (book, bookDetail)
     }
 }
 
