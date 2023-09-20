@@ -1,6 +1,6 @@
 import UIKit
 
-protocol CoordinatorProtocol: AnyObject {
+protocol CoordinatorProtocol: AnyObject, DependencyContainable {
     // MARK: - Property
     var delegate: CoordinatorDelegate? { get set }
     var navigationController: UINavigationController { get set }
@@ -21,6 +21,7 @@ protocol CoordinatorProtocol: AnyObject {
 
 extension CoordinatorProtocol {
     func end() {
+        unregisterAllCoordinators()
         childCoordinators.removeAll()
         delegate?.coordinatorDidEnd(self)
     }
@@ -49,8 +50,10 @@ extension CoordinatorProtocol {
         
         showErrorAlert(error: appError)
     }
-    
-    private func showErrorAlert(error: AppErrorProtocol) {
+}
+
+private extension CoordinatorProtocol {
+    func showErrorAlert(error: AppErrorProtocol) {
         let alertController: UIAlertController = .init(
             title: "오류 발생",
             message: error.errorDescription,
@@ -63,5 +66,11 @@ extension CoordinatorProtocol {
         alertController.addAction(okAction)
         
         self.navigationController.present(alertController, animated: true)
+    }
+    
+    func unregisterAllCoordinators() {
+        for coordinator in childCoordinators {
+            DependencyContainer.shared.unregister(instance: coordinator)
+        }
     }
 }

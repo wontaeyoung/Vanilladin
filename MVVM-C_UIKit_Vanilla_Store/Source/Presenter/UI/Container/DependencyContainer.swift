@@ -23,6 +23,11 @@ final class DependencyContainer: DependencyContainerProtocol {
         return instance
     }
     
+    func unregister<T: DependencyContainable>(instance: T) {
+        let key: ObjectIdentifier = .init(T.self)
+        
+        registry.removeValue(forKey: key)
+    }
     /**
      App 내에서 사용하는 Module이 추가되면 함수 내에서 인스턴스 생성 + modules 배열에 추가가 필요합니다.
      

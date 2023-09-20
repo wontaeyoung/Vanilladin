@@ -34,6 +34,7 @@ private extension AppCoordinator {
         let bookCoordinator: BookCoordinator = .init(self.navigationController)
         bookCoordinator.delegate = self
         self.childCoordinators.append(bookCoordinator)
+        DependencyContainer.shared.register(instance: bookCoordinator)
         
         Task {
             await bookCoordinator.start()
