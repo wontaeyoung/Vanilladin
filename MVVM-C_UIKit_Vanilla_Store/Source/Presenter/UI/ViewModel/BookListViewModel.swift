@@ -1,3 +1,5 @@
+import Foundation
+
 final class BookListViewModel: ViewModelProtocol {
     enum ListType {
         case table
@@ -48,12 +50,23 @@ final class BookListViewModel: ViewModelProtocol {
             
             let detailViewController: BookDetailViewController = await .init(
                 book: bookInfo.book,
-                bookDetail: bookInfo.bookDetail,
-                bookDetailViewModel: try DependencyContainer.shared.resolve())
+                bookDetail: bookInfo.bookDetail)
             
-            coordinator?.push(detailViewController)
+            if coordinator == nil {
+                coordinator = try DependencyContainer.shared.resolve()
+            }
+            
+            await pushController(detailViewController)
         } catch {
             coordinator?.handle(error: error)
         }
+    }
+}
+
+// MARK: - Private
+private extension BookListViewModel {
+    @MainActor
+    func pushController(_ controller: BookDetailViewController) {
+        coordinator?.push(controller)
     }
 }
