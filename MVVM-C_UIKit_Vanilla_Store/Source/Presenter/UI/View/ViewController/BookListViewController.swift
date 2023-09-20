@@ -146,6 +146,8 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        
+        Task {
+            await bookListViewModel.showBookDetailView(at: indexPath.row)
+        }
     }
 }
