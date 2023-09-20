@@ -37,7 +37,7 @@ final class DependencyContainer: DependencyContainerProtocol {
         let bookRepository: BookRepository = .init(aladinService: aladinService)
         
         // MARK: - DataSource
-        let bookDataSource: BookDataSource = .init()
+        let bookDataSource: BookDataSource = .init(bookRepository: bookRepository)
         let searchHistoryDataSource: SearchHistoryDataSource = .init()
         
         // MARK: - ViewModel
@@ -47,7 +47,6 @@ final class DependencyContainer: DependencyContainerProtocol {
         let searchHistoryViewmodel: SearchHistoryViewModel = .init(dataSource: searchHistoryDataSource)
         let searchBookViewModel: SearchBookViewModel = .init(
             coordinator: coordinator as? BookCoordinator,
-            bookRepository: bookRepository,
             dataSource: bookDataSource)
         
         
