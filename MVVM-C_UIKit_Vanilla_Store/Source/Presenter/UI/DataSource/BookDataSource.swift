@@ -41,7 +41,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
         increaseLoadPage()
         let books: (totalItem: UInt, data: [Book]) = try await fetchBooksData()
         updateEntities(with: books.data)
-        hasMoreData = checkMoreData(totalItem: books.totalItem)
+        checkMoreData(totalItem: books.totalItem)
     }
     
     func getBook(at index: Int) throws -> Book {
@@ -81,12 +81,12 @@ private extension BookDataSource {
         entities.append(contentsOf: books)
     }
     
-    func checkMoreData(totalItem: UInt) -> Bool {
+    func checkMoreData(totalItem: UInt) {
         guard let itemsPerPage = UInt(AladinAPIConstant.ItemSearch.maxResults) else {
-            return false
+            self.hasMoreData = false
         }
         
-        return totalItem > currentLoadPage * itemsPerPage
+        self.hasMoreData = (totalItem > currentLoadPage * itemsPerPage)
     }
 }
 
