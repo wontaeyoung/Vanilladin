@@ -1,7 +1,11 @@
 final class SearchBookViewModel: ViewModelProtocol {
+    enum RequestType {
+        case new(keyword: String)
+        case more
+    }
+
     // MARK: - Property
     private weak var coordinator: BookCoordinator?
-    private let bookRepository: BookRepository
     private let dataSource: BookDataSource
     private(set) var isLoading: Bool
     
@@ -12,58 +16,39 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: - Initializer
     init(
         coordinator: BookCoordinator? = nil,
-        bookRepository: BookRepository,
         dataSource: BookDataSource
     ) {
         self.coordinator = coordinator
-        self.bookRepository = bookRepository
         self.dataSource = dataSource
         
         self.isLoading = false
     }
     
     // MARK: - Method
-    func searchNewBooks(keyword: String) async {
-        await fetchBooks()
-    }
-    
-    func fetchBooks() async {
+    func requestBooks(type: RequestType) async {
         startLoading()
-        
         do {
-            let books: (totalItem: UInt, data: [Book]) = try await bookRepository.fetchBooks(
-                keyword: searchKeyword,
-                page: dataSource.currentLoadPage)
-            
-            dataSource.entities.append(contentsOf: books.data)
-            
-            hasMoreData = checkMoreData(totalItem: books.totalItem)
-        } catch {
-            guard let error = error as? AppErrorProtocol else {
-                print(#function, "에러 타입캐스팅 실패!")
-                return
+            switch type {
+            case let .new(keyword):
+                try await dataSource.searchNewBooks(keyword: keyword)
+                
+            case .more:
+                try await dataSource.requestBooks()
             }
-            
+        } catch {
             coordinator?.handle(error: error)
         }
-        
         stopLoading()
     }
-    
-    // MARK: Private
-    private func startLoading() {
+}
+
+// MARK: - Private
+private extension SearchBookViewModel {
+    func startLoading() {
         isLoading = true
     }
     
-    private func stopLoading() {
+    func stopLoading() {
         isLoading = false
-    }
-    
-    private func checkMoreData(totalItem: UInt) -> Bool {
-        guard let itemsPerPage = UInt(AladinAPIConstant.ItemSearch.maxResults) else {
-            return false
-        }
-        
-        return totalItem > dataSource.currentLoadPage * itemsPerPage
     }
 }

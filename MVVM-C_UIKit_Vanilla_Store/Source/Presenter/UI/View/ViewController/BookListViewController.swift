@@ -138,8 +138,7 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
         else { return }
         
         Task {
-            searchBookViewModel.increaseLoadPage()
-            await searchBookViewModel.fetchBooks()
+            await searchBookViewModel.requestBooks(type: .more)
         }
     }
     
