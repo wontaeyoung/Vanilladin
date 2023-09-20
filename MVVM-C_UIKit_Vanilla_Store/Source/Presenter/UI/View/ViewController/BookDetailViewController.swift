@@ -4,7 +4,6 @@ final class BookDetailViewController: BaseViewController {
     // MARK: - Property
     private let book: Book
     private let bookDetail: BookDetail
-    private let bookDetailViewModel: BookDetailViewModel
     
     // MARK: - UI
     private let scrollView: UIScrollView = {
@@ -50,12 +49,10 @@ final class BookDetailViewController: BaseViewController {
     // MARK: - Initializer
     init(
         book: Book,
-        bookDetail: BookDetail,
-        bookDetailViewModel: BookDetailViewModel
+        bookDetail: BookDetail
     ) {
         self.book = book
         self.bookDetail = bookDetail
-        self.bookDetailViewModel = bookDetailViewModel
         
         super.init()
     }
