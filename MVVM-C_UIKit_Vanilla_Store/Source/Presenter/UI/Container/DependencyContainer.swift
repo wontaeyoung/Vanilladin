@@ -48,7 +48,7 @@ final class DependencyContainer: DependencyContainerProtocol {
         let searchBookViewModel: SearchBookViewModel = .init(
             coordinator: coordinator as? BookCoordinator,
             dataSource: bookDataSource)
-        
+        let bookDetailViewModel: BookDetailViewModel = .init(bookRepository: bookRepository)
         
         // MARK: - ViewController
         let searchHistoryViewController: SearchHistoryViewController = .init(
@@ -82,6 +82,7 @@ final class DependencyContainer: DependencyContainerProtocol {
             bookListViewModel,
             searchHistoryViewmodel,
             searchBookViewModel,
+            bookDetailViewModel,
             
             // MARK: - ViewController
             bookListViewController,
