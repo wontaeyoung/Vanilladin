@@ -9,6 +9,10 @@ final class SearchBookViewModel: ViewModelProtocol {
     private let dataSource: BookDataSource
     private(set) var isLoading: Bool
     
+    var hasMoreData: Bool {
+        return dataSource.hasMoreData
+    }
+    
     var isResultEmpty: Bool {
         return dataSource.entities.isEmpty
     }

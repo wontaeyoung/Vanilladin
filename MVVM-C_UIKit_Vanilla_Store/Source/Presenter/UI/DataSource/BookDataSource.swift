@@ -4,6 +4,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     typealias Entity = Book
     
     // MARK: - Property
+    private let bookRepository: BookRepository
     private weak var delegate: DataSourceDelegate?
     private var searchKeyword: String
     private(set) var currentLoadPage: UInt
@@ -16,19 +17,31 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     }
     
     // MARK: - Initializer
-    init(entities: [Book] = []) {
+    init(
+        bookRepository: BookRepository,
+        entities: [Book] = []
+    ) {
+        self.bookRepository = bookRepository
         self.entities = entities
         
         self.searchKeyword = ""
-        self.currentLoadPage = 1
+        self.currentLoadPage = 0
         self.hasMoreData = true
     }
     
     // MARK: - Method
-    func searchNewBooks(keyword: String) async {
-        self.searchKeyword = keyword
+    func searchNewBooks(keyword: String) async throws {
+        setNewKeyword(keyword)
         clearEntities()
         resetLoadPage()
+        try await requestBooks()
+    }
+    
+    func requestBooks() async throws {
+        increaseLoadPage()
+        let books: (totalItem: UInt, data: [Book]) = try await fetchBooksData()
+        updateEntities(with: books.data)
+        hasMoreData = checkMoreData(totalItem: books.totalItem)
     }
     
     func getBook(at index: Int) throws -> Book {
@@ -46,12 +59,34 @@ private extension BookDataSource {
         self.currentLoadPage += 1
     }
     
+    func setNewKeyword(_ keyword: String) {
+        self.searchKeyword = keyword
+    }
+    
     func clearEntities() {
         self.entities.removeAll()
     }
     
     func resetLoadPage() {
-        self.currentLoadPage = 1
+        self.currentLoadPage = 0
+    }
+    
+    func fetchBooksData() async throws -> (totalItem: UInt, data: [Book]) {
+        return try await bookRepository.fetchBooks(
+            keyword: searchKeyword,
+            page: currentLoadPage)
+    }
+    
+    func updateEntities(with books: [Book]) {
+        entities.append(contentsOf: books)
+    }
+    
+    func checkMoreData(totalItem: UInt) -> Bool {
+        guard let itemsPerPage = UInt(AladinAPIConstant.ItemSearch.maxResults) else {
+            return false
+        }
+        
+        return totalItem > currentLoadPage * itemsPerPage
     }
 }
 
