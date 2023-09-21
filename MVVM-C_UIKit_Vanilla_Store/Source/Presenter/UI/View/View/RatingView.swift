@@ -71,7 +71,9 @@ final class RatingView: BaseView {
             ? UIConstant.SFSymbol.starLeadinghalfFilled
             : UIConstant.SFSymbol.star
             
-            imageView.image = UIImage(systemName: symbol)
+            imageView.image = UIImage(systemName: symbol)?.withTintColor(
+                .systemYellow,
+                renderingMode: .alwaysOriginal)
             
             starStackView.addArrangedSubview(imageView)
         }
