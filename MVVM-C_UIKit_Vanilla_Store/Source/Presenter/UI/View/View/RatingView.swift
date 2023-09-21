@@ -68,7 +68,7 @@ final class RatingView: BaseView {
             let symbol: String = starNum <= fullStarCount
             ? UIConstant.SFSymbol.starFill
             : hasHalfStar
-            ? UIConstant.SFSymbol.starLeadinghalfFill
+            ? UIConstant.SFSymbol.starLeadinghalfFilled
             : UIConstant.SFSymbol.star
             
             imageView.image = UIImage(systemName: symbol)
