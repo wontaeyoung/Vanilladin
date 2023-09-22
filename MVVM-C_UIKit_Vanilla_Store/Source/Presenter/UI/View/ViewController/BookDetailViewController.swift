@@ -12,6 +12,8 @@ final class BookDetailViewController: BaseViewController {
         return scrollView
     }()
     
+    private let paddingView: UIView = .init()
+    
     private let bookImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
@@ -66,8 +68,11 @@ final class BookDetailViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubviews(
-            scrollView,
+        view.addSubview(scrollView)
+        
+        scrollView.addSubview(paddingView)
+        
+        paddingView.addSubviews(
             bookImageView,
             titleLabel,
             authorPublisherLabel,
@@ -78,24 +83,43 @@ final class BookDetailViewController: BaseViewController {
     override func setConstraint() {
         view.setTranslatesAutoresizingMaskIntoConstraintsOff(
             scrollView,
+            paddingView,
             bookImageView,
             titleLabel,
             authorPublisherLabel,
             priceLabel,
             ratingView)
         
-        scrollView.setAutoLayoutAllEqual(to: view)
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        
+        paddingView.setPaddingAutoLayout(to: scrollView, horizontal: 20)
         
         NSLayoutConstraint.activate([
-            bookImageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            bookImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            bookImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            bookImageView.topAnchor.constraint(equalTo: paddingView.topAnchor),
+            bookImageView.centerXAnchor.constraint(equalTo: paddingView.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            ratingView.topAnchor.constraint(equalTo: bookImageView.bottomAnchor),
-            ratingView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            ratingView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: bookImageView.bottomAnchor, constant: 10),
+            titleLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            authorPublisherLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            authorPublisherLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            authorPublisherLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
+            ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             ratingView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
