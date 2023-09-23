@@ -36,12 +36,7 @@ final class SearchResultContainerViewController: BaseViewController {
         
         searchHistoryViewController.view.setAutoLayoutAllEqual(to: view)
         
-        NSLayoutConstraint.activate([
-            bookListViewController.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
-            bookListViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            bookListViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            bookListViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
+        bookListViewController.view.setAutoLayoutAllEqualToMarginGuide(to: view, option: .vertical)
     }
 }
 
