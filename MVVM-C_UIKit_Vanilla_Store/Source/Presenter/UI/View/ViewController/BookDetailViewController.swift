@@ -46,7 +46,7 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
-    private lazy var ratingView: RatingView = .init()
+    private lazy var ratingView: RatingView = .init(ratingScore: bookDetail.ratingScore)
     
     // MARK: - Initializer
     init(

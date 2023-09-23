@@ -2,7 +2,7 @@ import UIKit
 
 final class RatingView: BaseView {
     // MARK: - Property
-    var ratingScore: Double? {
+    var ratingScore: Double {
         didSet {
             self.setAttribute()
         }
@@ -24,10 +24,15 @@ final class RatingView: BaseView {
         return label
     }()
     
+    // MARK: - Initializer
+    init(ratingScore: Double) {
+        self.ratingScore = ratingScore
+        
+        super.init(frame: .zero)
+    }
+    
     // MARK: - Method
     override func setAttribute() {
-        guard let ratingScore else { return }
-        
         setStars(ratingScore: Int(ratingScore))
         ratingLabel.text = (ratingScore / 2).string(rounded: 1)
     }
@@ -54,6 +59,8 @@ final class RatingView: BaseView {
     }
     
     private func setStars(ratingScore: Int) {
+        guard starStackView.arrangedSubviews.count < UIConstant.Rating.maxStarRatingCount else { return }
+        
         let fullStarCount: Int = ratingScore / 2
         let hasHalfStar: Bool = ratingScore % 2 == 1
         
