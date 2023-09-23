@@ -85,7 +85,7 @@ final class BookTableCell: BaseTableViewCell {
     override func setConstraint() {
         setTranslatesAutoresizingMaskIntoConstraintsOff(paddingView, bookImageView, infoStackView)
         
-        paddingView.setPaddingAutoLayout(to: contentView, padding: 10)
+        paddingView.setAutoLayoutAllEqualToMarginGuide(to: contentView, option: .all)
         paddingView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
         NSLayoutConstraint.activate([
