@@ -72,15 +72,13 @@ final class RatingView: BaseView {
                 return imageView
             }()
             
-            let symbol: String = starNum <= fullStarCount
+            let symbolName: String = starNum <= fullStarCount
             ? UIConstant.SFSymbol.starFill
             : hasHalfStar
             ? UIConstant.SFSymbol.starLeadinghalfFilled
             : UIConstant.SFSymbol.star
             
-            imageView.image = UIImage(systemName: symbol)?.withTintColor(
-                .systemYellow,
-                renderingMode: .alwaysOriginal)
+            imageView.image = UIImage(systemName: symbolName)?.colored(with: .systemYellow)
             
             starStackView.addArrangedSubview(imageView)
         }
