@@ -2,6 +2,12 @@ import UIKit
 
 // MARK: - Configure UI
 extension UIView {
+    enum MarginGuideOption {
+        case all
+        case horizontal
+        case vertical
+    }
+    
     func addSubviews(_ views: UIView...) {
         for view in views {
             addSubview(view)
@@ -21,6 +27,37 @@ extension UIView {
             self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+    }
+    
+    func setAutoLayoutAllEqualToMarginGuide(
+        to view: UIView,
+        option marginGuideOption: MarginGuideOption
+    ) {
+        switch marginGuideOption {
+        case .all:
+            NSLayoutConstraint.activate([
+                self.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+                self.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+                self.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+                self.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            ])
+            
+        case .horizontal:
+            NSLayoutConstraint.activate([
+                self.topAnchor.constraint(equalTo: view.topAnchor),
+                self.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+                self.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+                self.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            ])
+            
+        case .vertical:
+            NSLayoutConstraint.activate([
+                self.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+                self.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+                self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                self.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
     }
     
     func setPaddingAutoLayout(
