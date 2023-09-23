@@ -97,11 +97,17 @@ final class BookDetailViewController: BaseViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
-        paddingView.setPaddingAutoLayout(to: scrollView, horizontal: 20)
+        NSLayoutConstraint.activate([
+            paddingView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            paddingView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            paddingView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            paddingView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
         
         NSLayoutConstraint.activate([
             bookImageView.topAnchor.constraint(equalTo: paddingView.topAnchor),
-            bookImageView.centerXAnchor.constraint(equalTo: paddingView.centerXAnchor)
+            bookImageView.centerXAnchor.constraint(equalTo: paddingView.centerXAnchor),
+            bookImageView.heightAnchor.constraint(equalToConstant: 300)
         ])
         
         NSLayoutConstraint.activate([
@@ -120,7 +126,7 @@ final class BookDetailViewController: BaseViewController {
             ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
             ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            ratingView.heightAnchor.constraint(equalToConstant: 40)
+            ratingView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
         ])
     }
 }
