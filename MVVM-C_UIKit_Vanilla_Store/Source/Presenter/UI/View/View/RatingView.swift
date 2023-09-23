@@ -19,7 +19,7 @@ final class RatingView: BaseView {
     
     private let ratingLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
         
         return label
     }()
@@ -48,7 +48,7 @@ final class RatingView: BaseView {
         NSLayoutConstraint.activate([
             ratingLabel.topAnchor.constraint(equalTo: self.topAnchor),
             ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            ratingLabel.leadingAnchor.constraint(equalTo: starStackView.trailingAnchor),
+            ratingLabel.leadingAnchor.constraint(equalTo: starStackView.trailingAnchor, constant: 10),
             ratingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
