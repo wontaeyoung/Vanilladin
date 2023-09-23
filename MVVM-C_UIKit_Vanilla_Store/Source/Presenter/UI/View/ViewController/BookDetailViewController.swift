@@ -64,7 +64,6 @@ final class BookDetailViewController: BaseViewController {
         bookImageView.image = book.coverImage
         titleLabel.attributedText = book.title.attributedTitleText
         authorPublisherLabel.text = book.author + " - " + book.publisher
-        ratingView.ratingScore = bookDetail.ratingScore
     }
     
     override func setHierarchy() {
