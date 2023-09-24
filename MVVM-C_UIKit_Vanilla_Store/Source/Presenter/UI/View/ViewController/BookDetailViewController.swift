@@ -89,12 +89,7 @@ final class BookDetailViewController: BaseViewController {
             priceLabel,
             ratingView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        scrollView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .vertical)
         
         NSLayoutConstraint.activate([
             paddingView.topAnchor.constraint(equalTo: scrollView.topAnchor),
