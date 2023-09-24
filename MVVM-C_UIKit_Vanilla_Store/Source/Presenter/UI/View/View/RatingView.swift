@@ -17,12 +17,6 @@ final class RatingView: BaseView {
         return stackView
     }()
     
-    private let ratingLabel: UILabel = {
-        let label: UILabel = .init()
-        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
-        
-        return label
-    }()
     
     // MARK: - Initializer
     init(ratingScore: Double) {
@@ -34,27 +28,19 @@ final class RatingView: BaseView {
     // MARK: - Method
     override func setAttribute() {
         setStars(ratingScore: Int(ratingScore))
-        ratingLabel.text = (ratingScore / 2).string(rounded: 1)
     }
     
     override func setHierarchy() {
-        addSubviews(starStackView, ratingLabel)
+        addSubviews(starStackView)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(starStackView, ratingLabel)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(starStackView)
         
         NSLayoutConstraint.activate([
             starStackView.topAnchor.constraint(equalTo: self.topAnchor),
             starStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             starStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            ratingLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            ratingLabel.leadingAnchor.constraint(equalTo: starStackView.trailingAnchor, constant: 10),
-            ratingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
     }
     
