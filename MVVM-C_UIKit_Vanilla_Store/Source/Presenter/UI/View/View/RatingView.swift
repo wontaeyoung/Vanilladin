@@ -43,8 +43,11 @@ final class RatingView: BaseView {
             starStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
     }
-    
-    private func setStars(ratingScore: Int) {
+}
+
+// MARK: - Private
+private extension RatingView {
+    func setStars(ratingScore: Int) {
         guard starStackView.arrangedSubviews.count < UIConstant.Rating.maxStarRatingCount else { return }
         
         let fullStarCount: Int = ratingScore / 2
