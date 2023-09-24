@@ -2,7 +2,7 @@ import UIKit
 
 final class RatingView: BaseView {
     // MARK: - Property
-    var ratingScore: Double {
+    var bookDetail: BookDetail {
         didSet {
             self.setAttribute()
         }
@@ -17,30 +17,44 @@ final class RatingView: BaseView {
         return stackView
     }()
     
+    private let ratingCountLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
+        label.numberOfLines = .zero
+        
+        return label
+    }()
     
     // MARK: - Initializer
-    init(ratingScore: Double) {
-        self.ratingScore = ratingScore
+    init(bookDetail: BookDetail) {
+        self.bookDetail = bookDetail
         
         super.init(frame: .zero)
     }
     
     // MARK: - Method
     override func setAttribute() {
-        setStars(ratingScore: Int(ratingScore))
+        setStars(ratingScore: Int(bookDetail.ratingScore))
+        ratingCountLabel.text = "(\(bookDetail.ratingCount.description))"
     }
     
     override func setHierarchy() {
-        addSubviews(starStackView)
+        addSubviews(starStackView, ratingCountLabel)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(starStackView)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(starStackView, ratingCountLabel)
         
         NSLayoutConstraint.activate([
             starStackView.topAnchor.constraint(equalTo: self.topAnchor),
             starStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             starStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            ratingCountLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            ratingCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            ratingCountLabel.leadingAnchor.constraint(equalTo: starStackView.trailingAnchor, constant: 10)
         ])
     }
 }
