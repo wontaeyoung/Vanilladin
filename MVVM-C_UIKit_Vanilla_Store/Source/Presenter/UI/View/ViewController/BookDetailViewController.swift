@@ -117,7 +117,7 @@ final class BookDetailViewController: BaseViewController {
         ])
         
         NSLayoutConstraint.activate([
-            ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
+            ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 20),
             ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             ratingView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
