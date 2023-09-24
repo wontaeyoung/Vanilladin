@@ -2,11 +2,7 @@ import UIKit
 
 final class RatingView: BaseView {
     // MARK: - Property
-    var bookDetail: BookDetail {
-        didSet {
-            self.setAttribute()
-        }
-    }
+    let bookDetail: BookDetail 
     
     // MARK: - UI
     private let starStackView: UIStackView = {
