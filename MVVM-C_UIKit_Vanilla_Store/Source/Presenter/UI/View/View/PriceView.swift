@@ -1,0 +1,31 @@
+import UIKit
+
+final class PriceView: BaseView {
+    // MARK: - Property
+    private let price: Int
+    
+    // MARK: - UI
+    private let priceImage: UIImageView = {
+        let imageView: UIImageView = .init()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: UIConstant.SFSymbol.wonsignSquare)?
+            .colored(with: .black)
+        
+        return imageView
+    }()
+    
+    private let priceLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
+        label.numberOfLines = .zero
+        
+        return label
+    }()
+    
+    // MARK: - Initializer
+    init(price: Int) {
+        self.price = price
+        
+        super.init(frame: .zero)
+    }
+}
