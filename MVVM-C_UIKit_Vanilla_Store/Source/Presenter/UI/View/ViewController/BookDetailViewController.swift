@@ -38,16 +38,11 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
-    private let priceLabel: UILabel = {
-        let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
-        label.numberOfLines = .zero
-        
-        return label
-    }()
-    
     private lazy var ratingView: RatingView = .init(bookDetail: bookDetail)
+    
     private lazy var commentView: CommentView = .init(bookDetail: bookDetail)
+    
+    private lazy var priceView: PriceView = .init(price: book.priceSales)
     
     // MARK: - Initializer
     init(
@@ -65,7 +60,6 @@ final class BookDetailViewController: BaseViewController {
         bookImageView.image = book.coverImage
         titleLabel.attributedText = book.title.attributedTitleText
         authorPublisherLabel.text = book.author + " - " + book.publisher
-        priceLabel.text = book.priceSales.asPriceFormat + "원"
     }
     
     override func setHierarchy() {
@@ -77,9 +71,9 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
-            priceLabel,
             ratingView,
-            commentView)
+            commentView,
+            priceView)
     }
     
     override func setConstraint() {
@@ -89,9 +83,9 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
-            priceLabel,
             ratingView,
-            commentView)
+            commentView,
+            priceView)
         
         scrollView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .vertical)
         
@@ -130,7 +124,12 @@ final class BookDetailViewController: BaseViewController {
             commentView.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 10),
             commentView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             commentView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            commentView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            priceView.topAnchor.constraint(equalTo: commentView.bottomAnchor, constant: 10),
+            priceView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            priceView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
         ])
     }
 }
