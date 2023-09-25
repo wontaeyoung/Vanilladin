@@ -65,6 +65,7 @@ final class BookDetailViewController: BaseViewController {
         bookImageView.image = book.coverImage
         titleLabel.attributedText = book.title.attributedTitleText
         authorPublisherLabel.text = book.author + " - " + book.publisher
+        priceLabel.text = book.priceSales.asPriceFormat + "원"
     }
     
     override func setHierarchy() {

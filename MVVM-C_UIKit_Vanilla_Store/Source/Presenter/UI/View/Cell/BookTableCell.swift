@@ -74,7 +74,7 @@ final class BookTableCell: BaseTableViewCell {
         titleLabel.attributedText = book?.title.attributedTitleText
         authorLabel.text = book?.author
         publisherLabel.text = book?.publisher
-        priceLabel.text = (book?.priceSales.asPriceString ?? "-") + "원"
+        priceLabel.text = (book?.priceSales.asPriceFormat ?? "-") + "원"
     }
     
     override func setHierarchy() {
