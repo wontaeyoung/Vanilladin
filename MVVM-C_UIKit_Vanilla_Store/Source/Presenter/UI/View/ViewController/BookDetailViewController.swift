@@ -47,6 +47,7 @@ final class BookDetailViewController: BaseViewController {
     }()
     
     private lazy var ratingView: RatingView = .init(bookDetail: bookDetail)
+    private lazy var commentView: CommentView = .init(bookDetail: bookDetail)
     
     // MARK: - Initializer
     init(
@@ -76,7 +77,8 @@ final class BookDetailViewController: BaseViewController {
             titleLabel,
             authorPublisherLabel,
             priceLabel,
-            ratingView)
+            ratingView,
+            commentView)
     }
     
     override func setConstraint() {
@@ -87,7 +89,8 @@ final class BookDetailViewController: BaseViewController {
             titleLabel,
             authorPublisherLabel,
             priceLabel,
-            ratingView)
+            ratingView,
+            commentView)
         
         scrollView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .vertical)
         
@@ -120,7 +123,13 @@ final class BookDetailViewController: BaseViewController {
             ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 20),
             ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            ratingView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            commentView.topAnchor.constraint(equalTo: ratingView.bottomAnchor, constant: 10),
+            commentView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            commentView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+            commentView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
         ])
     }
 }
