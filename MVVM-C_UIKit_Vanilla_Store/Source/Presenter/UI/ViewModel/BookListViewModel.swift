@@ -45,16 +45,16 @@ final class BookListViewModel: ViewModelProtocol {
     }
     
     func showBookDetailView(at index: Int) async {
+        if coordinator == nil {
+            coordinator = try? DependencyContainer.shared.resolve()
+        }
+        
         do {
             let bookInfo: (book: Book, bookDetail: BookDetail) = try await dataSource.requestBookDetail(at: index)
             
             let detailViewController: BookDetailViewController = await .init(
                 book: bookInfo.book,
                 bookDetail: bookInfo.bookDetail)
-            
-            if coordinator == nil {
-                coordinator = try DependencyContainer.shared.resolve()
-            }
             
             await pushController(detailViewController)
         } catch {
