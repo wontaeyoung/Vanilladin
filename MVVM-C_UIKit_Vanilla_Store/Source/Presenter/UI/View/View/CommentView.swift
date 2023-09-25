@@ -16,7 +16,7 @@ final class CommentView: BaseView {
     
     private let commentCountLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
         label.numberOfLines = .zero
         
         return label
@@ -29,4 +29,28 @@ final class CommentView: BaseView {
         super.init(frame: .zero)
     }
     
+    // MARK: - Method
+    override func setAttribute() {
+        commentCountLabel.text = "(\(bookDetail.commentReviewCount.description))"
+    }
+    
+    override func setHierarchy() {
+        addSubviews(commentImage, commentCountLabel)
+    }
+    
+    override func setConstraint() {
+        setTranslatesAutoresizingMaskIntoConstraintsOff(commentImage, commentCountLabel)
+        
+        NSLayoutConstraint.activate([
+            commentImage.topAnchor.constraint(equalTo: self.topAnchor),
+            commentImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            commentImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            commentCountLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            commentCountLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            commentCountLabel.leadingAnchor.constraint(equalTo: commentImage.trailingAnchor, constant: 10),
+        ])
+    }
 }
