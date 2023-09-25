@@ -21,6 +21,7 @@ enum UIConstant {
         static let starLeadinghalfFilled: String = "star.leadinghalf.filled"
         static let rectangleAndPencilAndEllipsis: String = "rectangle.and.pencil.and.ellipsis"
         static let textBubble: String = "text.bubble"
+        static let wonsignSquare: String = "wonsign.square"
     }
     
     enum Rating {
