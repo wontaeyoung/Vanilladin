@@ -46,6 +46,11 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     func requestBookDetail(at index: Int) async throws -> (Book, BookDetail) {
         let book: Book = try getBook(at: index)
+        
+        guard book.isbn13.isEmpty == false else {
+            throw DataSourceError.noISBN13
+        }
+        
         let bookDetail: BookDetail = try await bookRepository.fetchBookDetail(isbn13: book.isbn13)
         
         return (book, bookDetail)
