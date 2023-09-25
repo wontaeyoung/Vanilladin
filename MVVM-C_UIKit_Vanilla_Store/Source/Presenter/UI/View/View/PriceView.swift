@@ -28,4 +28,29 @@ final class PriceView: BaseView {
         
         super.init(frame: .zero)
     }
+    
+    // MARK: - Method
+    override func setAttribute() {
+        priceLabel.text = price.asPriceFormat
+    }
+    
+    override func setHierarchy() {
+        addSubviews(priceImage, priceLabel)
+    }
+    
+    override func setConstraint() {
+        setTranslatesAutoresizingMaskIntoConstraintsOff(priceImage, priceLabel)
+        
+        NSLayoutConstraint.activate([
+            priceImage.topAnchor.constraint(equalTo: self.topAnchor),
+            priceImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            priceImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            priceLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: priceImage.trailingAnchor, constant: 10),
+        ])
+    }
 }
