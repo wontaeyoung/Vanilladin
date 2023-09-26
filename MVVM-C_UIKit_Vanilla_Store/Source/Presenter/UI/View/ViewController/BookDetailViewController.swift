@@ -38,6 +38,14 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
+    private let descriptionLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = 1
+        
+        return label
+    }()
+    
     private lazy var ratingView: RatingView = .init(bookDetail: bookDetail)
     
     private lazy var commentView: CommentView = .init(bookDetail: bookDetail)
@@ -60,6 +68,7 @@ final class BookDetailViewController: BaseViewController {
         bookImageView.image = book.coverImage
         titleLabel.attributedText = book.title.attributedTitleText
         authorPublisherLabel.text = book.author + " - " + book.publisher
+        descriptionLabel.text = book.description
     }
     
     override func setHierarchy() {
@@ -71,6 +80,7 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
+            descriptionLabel,
             ratingView,
             commentView,
             priceView)
@@ -83,6 +93,7 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
+            descriptionLabel,
             ratingView,
             commentView,
             priceView)
@@ -115,7 +126,13 @@ final class BookDetailViewController: BaseViewController {
         ])
         
         NSLayoutConstraint.activate([
-            ratingView.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 20),
+            descriptionLabel.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
+            descriptionLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            ratingView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
         ])
