@@ -45,6 +45,7 @@ final class PriceView: BaseView {
             priceImage.topAnchor.constraint(equalTo: self.topAnchor),
             priceImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             priceImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            priceImage.widthAnchor.constraint(equalToConstant: 25)
         ])
         
         NSLayoutConstraint.activate([

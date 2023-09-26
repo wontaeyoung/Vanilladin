@@ -45,6 +45,7 @@ final class CommentView: BaseView {
             commentImage.topAnchor.constraint(equalTo: self.topAnchor),
             commentImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             commentImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            commentImage.widthAnchor.constraint(equalToConstant: 25)
         ])
         
         NSLayoutConstraint.activate([
