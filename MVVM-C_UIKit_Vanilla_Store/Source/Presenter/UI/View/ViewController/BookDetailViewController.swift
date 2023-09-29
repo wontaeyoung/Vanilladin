@@ -179,4 +179,22 @@ final class BookDetailViewController: BaseViewController {
             priceView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
         ])
     }
+    
+    override func completeUIConfiguration() {
+        updateMoreButtonVisibility()
+    }
+}
+
+private extension BookDetailViewController {
+    func updateMoreButtonVisibility() {
+        descriptionState = descriptionLabel.isTruncated ? .collapsed : .noMore
+        
+        switch descriptionState {
+        case .collapsed, .expanded:
+            moreDescriptionButton.isHidden = false
+            
+        case .noMore, .notDetermined:
+            descriptionLabel.numberOfLines = .zero
+        }
+    }
 }
