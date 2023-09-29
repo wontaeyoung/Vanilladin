@@ -15,6 +15,7 @@ class BaseViewController: UIViewController, DependencyContainable {
     @MainActor func setAttribute() { }
     @MainActor func setHierarchy() { }
     @MainActor func setConstraint() { }
+    @MainActor func completeUIConfiguration() { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,5 +25,6 @@ class BaseViewController: UIViewController, DependencyContainable {
         setAttribute()
         setHierarchy()
         setConstraint()
+        completeUIConfiguration()
     }
 }
