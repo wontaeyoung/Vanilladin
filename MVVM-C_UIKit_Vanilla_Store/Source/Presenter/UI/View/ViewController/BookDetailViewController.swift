@@ -153,16 +153,16 @@ final class BookDetailViewController: BaseViewController {
         NSLayoutConstraint.activate([
             descriptionLabel.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            moreDescriptionButton.centerYAnchor.constraint(equalTo: descriptionLabel.centerYAnchor),
-            moreDescriptionButton.leadingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: 10),
-            moreDescriptionButton.trailingAnchor.constraint(lessThanOrEqualTo: paddingView.trailingAnchor)
+            moreDescriptionButton.topAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: 10),
+            moreDescriptionButton.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
         ])
         
         NSLayoutConstraint.activate([
-            ratingView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            ratingView.topAnchor.constraint(equalTo: moreDescriptionButton.bottomAnchor, constant: 20),
             ratingView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             ratingView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
         ])
