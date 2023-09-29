@@ -1,9 +1,16 @@
 import UIKit
 
 final class BookDetailViewController: BaseViewController {
+    enum DescriptionState {
+        case collapsed
+        case expanded
+        case noMore
+    }
+    
     // MARK: - Property
     private let book: Book
     private let bookDetail: BookDetail
+    private var descriptionState: DescriptionState
     
     // MARK: - UI
     private let scrollView: UIScrollView = {
