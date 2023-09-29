@@ -5,6 +5,7 @@ final class BookDetailViewController: BaseViewController {
         case collapsed
         case expanded
         case noMore
+        case notDetermined
     }
     
     // MARK: - Property
@@ -66,6 +67,7 @@ final class BookDetailViewController: BaseViewController {
     ) {
         self.book = book
         self.bookDetail = bookDetail
+        self.descriptionState = .notDetermined
         
         super.init()
     }
