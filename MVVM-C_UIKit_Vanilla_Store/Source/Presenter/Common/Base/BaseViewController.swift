@@ -25,6 +25,10 @@ class BaseViewController: UIViewController, DependencyContainable {
         setAttribute()
         setHierarchy()
         setConstraint()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         completeUIConfiguration()
     }
 }
