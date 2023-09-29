@@ -54,6 +54,20 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
+    private let moreDescriptionButton: UIButton = {
+        let button: UIButton = .init()
+        button.setTitle("더 보기", for: .normal)
+        button.setTitleColor(.systemGray4, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        
+        button.addTarget(
+            BookDetailViewController.self,
+            action: #selector(didTapMoreButton),
+            for: .touchUpInside)
+        
+        return button
+    }()
+    
     private lazy var ratingView: RatingView = .init(bookDetail: bookDetail)
     
     private lazy var commentView: CommentView = .init(bookDetail: bookDetail)
