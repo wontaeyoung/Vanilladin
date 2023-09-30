@@ -187,6 +187,11 @@ final class BookDetailViewController: BaseViewController {
 }
 
 private extension BookDetailViewController {
+    enum ViewShowingState {
+        case show
+        case hide
+    }
+    
     func updateMoreButtonVisibility() {
         descriptionState = descriptionLabel.isTruncated ? .collapsed : .noMore
         
