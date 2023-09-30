@@ -203,4 +203,9 @@ private extension BookDetailViewController {
             descriptionLabel.numberOfLines = .zero
         }
     }
+    
+    @objc func didTapMoreButton() {
+        descriptionLabel.numberOfLines = .zero
+        
+    }
 }
