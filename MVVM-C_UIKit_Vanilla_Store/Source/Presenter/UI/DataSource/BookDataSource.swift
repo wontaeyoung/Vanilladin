@@ -131,10 +131,9 @@ extension BookDataSource: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard
-            let bookCell = tableView.dequeueCell(
-                BookTableCell.self,
-                for: indexPath) as? BookTableCell
+        guard let bookCell = tableView.dequeueCell(
+            BookTableCell.self,
+            for: indexPath) as? BookTableCell
         else {
             return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
         }
