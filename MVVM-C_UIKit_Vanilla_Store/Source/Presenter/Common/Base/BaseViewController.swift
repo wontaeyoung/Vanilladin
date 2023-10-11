@@ -15,7 +15,7 @@ class BaseViewController: UIViewController, DependencyContainable {
     @MainActor func setAttribute() { }
     @MainActor func setHierarchy() { }
     @MainActor func setConstraint() { }
-    @MainActor func completeUIConfiguration() { }
+    @MainActor func UIConfigurationDidComplete() { }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,6 @@ class BaseViewController: UIViewController, DependencyContainable {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        completeUIConfiguration()
+        UIConfigurationDidComplete()
     }
 }

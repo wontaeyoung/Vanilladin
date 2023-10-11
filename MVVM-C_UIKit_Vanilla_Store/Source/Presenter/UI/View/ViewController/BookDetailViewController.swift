@@ -181,7 +181,7 @@ final class BookDetailViewController: BaseViewController {
         ])
     }
     
-    override func completeUIConfiguration() {
+    override func UIConfigurationDidComplete() {
         updateMoreButtonVisibility()
     }
 }
