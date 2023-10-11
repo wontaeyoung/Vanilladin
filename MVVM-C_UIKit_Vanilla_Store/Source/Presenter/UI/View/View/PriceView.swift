@@ -14,6 +14,15 @@ final class PriceView: BaseView {
         return imageView
     }()
     
+    private let priceTitleLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
+        label.numberOfLines = .zero
+        label.text = "판매가"
+        
+        return label
+    }()
+    
     private let priceValueLabel: UILabel = {
         let label: UILabel = .init()
         label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
@@ -35,17 +44,16 @@ final class PriceView: BaseView {
     }
     
     override func setHierarchy() {
-        addSubviews(priceImage, priceValueLabel)
+        addSubviews(priceTitleLabel, priceValueLabel)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(priceImage, priceValueLabel)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(priceTitleLabel, priceValueLabel)
         
         NSLayoutConstraint.activate([
-            priceImage.topAnchor.constraint(equalTo: self.topAnchor),
-            priceImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            priceImage.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            priceImage.widthAnchor.constraint(equalToConstant: 25)
+            priceTitleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            priceTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            priceTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
         
         NSLayoutConstraint.activate([
