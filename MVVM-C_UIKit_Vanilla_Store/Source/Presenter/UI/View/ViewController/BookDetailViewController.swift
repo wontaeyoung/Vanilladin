@@ -1,13 +1,7 @@
 import UIKit
 
 final class BookDetailViewController: BaseViewController {
-    enum DescriptionState {
-        case collapsed
-        case expanded
-        case noMore
-        case notDetermined
-    }
-    
+
     // MARK: - Property
     private let book: Book
     private let bookDetail: BookDetail
@@ -190,6 +184,13 @@ private extension BookDetailViewController {
     enum ViewShowingState {
         case show
         case hide
+    }
+    
+    enum DescriptionState {
+        case collapsed
+        case expanded
+        case noMore
+        case notDetermined
     }
     
     func updateMoreButtonVisibility() {
