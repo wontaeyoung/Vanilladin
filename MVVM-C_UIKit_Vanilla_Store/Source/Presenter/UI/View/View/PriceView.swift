@@ -40,7 +40,7 @@ final class PriceView: BaseView {
     
     // MARK: - Method
     override func setAttribute() {
-        priceValueLabel.text = price.asPriceFormat
+        priceValueLabel.text = "₩" + price.asPriceFormat
     }
     
     override func setHierarchy() {
@@ -59,7 +59,7 @@ final class PriceView: BaseView {
         NSLayoutConstraint.activate([
             priceValueLabel.topAnchor.constraint(equalTo: self.topAnchor),
             priceValueLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            priceValueLabel.leadingAnchor.constraint(equalTo: priceImage.trailingAnchor, constant: 10),
+            priceValueLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 80)
         ])
     }
 }
