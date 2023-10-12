@@ -5,7 +5,7 @@ final class PriceView: BaseView {
     private let price: Int
     
     // MARK: - UI
-    private let priceImage: UIImageView = {
+    private let priceImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(systemName: UIConstant.SFSymbol.wonsignSquare)?
@@ -44,22 +44,23 @@ final class PriceView: BaseView {
     }
     
     override func setHierarchy() {
-        addSubviews(priceTitleLabel, priceValueLabel)
+        addSubviews(priceImageView, priceValueLabel)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(priceTitleLabel, priceValueLabel)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(priceImageView, priceValueLabel)
         
         NSLayoutConstraint.activate([
-            priceTitleLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            priceTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            priceTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+            priceImageView.topAnchor.constraint(equalTo: self.topAnchor),
+            priceImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            priceImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            priceImageView.widthAnchor.constraint(equalToConstant: 25)
         ])
         
         NSLayoutConstraint.activate([
             priceValueLabel.topAnchor.constraint(equalTo: self.topAnchor),
             priceValueLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            priceValueLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 80)
+            priceValueLabel.leadingAnchor.constraint(equalTo: priceImageView.trailingAnchor, constant: 10)
         ])
     }
 }
