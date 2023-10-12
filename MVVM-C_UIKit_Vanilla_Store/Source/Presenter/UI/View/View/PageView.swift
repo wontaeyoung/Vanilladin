@@ -31,7 +31,7 @@ final class PageView: BaseView {
     
     // MARK: - Method
     override func setAttribute() {
-        pageValueLabel.text = page.description
+        pageValueLabel.text = page.description + "쪽"
     }
     
     override func setHierarchy() {
