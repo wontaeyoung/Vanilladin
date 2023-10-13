@@ -57,14 +57,14 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
-    private let moreDescriptionButton: UIButton = {
+    private lazy var moreDescriptionButton: UIButton = {
         let button: UIButton = .init()
         button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.systemGray4, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: UIConstant.FontSize.description)
         
         button.addTarget(
-            BookDetailViewController.self,
+            button,
             action: #selector(didTapMoreButton),
             for: .touchUpInside)
         
@@ -172,7 +172,7 @@ final class BookDetailViewController: BaseViewController {
         ])
         
         NSLayoutConstraint.activate([
-            moreDescriptionButton.topAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: 10),
+            moreDescriptionButton.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 5),
             moreDescriptionButton.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
         ])
         
