@@ -22,6 +22,23 @@ final class DimensionsView: BaseView {
         return label
     }()
     
+    private let scalemassImageView: UIImageView = {
+        let imageView: UIImageView = .init()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(systemName: UIConstant.SFSymbol.scalemass)?
+            .colored(with: .black)
+        
+        return imageView
+    }()
+    
+    private let weightValueLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .systemFont(ofSize: UIConstant.FontSize.title)
+        label.numberOfLines = .zero
+        
+        return label
+    }()
+    
     // MARK: - Initializer
     init(dimensions: BookDetail.Dimensions) {
         self.dimensions = dimensions
@@ -31,27 +48,46 @@ final class DimensionsView: BaseView {
     
     // MARK: - Method
     override func setAttribute() {
-        dimensionsValueLabel.text = "\(dimensions.width) x \(dimensions.height) x \(dimensions.depth), \(dimensions.weight)"
+        dimensionsValueLabel.text = "W(\(dimensions.width)) x H(\(dimensions.height)) x D(\(dimensions.depth))mm"
+        weightValueLabel.text = "\(dimensions.weight)g"
     }
     
     override func setHierarchy() {
-        addSubviews(rulerImageView, dimensionsValueLabel)
+        addSubviews(
+            rulerImageView,
+            dimensionsValueLabel,
+            scalemassImageView,
+            weightValueLabel)
     }
     
     override func setConstraint() {
-        setTranslatesAutoresizingMaskIntoConstraintsOff(rulerImageView, dimensionsValueLabel)
+        setTranslatesAutoresizingMaskIntoConstraintsOff(
+            rulerImageView,
+            dimensionsValueLabel,
+            scalemassImageView,
+            weightValueLabel)
         
         NSLayoutConstraint.activate([
             rulerImageView.topAnchor.constraint(equalTo: self.topAnchor),
-            rulerImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             rulerImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             rulerImageView.widthAnchor.constraint(equalToConstant: 25)
         ])
         
         NSLayoutConstraint.activate([
             dimensionsValueLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            dimensionsValueLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             dimensionsValueLabel.leadingAnchor.constraint(equalTo: self.rulerImageView.trailingAnchor, constant: 10)
+        ])
+        
+        NSLayoutConstraint.activate([
+            scalemassImageView.topAnchor.constraint(equalTo: rulerImageView.bottomAnchor, constant: 10),
+            scalemassImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            scalemassImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            scalemassImageView.widthAnchor.constraint(equalToConstant: 25)
+        ])
+        
+        NSLayoutConstraint.activate([
+            weightValueLabel.topAnchor.constraint(equalTo: scalemassImageView.topAnchor),
+            weightValueLabel.leadingAnchor.constraint(equalTo: self.scalemassImageView.trailingAnchor, constant: 10)
         ])
     }
 }
