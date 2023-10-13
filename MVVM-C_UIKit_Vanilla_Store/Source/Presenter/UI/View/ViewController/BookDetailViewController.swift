@@ -40,6 +40,15 @@ final class BookDetailViewController: BaseViewController {
         return label
     }()
     
+    private let isbnLabel: UILabel = {
+        let label: UILabel = .init()
+        label.font = .systemFont(ofSize: UIConstant.FontSize.description)
+        label.numberOfLines = .zero
+        label.textColor = .systemGray2
+        
+        return label
+    }()
+    
     private let descriptionLabel: UILabel = {
         let label: UILabel = .init()
         label.font = .systemFont(ofSize: UIConstant.FontSize.description)
@@ -84,6 +93,7 @@ final class BookDetailViewController: BaseViewController {
         bookImageView.image = book.coverImage
         titleLabel.attributedText = book.title.attributedTitleText
         authorPublisherLabel.text = book.author + " - " + book.publisher
+        isbnLabel.text = "ISBN" + book.isbn13
         descriptionLabel.text = book.description
     }
     
@@ -96,6 +106,7 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
+            isbnLabel,
             descriptionLabel,
             moreDescriptionButton,
             ratingView,
@@ -111,6 +122,7 @@ final class BookDetailViewController: BaseViewController {
             bookImageView,
             titleLabel,
             authorPublisherLabel,
+            isbnLabel,
             descriptionLabel,
             moreDescriptionButton,
             ratingView,
@@ -146,10 +158,17 @@ final class BookDetailViewController: BaseViewController {
         ])
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
+            isbnLabel.topAnchor.constraint(equalTo: authorPublisherLabel.bottomAnchor, constant: 10),
+            isbnLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            isbnLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+        ])
+        
+        NSLayoutConstraint.activate([
+            descriptionLabel.topAnchor.constraint(equalTo: isbnLabel.bottomAnchor, constant: 10),
             descriptionLabel.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 0)
+            descriptionLabel.widthAnchor.constraint(equalToConstant: 100),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 100)
         ])
         
         NSLayoutConstraint.activate([
