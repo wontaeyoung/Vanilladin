@@ -75,6 +75,7 @@ final class BookDetailViewController: BaseViewController {
     private lazy var commentView: CommentView = .init(bookDetail: bookDetail)
     private lazy var priceView: PriceView = .init(price: book.priceSales)
     private lazy var pageView: PageView = .init(page: bookDetail.itemPage)
+    private lazy var dimensionsView: DimensionsView = .init(dimensions: bookDetail.dimensions)
     
     // MARK: - Initializer
     init(
@@ -112,7 +113,8 @@ final class BookDetailViewController: BaseViewController {
             ratingView,
             commentView,
             priceView,
-            pageView)
+            pageView,
+            dimensionsView)
     }
     
     override func setConstraint() {
@@ -128,7 +130,8 @@ final class BookDetailViewController: BaseViewController {
             ratingView,
             commentView,
             priceView,
-            pageView)
+            pageView,
+            dimensionsView)
         
         scrollView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .vertical)
         
@@ -197,6 +200,12 @@ final class BookDetailViewController: BaseViewController {
             pageView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             pageView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
         ])
+        
+        NSLayoutConstraint.activate([
+            dimensionsView.topAnchor.constraint(equalTo: pageView.bottomAnchor, constant: 10),
+            dimensionsView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
+            dimensionsView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+        ])
     }
     
     override func UIConfigurationDidComplete() {
@@ -230,7 +239,7 @@ private extension BookDetailViewController {
     }
     
     @objc func didTapMoreButton() {
+        print("Pressed!!\n\n\n\n")
         descriptionLabel.numberOfLines = .zero
-        
     }
 }
