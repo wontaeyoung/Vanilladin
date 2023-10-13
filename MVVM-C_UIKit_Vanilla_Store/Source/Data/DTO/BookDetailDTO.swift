@@ -15,10 +15,12 @@ struct BookDetailDTO: DTOProtocol {
             ratingCount: subInfo.ratingInfo.ratingCount,
             commentReviewCount: subInfo.ratingInfo.commentReviewCount,
             myReviewCount: subInfo.ratingInfo.myReviewCount,
-            width: subInfo.packing.sizeWidth,
-            height: subInfo.packing.sizeHeight,
-            depth: subInfo.packing.sizeDepth,
-            weight: subInfo.packing.weight)
+            dimensions: .init(
+                width: subInfo.packing.sizeWidth,
+                height: subInfo.packing.sizeHeight,
+                depth: subInfo.packing.sizeDepth,
+                weight: subInfo.packing.weight)
+            )
     }
 }
 

@@ -7,10 +7,21 @@ struct BookDetail: EntityProtocol {
     let ratingCount: Int
     let commentReviewCount: Int
     let myReviewCount: Int
-    let width: Int
-    let height: Int
-    let depth: Int
-    let weight: Int
+    let dimensions: Dimensions
+    
+    struct Dimensions {
+        let width: Int
+        let height: Int
+        let depth: Int
+        let weight: Int
+        
+        init(width: Int, height: Int, depth: Int, weight: Int) {
+            self.width = width
+            self.height = height
+            self.depth = depth
+            self.weight = weight
+        }
+    }
     
     static var dummy: Self {
         .init(
@@ -20,9 +31,11 @@ struct BookDetail: EntityProtocol {
             ratingCount: 0,
             commentReviewCount: 0,
             myReviewCount: 0,
-            width: 0,
-            height: 0,
-            depth: 0,
-            weight: 0)
+            dimensions: .init(
+                width: 0,
+                height: 0,
+                depth: 0,
+                weight: 0)
+        )
     }
 }
