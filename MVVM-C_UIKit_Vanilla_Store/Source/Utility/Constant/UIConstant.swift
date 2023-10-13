@@ -24,6 +24,7 @@ enum UIConstant {
         static let wonsignSquare: String = "wonsign.square"
         static let bookPages: String = "book.pages"
         static let ruler: String = "ruler"
+        static let scalemass: String = "scalemass"
     }
     
     enum Rating {
