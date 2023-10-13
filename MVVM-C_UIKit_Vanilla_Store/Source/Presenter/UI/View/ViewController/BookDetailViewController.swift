@@ -205,6 +205,7 @@ final class BookDetailViewController: BaseViewController {
             dimensionsView.topAnchor.constraint(equalTo: pageView.bottomAnchor, constant: 10),
             dimensionsView.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
             dimensionsView.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
+            dimensionsView.bottomAnchor.constraint(equalTo: paddingView.bottomAnchor)
         ])
     }
     
