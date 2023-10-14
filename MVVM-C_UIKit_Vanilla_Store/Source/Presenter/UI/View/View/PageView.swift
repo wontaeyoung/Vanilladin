@@ -16,7 +16,7 @@ final class PageView: BaseView {
     
     private let pageValueLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.title)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
         label.numberOfLines = .zero
         
         return label

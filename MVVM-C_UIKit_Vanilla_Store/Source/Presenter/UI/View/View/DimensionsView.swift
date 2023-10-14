@@ -16,7 +16,7 @@ final class DimensionsView: BaseView {
     
     private let dimensionsValueLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.title)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
         label.numberOfLines = .zero
         
         return label
@@ -33,7 +33,7 @@ final class DimensionsView: BaseView {
     
     private let weightValueLabel: UILabel = {
         let label: UILabel = .init()
-        label.font = .systemFont(ofSize: UIConstant.FontSize.title)
+        label.font = .boldSystemFont(ofSize: UIConstant.FontSize.title)
         label.numberOfLines = .zero
         
         return label
