@@ -1,7 +1,6 @@
 import UIKit
 
 final class BookDetailViewController: BaseViewController {
-
     // MARK: - Property
     private let book: Book
     private let bookDetail: BookDetail
