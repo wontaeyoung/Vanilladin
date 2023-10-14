@@ -230,7 +230,6 @@ private extension BookDetailViewController {
         
         switch descriptionState {
         case .collapsed, .expanded:
-            moreDescriptionButton.isHidden = false
             moreDescriptionButton.setTitle("펼치기", for: .normal)
             
         case .noMore, .notDetermined:
