@@ -64,7 +64,7 @@ final class BookDetailViewController: BaseViewController {
         button.titleLabel?.font = .systemFont(ofSize: UIConstant.FontSize.description)
         
         button.addTarget(
-            button,
+            self,
             action: #selector(didTapMoreButton),
             for: .touchUpInside)
         
