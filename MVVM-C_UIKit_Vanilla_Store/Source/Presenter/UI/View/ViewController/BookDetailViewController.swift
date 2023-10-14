@@ -59,7 +59,6 @@ final class BookDetailViewController: BaseViewController {
     
     private lazy var moreDescriptionButton: UIButton = {
         let button: UIButton = .init()
-        button.setTitle("더 보기", for: .normal)
         button.setTitleColor(.systemGray4, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: UIConstant.FontSize.description)
         
@@ -233,9 +232,10 @@ private extension BookDetailViewController {
         switch descriptionState {
         case .collapsed, .expanded:
             moreDescriptionButton.isHidden = false
+            moreDescriptionButton.setTitle("펼치기", for: .normal)
             
         case .noMore, .notDetermined:
-            descriptionLabel.numberOfLines = .zero
+            moreDescriptionButton.isHidden = true
         }
     }
     
