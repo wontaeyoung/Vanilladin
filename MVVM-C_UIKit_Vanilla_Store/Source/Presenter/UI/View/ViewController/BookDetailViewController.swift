@@ -240,7 +240,19 @@ private extension BookDetailViewController {
     }
     
     @objc func didTapMoreButton() {
-        print("Pressed!!\n\n\n\n")
-        descriptionLabel.numberOfLines = .zero
+        switch descriptionState {
+        case .collapsed:
+            descriptionState = .expanded
+            descriptionLabel.numberOfLines = .zero
+            moreDescriptionButton.setTitle("접어두기", for: .normal)
+            
+        case .expanded:
+            descriptionState = .collapsed
+            descriptionLabel.numberOfLines = 1
+            moreDescriptionButton.setTitle("펼치기", for: .normal)
+            
+        default:
+            moreDescriptionButton.isEnabled = false
+        }
     }
 }
