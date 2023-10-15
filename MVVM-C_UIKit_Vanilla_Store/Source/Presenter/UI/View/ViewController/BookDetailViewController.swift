@@ -43,7 +43,7 @@ final class BookDetailViewController: BaseViewController {
         let label: UILabel = .init()
         label.font = .systemFont(ofSize: UIConstant.FontSize.description)
         label.numberOfLines = .zero
-        label.textColor = .systemGray2
+        label.textColor = .systemGray
         
         return label
     }()
