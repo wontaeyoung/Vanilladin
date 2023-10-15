@@ -71,11 +71,11 @@ private extension SearchHistoryDataSource {
     }
     
     func keywordIndex(_ keyword: String) -> Int? {
-        return keywords.firstIndex(of: keyword)
+        return keywords.map({$0.lowercased()}).firstIndex(of: keyword.lowercased())
     }
     
     func checkKeywordState(_ keyword: String) -> KeywordState {
-        if keywords.contains(keyword) {
+        if keywords.map({$0.lowercased()}).contains(keyword.lowercased()) {
             return .containKeyword
         }
         
