@@ -150,4 +150,13 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
             await bookListViewModel.showBookDetailView(at: indexPath.row)
         }
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath
+    ) {
+        Task {
+            await bookListViewModel.showBookDetailView(at: indexPath.row)
+        }
+    }
 }
