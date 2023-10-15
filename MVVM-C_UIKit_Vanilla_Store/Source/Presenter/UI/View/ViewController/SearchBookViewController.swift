@@ -7,6 +7,16 @@ final class SearchBookViewController: BaseViewController {
     private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
+    private let searchGuideImageView: UIImageView = {
+        let imageView: UIImageView = .init()
+        imageView.contentMode = .scaleAspectFit
+//        imageView.clipsToBounds = true
+        imageView.image = UIImage(systemName: UIConstant.SFSymbol.booksVerticalCircle)?
+            .colored(with: .black)
+        
+        return imageView
+    }()
+    
     private lazy var searchGuideText: UILabel = {
         let label: UILabel = .init()
         label.text = "찾고싶은 책의 이름을 검색해주세요!"
@@ -34,7 +44,7 @@ final class SearchBookViewController: BaseViewController {
             let searchController: UISearchController = .init(searchResultsController: searchResultContainerViewController)
             
             let searchBar: UISearchBar = searchController.searchBar
-            searchBar.placeholder = "Search Books"
+            searchBar.placeholder = "Search Book"
             searchBar.autocapitalizationType = .none
             searchBar.autocorrectionType = .no
             searchBar.spellCheckingType = .no
@@ -47,15 +57,22 @@ final class SearchBookViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubviews(searchGuideText)
+        view.addSubviews(searchGuideImageView, searchGuideText)
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideText)
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideImageView, searchGuideText)
         
         NSLayoutConstraint.activate([
-            searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchGuideText.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            searchGuideImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            searchGuideImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            searchGuideImageView.widthAnchor.constraint(equalToConstant: 200),
+            searchGuideImageView.heightAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        NSLayoutConstraint.activate([
+            searchGuideText.topAnchor.constraint(equalTo: searchGuideImageView.bottomAnchor, constant: 50),
+            searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }
