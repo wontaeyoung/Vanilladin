@@ -4,7 +4,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     typealias Entity = Book
     
     // MARK: - Property
-    private let bookRepository: BookRepository
+    private let bookRepository: BookRepositoryInterface
     private weak var delegate: DataSourceDelegate?
     private var searchKeyword: String
     private(set) var currentLoadPage: UInt
@@ -18,7 +18,7 @@ final class BookDataSource: NSObject, DataSourceProtocol {
     
     // MARK: - Initializer
     init(
-        bookRepository: BookRepository,
+        bookRepository: BookRepositoryInterface,
         entities: [Book] = []
     ) {
         self.bookRepository = bookRepository

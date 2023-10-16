@@ -1,6 +1,6 @@
 import UIKit
 
-final class BookRepository: DependencyContainable {
+final class BookRepository: BookRepositoryInterface {
     // MARK: - Property
     private let aladinService: AladinService
     
