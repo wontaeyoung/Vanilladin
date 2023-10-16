@@ -252,3 +252,6 @@ xcuserdata
 
 # 프로젝트의 모든 경로에서 .DS_Store 파일을 포함하지 않도록 함
 **/.DS_Store
+
+# API_Key 제외
+API_KEY.plist
