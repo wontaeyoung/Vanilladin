@@ -24,6 +24,7 @@ final class SearchKeywordCell: BaseTableViewCell {
         let button: UIButton = .init(type: .system)
         let buttonImage = UIImage(systemName: UIConstant.SFSymbol.xMark)?
             .withTintColor(.gray, renderingMode: .alwaysOriginal)
+        buttonImage?.withConfiguration(UIImage.SymbolConfiguration(pointSize: 20, weight: .medium))
         
         button.setImage(buttonImage, for: .normal)
         button.addTarget(
@@ -57,8 +58,8 @@ final class SearchKeywordCell: BaseTableViewCell {
         NSLayoutConstraint.activate([
             deleteButton.trailingAnchor.constraint(equalTo: paddingView.trailingAnchor),
             deleteButton.centerYAnchor.constraint(equalTo: paddingView.centerYAnchor),
-            deleteButton.widthAnchor.constraint(equalToConstant: 15),
-            deleteButton.heightAnchor.constraint(equalToConstant: 15),
+            deleteButton.widthAnchor.constraint(equalToConstant: 44),
+            deleteButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
     
