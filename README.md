@@ -27,15 +27,44 @@ UIKit으로 개발한 첫 프로젝트입니다. 알라딘 API를 활용하여 �
 
 ### 주요 기능
 
-| **검색 화면** | **List ↔ Grid 전환** | **무한스크롤** |
-|:----------------:|:-------------------------:|:----------------:|
-| ![Vanilladin_검색](https://github.com/wontaeyoung/Vanilladin/assets/45925685/c8334f34-7362-4ac7-ad84-bd882f6fb01f) | ![Vanilladin_리스트스타일](https://github.com/wontaeyoung/Vanilladin/assets/45925685/83eae6ba-75f2-4a80-8086-07be0ed43857) | ![Vanilladin_무한스크롤](https://github.com/wontaeyoung/Vanilladin/assets/45925685/9db3f057-6707-4d4f-8b5b-3cfab0223244) |
-| 검색어를 입력하면 API Endpoint를 생성해서 알라딘 API를 호출하고, 응답 데이터를 화면에 표시합니다. | UISegmentedControl를 사용하여 목록 화면 스타일을 List / Grid로 전환합니다. | 스크롤 최하단 1/3 지점을 넘어가면 다음 페이지의 데이터를 요청하여 무한스크롤로 동작합니다. |
+<table style="width: 100%;">
+  <colgroup>
+    <col style="width: 33%;">
+    <col style="width: 33%;">
+    <col style="width: 33%;">
+  </colgroup>
+  <tr>
+    <th>검색 화면</th>
+    <th>List ↔ Grid 전환</th>
+    <th>무한스크롤</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/c8334f34-7362-4ac7-ad84-bd882f6fb01f" alt="Vanilladin_검색"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/83eae6ba-75f2-4a80-8086-07be0ed43857" alt="Vanilladin_리스트스타일"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/9db3f057-6707-4d4f-8b5b-3cfab0223244" alt="Vanilladin_무한스크롤"></td>
+  </tr>
+  <tr>
+    <td>검색어를 입력하면 API Endpoint를 생성해서 알라딘 API를 호출하고, 응답 데이터를 화면에 표시합니다.</td>
+    <td>UISegmentedControl를 사용하여 목록 화면 스타일을 List / Grid로 전환합니다.</td>
+    <td>스크롤 최하단 1/3 지점을 넘어가면 다음 페이지의 데이터를 요청하여 무한스크롤로 동작합니다.</td>
+  </tr>
+  <tr>
+    <th>상세화면 이동</th>
+    <th>에러 사용자 피드백</th>
+    <th>최근 검색어 저장</th>
+  </tr>
+  <tr>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/304764b4-b15e-4205-ad67-3df334b0e1c0" alt="Vanilladin_상세화면이동"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/9e95036d-6404-4a39-b506-ae8f41d09fe7" alt="Vanilladin_사용자피드백팝업"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/0735666b-3b7a-467d-a988-2f713f28846f" alt="Vanilladin_최근검색어저장"></td>
+  </tr>
+  <tr>
+    <td>Cell을 선택하면 Book Detail 정보를 서버에 요청하고, 응답 결과를 포함하는 상세 화면을 Coordinator가 표시합니다.</td>
+    <td>ISBN 데이터가 없어서 상세 화면으로 이동할 수 없는 경우, 에러를 방출하여 사용자에게 피드백 팝업을 표시합니다.</td>
+    <td>최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.</td>
+  </tr>
+</table>
 
-| **상세화면 이동** | **에러 사용자 피드백** | **최근 검색어 저장** |
-|:----------------:|:-------------------------:|:----------------:|
-| ![Vanilladin_상세화면이동](https://github.com/wontaeyoung/Vanilladin/assets/45925685/304764b4-b15e-4205-ad67-3df334b0e1c0) | ![Vanilladin_사용자피드백팝업](https://github.com/wontaeyoung/Vanilladin/assets/45925685/9e95036d-6404-4a39-b506-ae8f41d09fe7) | ![Vanilladin_최근검색어저장](https://github.com/wontaeyoung/Vanilladin/assets/45925685/0735666b-3b7a-467d-a988-2f713f28846f) |
-| Cell을 선택하면 Book Detail 정보를 서버에 요청하고, 응답 결과를 포함하는 상세 화면을 Coordinator가 표시합니다. | ISBN 데이터가 없어서 상세 화면으로 이동할 수 없는 경우, 에러를 방출하여 사용자에게 피드백 팝업을 표시합니다. | 최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다. |
 
 <br><br>
 
@@ -99,4 +128,3 @@ Vanilladin
   - **Constant** : 전역 상수 관리
   - **DependencyContainer** : 의존성 주입 및 관리 중앙화 객체
   - **Extension** : Swift 기존 타입에 대한 확장 메서드 정의
-
