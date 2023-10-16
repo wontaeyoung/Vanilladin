@@ -5,8 +5,9 @@ final class SearchBookViewModel: ViewModelProtocol {
     }
 
     // MARK: - Property
-    private weak var coordinator: BookCoordinator?
     private let dataSource: BookDataSource
+    private weak var coordinator: BookCoordinator?
+    private weak var delegate: LoadingIndicatorDelegate?
     private(set) var isLoading: Bool
     
     var hasMoreData: Bool {
@@ -31,6 +32,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: - Method
     func requestBooks(type: RequestType) async {
         startLoading()
+        
         do {
             switch type {
             case let .new(keyword):
@@ -42,7 +44,12 @@ final class SearchBookViewModel: ViewModelProtocol {
         } catch {
             coordinator?.handle(error: error)
         }
+        
         stopLoading()
+    }
+    
+    func setDelegate(_ delegate: LoadingIndicatorDelegate) {
+        self.delegate = delegate
     }
 }
 
@@ -50,9 +57,11 @@ final class SearchBookViewModel: ViewModelProtocol {
 private extension SearchBookViewModel {
     func startLoading() {
         isLoading = true
+        delegate?.showIndicator()
     }
     
     func stopLoading() {
         isLoading = false
+        delegate?.hideIndicator()
     }
 }
