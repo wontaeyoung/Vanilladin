@@ -50,7 +50,6 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         
         insertKeywordAtFirst(keyword, for: &keywords)
         setKeywords(keywords)
-        delegate?.entitiesDidUpdate()
     }
     
     func removeKeyword(at index: Int) {
@@ -68,6 +67,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
 private extension SearchHistoryDataSource {
     func setKeywords(_ keywords: [String]) {
         userDefault.set(keywords, forKey: LogicConstant.UserDefault.searchKeywordKey)
+        delegate?.entitiesDidUpdate()
     }
     
     func keywordIndex(_ keyword: String) -> Int? {
@@ -139,6 +139,7 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         }
         
         keywordCell.keyword = keyword
+        
         keywordCell.deleteAction = { [weak self] in
             guard let self else { return }
             removeKeyword(at: indexPath.row)
