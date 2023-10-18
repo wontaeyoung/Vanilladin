@@ -17,7 +17,7 @@ final class SearchHistoryViewModel: ViewModelProtocol {
     }
     
     func saveKeyword(_ keyword: String) {
-        dataSource.saveKeyword(keyword: keyword)
+        dataSource.saveKeyword(keyword)
     }
     
     func removeKeyword(_ index: Int) {
