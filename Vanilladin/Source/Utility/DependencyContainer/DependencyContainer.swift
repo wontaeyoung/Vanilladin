@@ -40,10 +40,11 @@ final class DependencyContainer: DependencyContainerProtocol {
         
         // MARK: - Repository
         let bookRepository: BookRepository = .init(aladinService: aladinService)
+        let searchKeywordRepository: SearchKeywordRepository = .init(userDefault: .standard)
         
         // MARK: - DataSource
         let bookDataSource: BookDataSource = .init(bookRepository: bookRepository)
-        let searchHistoryDataSource: SearchHistoryDataSource = .init()
+        let searchHistoryDataSource: SearchHistoryDataSource = .init(searchKeywordRepository: searchKeywordRepository)
         
         // MARK: - ViewModel
         let bookListViewModel: BookListViewModel = .init(
