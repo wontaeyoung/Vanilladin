@@ -25,17 +25,11 @@ final class BookCoordinator: CoordinatorProtocol {
 private extension BookCoordinator {
     func presentBookListViewController() {
         do {
-            let searchBookViewController: SearchBookViewController = try makeInstance()
+            let searchBookViewController: SearchBookViewController = try DependencyContainer.shared.resolve()
             
             push(searchBookViewController)
         } catch {
             handle(error: error)
         }
-    }
-    
-    func makeInstance<T: DependencyContainable>() throws -> T {
-        let instance: T = try DependencyContainer.shared.resolve()
-        
-        return instance
     }
 }
