@@ -1,29 +1,17 @@
 import UIKit
 
 final class SearchHistoryDataSource: NSObject, DependencyContainable {
-    enum KeywordState {
-        case containKeyword
-        case greaterThanOrEqualMaxCount
-        case lessThanMaxCount
-    }
     
     // MARK: - Property
-    let userDefault: UserDefaults
+    private let searchKeywordRepository: SearchKeywordRepositoryInterface
     private weak var delegate: DataSourceDelegate?
-    
     private var keywords: [String] {
-        guard
-            let keywords: [String] = userDefault.stringArray(forKey: LogicConstant.UserDefault.searchKeywordKey)
-        else {
-            return []
-        }
-        
-        return keywords
+        searchKeywordRepository.keywords
     }
     
-    // MARK: - Initializer
-    override init() {
-        self.userDefault = .standard
+    init(searchKeywordRepository: SearchKeywordRepository, delegate: DataSourceDelegate? = nil) {
+        self.searchKeywordRepository = searchKeywordRepository
+        self.delegate = delegate
     }
     
     // MARK: - Method
@@ -31,70 +19,19 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         return keywords.element(at: index)
     }
     
-    func saveKeyword(keyword: String) {
-        var keywords: [String] = self.keywords
-        let state: KeywordState = checkKeywordState(keyword)
-        
-        switch state {
-        case .containKeyword:
-            if let index: Int = keywordIndex(keyword) {
-                keywords.remove(at: index)
-            }
-            
-        case .greaterThanOrEqualMaxCount:
-            keywords.removeLast()
-            
-        case .lessThanMaxCount:
-            break
-        }
-        
-        insertKeywordAtFirst(keyword, for: &keywords)
-        setKeywords(keywords)
-    }
-    
-    func removeKeyword(at index: Int) {
-        var keywords: [String] = self.keywords
-        keywords.safeRemove(at: index)
-        setKeywords(keywords)
-    }
-    
-    func clearKeywords() {
-        removeAllKeywords()
-    }
-}
-
-// MARK: - Private
-private extension SearchHistoryDataSource {
-    func setKeywords(_ keywords: [String]) {
-        userDefault.set(keywords, forKey: LogicConstant.UserDefault.searchKeywordKey)
+    func saveKeyword(_ keyword: String) {
+        searchKeywordRepository.saveKeyword(keyword)
         delegate?.entitiesDidUpdate()
     }
     
-    func keywordIndex(_ keyword: String) -> Int? {
-        return keywords.map({$0.lowercased()}).firstIndex(of: keyword.lowercased())
+    func removeKeyword(at index: Int) {
+        searchKeywordRepository.removeKeyword(at: index)
+        delegate?.entitiesDidUpdate()
     }
     
-    func checkKeywordState(_ keyword: String) -> KeywordState {
-        if keywords.map({$0.lowercased()}).contains(keyword.lowercased()) {
-            return .containKeyword
-        }
-        
-        if keywords.count >= LogicConstant.UserDefault.maxKeywordCount {
-            return .greaterThanOrEqualMaxCount
-        }
-        
-        return .lessThanMaxCount
-    }
-    
-    func insertKeywordAtFirst(
-        _ keyword: String,
-        for keywords: inout [String]
-    ) {
-        keywords.insert(keyword, at: 0)
-    }
-    
-    func removeAllKeywords() {
-        userDefault.removeObject(forKey: LogicConstant.UserDefault.searchKeywordKey)
+    func clearKeywords() {
+        searchKeywordRepository.clearKeywords()
+        delegate?.entitiesDidUpdate()
     }
 }
 
