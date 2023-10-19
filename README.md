@@ -19,6 +19,7 @@
 - UIKit (iOS 14.0)
 - MVVM + Coordinator
 - async-await 비동기 처리
+- TaskGroup 병렬 처리
 - 무한스크롤
 - UserDefault
 - NSCache 이미지
