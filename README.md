@@ -10,7 +10,7 @@
 
 ### 작업 기간
 
-2023.07 ~ 2023.10 (실제 개발 기간 : 7주)
+2023.07 ~ 2023.10 (실 개발 기간 : 7주)
 
 <br>
 
@@ -64,6 +64,13 @@
     <td>최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.</td>
   </tr>
 </table>
+
+
+<br><br>
+
+# Architecture
+
+<img width="2500" alt="Vanilladin_Architecture" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/c5eb3b4a-b242-4756-bb8a-a85d763f68c4">
 
 
 <br><br>
