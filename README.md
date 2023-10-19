@@ -1,7 +1,7 @@
 # Information
 보안을 위해 API_Key가 제외되어있습니다. 빌드를 원하시는 분은 아래로 Plist를 요청해주세요!
 
-<a href="mailto:hexter1994@naver.com">Plist 요청하기</a>
+<a href="mailto:hexter1994@naver.com">hexter1994@naver.com</a>
 
 # Introduce
 
