@@ -70,8 +70,7 @@
 
 # Architecture
 
-<img width="2500" alt="Vanilladin_Architecture" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/c5eb3b4a-b242-4756-bb8a-a85d763f68c4">
-
+<img width="2500" alt="Vanilladin_Architecture" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/f56fe649-4c74-481b-990a-7a3cf035d504">
 
 <br><br>
 
