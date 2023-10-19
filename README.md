@@ -1,3 +1,8 @@
+# Information
+보안을 위해 API_Key가 제외되어있습니다. 빌드를 원하시는 분은 아래 이메일로 Plist를 요청해주세요!
+
+[이메일](hexter1994@naver.com)
+
 # Introduce
 
 알라딘 API를 활용하여 책 데이터를 받아서 List / Grid 스타일로 목록 화면을 표시하고, 책 상세정보 화면으로 이동할 수 있습니다.
