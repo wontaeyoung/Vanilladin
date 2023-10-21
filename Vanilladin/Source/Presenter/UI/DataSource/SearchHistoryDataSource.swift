@@ -9,9 +9,8 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         return searchKeywordRepository.keywords
     }
     
-    init(searchKeywordRepository: SearchKeywordRepository, delegate: DataSourceDelegate? = nil) {
+    init(searchKeywordRepository: SearchKeywordRepository) {
         self.searchKeywordRepository = searchKeywordRepository
-        self.delegate = delegate
     }
     
     // MARK: - Method
