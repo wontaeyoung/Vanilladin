@@ -6,7 +6,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
     private let searchKeywordRepository: SearchKeywordRepositoryInterface
     private weak var delegate: DataSourceDelegate?
     private var keywords: [String] {
-        searchKeywordRepository.keywords
+        return searchKeywordRepository.keywords
     }
     
     init(searchKeywordRepository: SearchKeywordRepository, delegate: DataSourceDelegate? = nil) {
