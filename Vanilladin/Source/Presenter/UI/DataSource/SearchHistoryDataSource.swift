@@ -61,17 +61,14 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard
-            let keywordCell: SearchKeywordCell = tableView.dequeueCell(
+        guard let keywordCell: SearchKeywordCell = tableView.dequeueCell(
                 SearchKeywordCell.self,
                 for: indexPath) as? SearchKeywordCell
         else {
             return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
         }
         
-        guard
-            let keyword: String = keywords.element(at: indexPath.row)
-        else {
+        guard let keyword: String = keywords.element(at: indexPath.row) else {
             return keywordCell
         }
         
