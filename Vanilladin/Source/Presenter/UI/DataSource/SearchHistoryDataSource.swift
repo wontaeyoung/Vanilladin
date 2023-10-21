@@ -1,7 +1,6 @@
 import UIKit
 
 final class SearchHistoryDataSource: NSObject, DependencyContainable {
-    
     enum KeywordUpdateType {
         case save(keyword: String)
         case remove(index: Int)
@@ -15,6 +14,7 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         return searchKeywordRepository.keywords
     }
     
+    // MARK: - Initializer
     init(searchKeywordRepository: SearchKeywordRepository) {
         self.searchKeywordRepository = searchKeywordRepository
     }
