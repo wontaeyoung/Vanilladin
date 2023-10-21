@@ -2,6 +2,12 @@ import UIKit
 
 final class SearchHistoryDataSource: NSObject, DependencyContainable {
     
+    enum KeywordUpdateType {
+        case save(keyword: String)
+        case remove(index: Int)
+        case clearAll
+    }
+    
     // MARK: - Property
     private let searchKeywordRepository: SearchKeywordRepositoryInterface
     private weak var delegate: DataSourceDelegate?
@@ -18,19 +24,34 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         return keywords.element(at: index)
     }
     
+    func updateKeyword(type: KeywordUpdateType) {
+        switch type {
+        case let .save(keyword):
+            searchKeywordRepository.saveKeyword(keyword)
+            
+        case let .remove(index):
+            searchKeywordRepository.removeKeyword(at: index)
+            
+        case .clearAll:
+            searchKeywordRepository.clearKeywords()
+        }
+        
+        delegate?.entitiesDidUpdate()
+    }
+}
+
+// MARK: - Private
+private extension SearchHistoryDataSource {
     func saveKeyword(_ keyword: String) {
         searchKeywordRepository.saveKeyword(keyword)
-        delegate?.entitiesDidUpdate()
     }
     
     func removeKeyword(at index: Int) {
         searchKeywordRepository.removeKeyword(at: index)
-        delegate?.entitiesDidUpdate()
     }
     
     func clearKeywords() {
         searchKeywordRepository.clearKeywords()
-        delegate?.entitiesDidUpdate()
     }
 }
 
