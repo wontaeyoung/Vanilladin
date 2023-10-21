@@ -9,6 +9,8 @@
 
 라이브러리를 배제하고 의도적으로 바닐라 기능만 사용하여 구현했습니다.
 
+데이터 업데이트 시 델리게이트 패턴을 통해 UI가 업데이트됩니다.
+
 프로젝트 계층은 크게 Data Layer와 Presenter Layer로 구분되어 있고, Presenter Layer는 MVVM 패턴과 Coordinator 패턴을 적용했습니다.
 
 <br>
