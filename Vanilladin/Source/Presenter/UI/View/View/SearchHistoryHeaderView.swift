@@ -38,9 +38,6 @@ final class SearchHistoryHeaderView: BaseView {
     
     // MARK: - Method
     override func setHierarchy() {
-//        backgroundColor = .red
-//        paddingView.backgroundColor = .blue
-//        clearKeywordButton.backgroundColor = .green
         addSubview(paddingView)
         paddingView.addSubviews(recentSearchHeaderTitle, clearKeywordButton)
     }
@@ -71,7 +68,6 @@ final class SearchHistoryHeaderView: BaseView {
     }
     
     @objc private func clearButtonDidTapped() {
-        print("Tapped")
         clearAction()
     }
 }
