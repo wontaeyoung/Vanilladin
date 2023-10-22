@@ -48,13 +48,7 @@ final class SearchHistoryHeaderView: BaseView {
             recentSearchHeaderTitle,
             clearKeywordButton)
         
-        
-        NSLayoutConstraint.activate([
-            paddingView.topAnchor.constraint(equalTo: self.topAnchor),
-            paddingView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20),
-            paddingView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 20),
-            paddingView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20)
-        ])
+        paddingView.setPaddingAutoLayout(to: self, horizontal: 20)
         
         NSLayoutConstraint.activate([
             recentSearchHeaderTitle.leadingAnchor.constraint(equalTo: paddingView.leadingAnchor),
