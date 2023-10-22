@@ -1,17 +1,22 @@
 import UIKit
 
 final class SearchHistoryDataSource: NSObject, DependencyContainable {
+    enum KeywordUpdateType {
+        case save(keyword: String)
+        case remove(index: Int)
+        case clearAll
+    }
     
     // MARK: - Property
     private let searchKeywordRepository: SearchKeywordRepositoryInterface
     private weak var delegate: DataSourceDelegate?
     private var keywords: [String] {
-        searchKeywordRepository.keywords
+        return searchKeywordRepository.keywords
     }
     
-    init(searchKeywordRepository: SearchKeywordRepository, delegate: DataSourceDelegate? = nil) {
+    // MARK: - Initializer
+    init(searchKeywordRepository: SearchKeywordRepository) {
         self.searchKeywordRepository = searchKeywordRepository
-        self.delegate = delegate
     }
     
     // MARK: - Method
@@ -19,19 +24,34 @@ final class SearchHistoryDataSource: NSObject, DependencyContainable {
         return keywords.element(at: index)
     }
     
+    func updateKeyword(type: KeywordUpdateType) {
+        switch type {
+        case let .save(keyword):
+            searchKeywordRepository.saveKeyword(keyword)
+            
+        case let .remove(index):
+            searchKeywordRepository.removeKeyword(at: index)
+            
+        case .clearAll:
+            searchKeywordRepository.clearKeywords()
+        }
+        
+        delegate?.entitiesDidUpdate()
+    }
+}
+
+// MARK: - Private
+private extension SearchHistoryDataSource {
     func saveKeyword(_ keyword: String) {
         searchKeywordRepository.saveKeyword(keyword)
-        delegate?.entitiesDidUpdate()
     }
     
     func removeKeyword(at index: Int) {
         searchKeywordRepository.removeKeyword(at: index)
-        delegate?.entitiesDidUpdate()
     }
     
     func clearKeywords() {
         searchKeywordRepository.clearKeywords()
-        delegate?.entitiesDidUpdate()
     }
 }
 
@@ -61,17 +81,14 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard
-            let keywordCell: SearchKeywordCell = tableView.dequeueCell(
+        guard let keywordCell: SearchKeywordCell = tableView.dequeueCell(
                 SearchKeywordCell.self,
                 for: indexPath) as? SearchKeywordCell
         else {
             return tableView.dequeueCell(UITableViewCell.self, for: indexPath)
         }
         
-        guard
-            let keyword: String = keywords.element(at: indexPath.row)
-        else {
+        guard let keyword: String = keywords.element(at: indexPath.row) else {
             return keywordCell
         }
         
@@ -79,18 +96,9 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         
         keywordCell.deleteAction = { [weak self] in
             guard let self else { return }
-            removeKeyword(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            updateKeyword(type: .remove(index: indexPath.row))
         }
         
         return keywordCell
-    }
-    
-    // Header 문자 설정
-    func tableView(
-        _ tableView: UITableView,
-        titleForHeaderInSection section: Int
-    ) -> String? {
-        return "최근 검색"
     }
 }
