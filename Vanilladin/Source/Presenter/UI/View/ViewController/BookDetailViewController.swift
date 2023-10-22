@@ -58,9 +58,8 @@ final class BookDetailViewController: BaseViewController {
     
     private lazy var moreDescriptionButton: UIButton = {
         let button: UIButton = .init()
-        button.setTitleColor(.systemGray, for: .normal)
+        button.setTitleColor(.textButtonColor, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: UIConstant.FontSize.description)
-        
         button.addTarget(
             self,
             action: #selector(didTapMoreButton),
