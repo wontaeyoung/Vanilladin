@@ -96,8 +96,7 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         
         keywordCell.deleteAction = { [weak self] in
             guard let self else { return }
-            removeKeyword(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            updateKeyword(type: .remove(index: indexPath.row))
         }
         
         return keywordCell
