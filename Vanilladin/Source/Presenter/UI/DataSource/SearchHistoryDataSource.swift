@@ -101,12 +101,4 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         
         return keywordCell
     }
-    
-    // Header 문자 설정
-    func tableView(
-        _ tableView: UITableView,
-        titleForHeaderInSection section: Int
-    ) -> String? {
-        return "최근 검색"
-    }
 }

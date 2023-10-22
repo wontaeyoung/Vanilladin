@@ -80,6 +80,15 @@ extension SearchHistoryViewController: UITableViewDelegate {
         
         delegate?.submitKeyword(keyword)
     }
+    
+    func tableView(
+        _ tableView: UITableView,
+        viewForHeaderInSection section: Int
+    ) -> UIView? {
+        return SearchHistoryHeaderView {
+            self.searchHistoryViewModel.removeAllKeywords()
+        }
+    }
 }
 
 // MARK: - Dependency
