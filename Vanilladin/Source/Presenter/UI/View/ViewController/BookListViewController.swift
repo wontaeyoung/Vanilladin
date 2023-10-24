@@ -41,9 +41,7 @@ final class BookListViewController: BaseViewController {
         bookCollectionView.delegate = self
         
         // CollectionView Grid 레이아웃 설정
-        guard
-            let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
-        else { return }
+        guard let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         
         laytout.setAttribute(
             direction: .vertical,
