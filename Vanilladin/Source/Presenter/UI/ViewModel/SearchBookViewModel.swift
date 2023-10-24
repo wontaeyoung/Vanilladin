@@ -32,7 +32,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     
     // MARK: - Method
     func requestBooks(type: RequestType) async {
-        startLoading()
+        startLoading(type: type)
         
         do {
             switch type {
@@ -46,23 +46,35 @@ final class SearchBookViewModel: ViewModelProtocol {
             coordinator?.handle(error: error)
         }
         
-        stopLoading()
+        stopLoading(type: type)
     }
     
     func setDelegate(_ delegate: LoadingIndicatorDelegate) {
-        self.delegate = delegate
+        self.loadingDelegate = delegate
     }
 }
 
 // MARK: - Private
 private extension SearchBookViewModel {
-    func startLoading() {
+    func startLoading(type: RequestType) {
         isLoading = true
-        delegate?.showIndicator()
+        switch type {
+        case .new:
+            loadingDelegate?.showIndicator()
+            
+        case .more:
+            scrollLoadingDelegate?.showIndicator()
+        }
     }
     
-    func stopLoading() {
+    func stopLoading(type: RequestType) {
         isLoading = false
-        delegate?.hideIndicator()
+        switch type {
+        case .new:
+            loadingDelegate?.hideIndicator()
+            
+        case .more:
+            scrollLoadingDelegate?.hideIndicator()
+        }
     }
 }
