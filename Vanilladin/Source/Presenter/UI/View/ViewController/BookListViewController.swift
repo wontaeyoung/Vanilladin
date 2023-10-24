@@ -167,3 +167,17 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
         }
     }
 }
+
+extension BookListViewController: LoadingIndicatorDelegate {
+    func showIndicator() {
+        DispatchQueue.main.async {
+            self.loadingIndicator.startAnimating()
+        }
+    }
+    
+    func hideIndicator() {
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+        }
+    }
+}
