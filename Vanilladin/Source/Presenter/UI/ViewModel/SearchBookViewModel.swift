@@ -8,6 +8,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     private let dataSource: BookDataSource
     private weak var coordinator: BookCoordinator?
     private weak var delegate: LoadingIndicatorDelegate?
+    private weak var infiniteScrollDelegate: LoadingIndicatorDelegate?
     private(set) var isLoading: Bool
     
     var hasMoreData: Bool {
