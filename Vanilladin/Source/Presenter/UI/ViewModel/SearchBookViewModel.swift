@@ -7,8 +7,8 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: - Property
     private let dataSource: BookDataSource
     private weak var coordinator: BookCoordinator?
-    private weak var delegate: LoadingIndicatorDelegate?
-    private weak var infiniteScrollDelegate: LoadingIndicatorDelegate?
+    private weak var loadingDelegate: LoadingIndicatorDelegate?
+    private weak var scrollLoadingDelegate: LoadingIndicatorDelegate?
     private(set) var isLoading: Bool
     
     var hasMoreData: Bool {
