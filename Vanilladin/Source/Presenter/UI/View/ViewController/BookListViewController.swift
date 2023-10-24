@@ -73,14 +73,19 @@ final class BookListViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubviews(bookTableView, bookCollectionView, selectListTypeView)
+        view.addSubviews(
+            bookTableView,
+            bookCollectionView,
+            selectListTypeView,
+            loadingIndicator)
     }
     
     override func setConstraint() {
         view.setTranslatesAutoresizingMaskIntoConstraintsOff(
             bookTableView,
             bookCollectionView,
-            selectListTypeView)
+            selectListTypeView,
+            loadingIndicator)
         
         NSLayoutConstraint.activate([
             selectListTypeView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -101,6 +106,10 @@ final class BookListViewController: BaseViewController {
             bookCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             bookCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bookCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.topAnchor.constraint(equalTo: bookTableView.bottomAnchor)
         ])
     }
 }
