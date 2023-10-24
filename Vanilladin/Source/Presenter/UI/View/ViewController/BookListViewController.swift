@@ -7,9 +7,18 @@ final class BookListViewController: BaseViewController {
     
     // MARK: - UI
     private lazy var bookTableView: BookTableView = .init()
+    
     private lazy var bookCollectionView: BookCollectionView = .init(layout: UICollectionViewFlowLayout())
-    private var loadingIndicator: UIActivityIndicatorView = .init(style: .large)
+    
     private let selectListTypeView: SelectListTypeView = .init()
+    
+    private lazy var loadingIndicator: UIActivityIndicatorView = {
+        let indicator: UIActivityIndicatorView = .init()
+        indicator.style = .medium
+        indicator.hidesWhenStopped = true
+        
+        return indicator
+    }()
     
     // MARK: - Initializer
     init(
