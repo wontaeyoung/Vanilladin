@@ -3,6 +3,11 @@ final class SearchBookViewModel: ViewModelProtocol {
         case new(keyword: String)
         case more
     }
+    
+    enum SetDelegateType {
+        case searchLoadingIndicator
+        case scrollLoadingIndicator
+    }
 
     // MARK: - Property
     private let dataSource: BookDataSource
@@ -49,8 +54,14 @@ final class SearchBookViewModel: ViewModelProtocol {
         stopLoading(type: type)
     }
     
-    func setDelegate(_ delegate: LoadingIndicatorDelegate) {
-        self.searchLoadingDelegate = delegate
+    func setDelegate(_ delegate: LoadingIndicatorDelegate, type: SetDelegateType) {
+        switch type {
+        case .searchLoadingIndicator:
+            self.searchLoadingDelegate = delegate
+            
+        case .scrollLoadingIndicator:
+            self.scrollLoadingDelegate = delegate
+        }
     }
 }
 

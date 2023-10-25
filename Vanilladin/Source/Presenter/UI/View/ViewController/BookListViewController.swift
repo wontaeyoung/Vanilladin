@@ -39,7 +39,7 @@ final class BookListViewController: BaseViewController {
         bookListViewModel.setCollectionViewDataSource(to: bookCollectionView)
         bookTableView.delegate = self
         bookCollectionView.delegate = self
-        searchBookViewModel.setDelegate(self)
+        searchBookViewModel.setDelegate(self, type: .scrollLoadingIndicator)
         
         // CollectionView Grid 레이아웃 설정
         guard let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
