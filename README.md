@@ -38,7 +38,7 @@
 <table style="width: 100%;">
   <colgroup>
     <col style="width: 33%;">
-    <col style="width: 33%;">
+    <col style="width: 34%;">
     <col style="width: 33%;">
   </colgroup>
   <tr>
@@ -72,9 +72,6 @@
     <td>최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.</td>
   </tr>
 </table>
-![Vanilladin_최근검색어](https://github.com/wontaeyoung/Vanilladin/assets/45925685/34ec8214-562f-4c3f-a046-abdaa78df98e)
-![Vanilladin_무한스크롤](https://github.com/wontaeyoung/Vanilladin/assets/45925685/52eac1d6-e237-4c84-a57a-d428950dcde4)
-
 
 <br><br>
 
