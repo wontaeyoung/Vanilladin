@@ -155,6 +155,13 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
     
     func tableView(
         _ tableView: UITableView,
+        viewForFooterInSection section: Int
+    ) -> UIView? {
+        loadingIndicator
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
         Task {
