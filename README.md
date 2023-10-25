@@ -49,7 +49,7 @@
   <tr>
     <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/c8334f34-7362-4ac7-ad84-bd882f6fb01f" alt="Vanilladin_검색"></td>
     <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/83eae6ba-75f2-4a80-8086-07be0ed43857" alt="Vanilladin_리스트스타일"></td>
-    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/9db3f057-6707-4d4f-8b5b-3cfab0223244" alt="Vanilladin_무한스크롤"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/52eac1d6-e237-4c84-a57a-d428950dcde4" alt="Vanilladin_무한스크롤"></td>
   </tr>
   <tr>
     <td>검색어를 입력하면 API Endpoint를 생성해서 알라딘 API를 호출하고, 응답 데이터를 화면에 표시합니다.</td>
@@ -64,7 +64,7 @@
   <tr>
     <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/304764b4-b15e-4205-ad67-3df334b0e1c0" alt="Vanilladin_상세화면이동"></td>
     <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/9e95036d-6404-4a39-b506-ae8f41d09fe7" alt="Vanilladin_사용자피드백팝업"></td>
-    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/0735666b-3b7a-467d-a988-2f713f28846f" alt="Vanilladin_최근검색어저장"></td>
+    <td><img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/34ec8214-562f-4c3f-a046-abdaa78df98e" alt="Vanilladin_최근검색어저장"></td>
   </tr>
   <tr>
     <td>Cell을 선택하면 Book Detail 정보를 서버에 요청하고, 응답 결과를 포함하는 상세 화면을 Coordinator가 표시합니다.</td>
@@ -72,6 +72,8 @@
     <td>최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.</td>
   </tr>
 </table>
+![Vanilladin_최근검색어](https://github.com/wontaeyoung/Vanilladin/assets/45925685/34ec8214-562f-4c3f-a046-abdaa78df98e)
+![Vanilladin_무한스크롤](https://github.com/wontaeyoung/Vanilladin/assets/45925685/52eac1d6-e237-4c84-a57a-d428950dcde4)
 
 
 <br><br>
