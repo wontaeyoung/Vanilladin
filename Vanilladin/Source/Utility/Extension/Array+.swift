@@ -8,7 +8,12 @@ extension Array {
     }
     
     mutating func safeRemove(at index: Int) {
-        guard 0 <= index, index < self.count else { return }
+        guard 
+            0 <= index,
+            index < self.count
+        else {
+            return
+        }
         
         self.remove(at: index)
     }

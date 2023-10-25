@@ -95,7 +95,10 @@ extension SearchHistoryDataSource: UITableViewDataSource {
         keywordCell.keyword = keyword
         
         keywordCell.deleteAction = { [weak self] in
-            guard let self else { return }
+            guard let self else {
+                return
+            }
+            
             updateKeyword(type: .remove(index: indexPath.row))
         }
         

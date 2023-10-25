@@ -160,10 +160,9 @@ extension BookDataSource: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        guard
-            let bookCell = collectionView.dequeueCell(
-                BookCollectionCell.self,
-                for: indexPath) as? BookCollectionCell
+        guard let bookCell = collectionView.dequeueCell(
+            BookCollectionCell.self,
+            for: indexPath) as? BookCollectionCell
         else {
             return collectionView.dequeueCell(UICollectionViewCell.self, for: indexPath)
         }

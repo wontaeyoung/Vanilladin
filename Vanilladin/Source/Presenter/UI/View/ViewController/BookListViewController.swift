@@ -7,11 +7,8 @@ final class BookListViewController: BaseViewController {
     
     // MARK: - UI
     private lazy var bookTableView: BookTableView = .init()
-    
     private lazy var bookCollectionView: BookCollectionView = .init(layout: UICollectionViewFlowLayout())
-    
     private let selectListTypeView: SelectListTypeView = .init()
-    
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator: UIActivityIndicatorView = .init()
         indicator.style = .large
@@ -42,7 +39,9 @@ final class BookListViewController: BaseViewController {
         searchBookViewModel.setDelegate(self, type: .scrollLoadingIndicator)
         
         // CollectionView Grid 레이아웃 설정
-        guard let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        guard let laytout = bookCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { 
+            return
+        }
         
         laytout.setAttribute(
             direction: .vertical,
@@ -146,7 +145,9 @@ extension BookListViewController: UIScrollViewDelegate, UITableViewDelegate, UIC
             offsetY >= contentHeight - (frameHeight + frameHeight / 3),
             searchBookViewModel.isLoading == false,
             searchBookViewModel.hasMoreData
-        else { return }
+        else {
+            return
+        }
         
         Task {
             await searchBookViewModel.requestBooks(type: .more)

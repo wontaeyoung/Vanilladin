@@ -76,7 +76,9 @@ extension SearchHistoryViewController: UITableViewDelegate {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
-        guard let keyword = searchHistoryViewModel.getKeyword(at: indexPath.row) else { return }
+        guard let keyword = searchHistoryViewModel.getKeyword(at: indexPath.row) else {
+            return
+        }
         
         delegate?.submitKeyword(keyword)
     }

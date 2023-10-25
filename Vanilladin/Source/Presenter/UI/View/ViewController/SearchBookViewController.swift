@@ -80,7 +80,10 @@ final class SearchBookViewController: BaseViewController {
 // MARK: - Delegate
 extension SearchBookViewController: SearchHistoryViewDelegate {
     func submitKeyword(_ keyword: String) {
-        guard let searchBar = navigationItem.searchController?.searchBar else { return }
+        guard let searchBar = navigationItem.searchController?.searchBar else {
+            return
+        }
+        
         searchBar.text = keyword
         searchBar.resignFirstResponder()
         
@@ -90,7 +93,9 @@ extension SearchBookViewController: SearchHistoryViewDelegate {
         
 extension SearchBookViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text else { return }
+        guard let searchText = searchBar.text else {
+            return
+        }
         
         // 검색어 업데이트 -> 기존 Book 배열 초기화 -> 검색 페이지 초기화 -> Book 데이터 요청 -> Book List 화면으로 전환 -> 최근 검색어 저장
         Task {

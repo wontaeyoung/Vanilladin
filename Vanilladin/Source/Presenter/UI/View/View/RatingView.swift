@@ -58,7 +58,9 @@ final class RatingView: BaseView {
 // MARK: - Private
 private extension RatingView {
     func setStars(ratingScore: Int) {
-        guard starStackView.arrangedSubviews.count < UIConstant.Rating.maxStarRatingCount else { return }
+        guard starStackView.arrangedSubviews.count < UIConstant.Rating.maxStarRatingCount else {
+            return
+        }
         
         let fullStarCount: Int = ratingScore / 2
         let hasHalfStar: Bool = ratingScore % 2 == 1
