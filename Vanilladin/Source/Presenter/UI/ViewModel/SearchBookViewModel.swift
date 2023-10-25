@@ -7,7 +7,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     // MARK: - Property
     private let dataSource: BookDataSource
     private weak var coordinator: BookCoordinator?
-    private weak var loadingDelegate: LoadingIndicatorDelegate?
+    private weak var searchLoadingDelegate: LoadingIndicatorDelegate?
     private weak var scrollLoadingDelegate: LoadingIndicatorDelegate?
     private(set) var isLoading: Bool
     
@@ -50,7 +50,7 @@ final class SearchBookViewModel: ViewModelProtocol {
     }
     
     func setDelegate(_ delegate: LoadingIndicatorDelegate) {
-        self.loadingDelegate = delegate
+        self.searchLoadingDelegate = delegate
     }
 }
 
@@ -60,7 +60,7 @@ private extension SearchBookViewModel {
         isLoading = true
         switch type {
         case .new:
-            loadingDelegate?.showIndicator()
+            searchLoadingDelegate?.showIndicator()
             
         case .more:
             scrollLoadingDelegate?.showIndicator()
@@ -71,7 +71,7 @@ private extension SearchBookViewModel {
         isLoading = false
         switch type {
         case .new:
-            loadingDelegate?.hideIndicator()
+            searchLoadingDelegate?.hideIndicator()
             
         case .more:
             scrollLoadingDelegate?.hideIndicator()
