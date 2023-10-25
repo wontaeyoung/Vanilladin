@@ -14,7 +14,7 @@ final class BookListViewController: BaseViewController {
     
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator: UIActivityIndicatorView = .init()
-        indicator.style = .medium
+        indicator.style = .large
         indicator.hidesWhenStopped = true
         
         return indicator
