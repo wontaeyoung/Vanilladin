@@ -173,3 +173,19 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 <img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/72505233-575f-4a69-a1d0-c6027bceb2c2">
 
+<br>
+
+### 레지스트리 인스턴스 미등록 예외처리
+
+DependencyContainer에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
+
+![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32)
+
+![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527)
+
+![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a)
+
+![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/147e562a-f641-4f42-9b79-f5b0fc296528)
+
+![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/52932f49-998f-4f21-a5dd-67a6598157ab)
+
