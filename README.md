@@ -125,6 +125,9 @@ Vanilladin
     └── Extension
 
 ```
+
+<br>
+
 <details>
 <summary>디렉토리 설명</summary>
 
@@ -146,11 +149,15 @@ Vanilladin
 
 </details>
 
+<br><br>
+
 # Trouble Shoot
+
+<br>
 
 ### 의존성 컨테이너의 인스턴스 고유 식별 문제
 
-Dependency Container는 레지스트리를 통해 의존성을 관리합니다. 
+Dependency Container는 레지스트리를 통해의존성을 관리합니다. 
 
 인스턴스 획득 시 이미 등록된 의존성을 체크해서 재사용할 수 있도록 합니다.
 
