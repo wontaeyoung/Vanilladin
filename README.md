@@ -173,19 +173,44 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 <img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/72505233-575f-4a69-a1d0-c6027bceb2c2">
 
-<br>
+<br><br>
 
 ### 레지스트리 인스턴스 미등록 예외처리
 
-DependencyContainer에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
+`DependencyContainer`에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
 
-![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32)
+<br><br>
 
-![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527)
+**1. Factory 패턴 적용**
 
-![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a)
+<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32">
 
-![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/147e562a-f641-4f42-9b79-f5b0fc296528)
+우선 적용한 해결책은 `Factory` 패턴입니다. `resolve` 호출 시, 인스턴스가 등록되어있지 않은 경우를 대비해서 새 인스턴스를 초기화하는 클로저를 전달받아서 등록했습니다.
 
-![image](https://github.com/wontaeyoung/Vanilladin/assets/45925685/52932f49-998f-4f21-a5dd-67a6598157ab)
+<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
 
+하지만 `Factory` 패턴을 사용하면 인스턴스를 초기화할 때, 연결된 의존성에 대해 모두 `Factory` 클로저를 작성해야하는 문제가 발생했습니다.
+
+<br><br>
+
+**2. Lazy Register 로직 구현**
+
+그 다음 적용한 해결책은 Lazy하게 Register 하는 방법입니다. `Containable`을 채택한 제네릭을 전달해서 인스턴스가 필요한 시점에 자동으로 초기화하여 추가한다는 장점이 있습니다. 또한, 명시적으로 모든 인스턴스의 생성을 직접 작성해주지 않아도 되는 편리함이 있습니다.
+
+하지만 이 방식은 참조 관계를 잘못 설정할 경우 순환참조의 루프로 앱이 크래시될 수 있고, 모든 `Containable` 객체가 파라미터가 없는 `init`을 구현해야하는 큰 단점이 존재했습니다. 이런 경우 이미 구현된 앱의 상당 부분을 변경해야했습니다.
+
+<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a">
+
+<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
+
+<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/52932f49-998f-4f21-a5dd-67a6598157ab">
+
+<br><br>
+
+**3. 컴포지션 루트 방식 채택**
+
+최종적으로 선택한 해결책은 모든 객체와 의존성을 앱 시작지점에 구성하는 컴포지션 루트입니다.
+
+이렇게 하면 앱 내의 모든 인스턴스를 중앙에서 관리할 수 있고, 동일한 의존성이 필요한 서로 다른 객체에 간편하게 같은 참조를 전달할 수 있는 장점이 있습니다.
+
+`SceneDelegate`에서 앱 시작 시점에 모든 인스턴스 관계를 생성하는 `setDependency`를 호출하여 의존성을 주입하고 레지스트리에 등록하도록 했습니다.
