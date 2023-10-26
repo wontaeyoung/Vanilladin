@@ -155,19 +155,23 @@ Vanilladin
 
 <br>
 
-### 의존성 컨테이너의 인스턴스 고유 식별 문제
+## 의존성 컨테이너의 인스턴스 고유 식별 문제
 
-Dependency Container는 레지스트리를 통해 의존성을 관리합니다. 
-
-인스턴스 획득 시 이미 등록된 의존성을 체크해서 재사용할 수 있도록 합니다.
+Dependency Container는 레지스트리를 통해 의존성을 관리합니다. 인스턴스 획득 시 이미 등록된 의존성을 체크해서 재사용할 수 있도록 합니다.
 
 이 때 같은 타입의 인스턴스가 이미 등록되었는지를 판단하는 문제가 발생합니다.
+
+<br>
+
+### ObjectIdentifier
 
 이를 해결하기 위해 ObjectIdentifier를 key로 사용하는 아이디어를 채택했습니다.
 
 ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를 생성합니다.
 
 그래서 인스턴스의 Type으로 ObjectIdentifier를 초기화하면 Type 자체가 정의된 메타데이터를 기반으로 키를 생성하기 때문에, 해당 타입의 인스턴스가 이미 레지스트리에 등록되어 있는지를 판단할 수 있습니다.
+
+<br>
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/395994ba-9283-4edf-bb5e-fecb52522ff8">
 
@@ -177,7 +181,7 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 <br><br>
 
-### 레지스트리 인스턴스 미등록 예외처리
+## 레지스트리 인스턴스 미등록 예외처리 문제
 
 `DependencyContainer`에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
 
