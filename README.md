@@ -157,7 +157,7 @@ Vanilladin
 
 ### 의존성 컨테이너의 인스턴스 고유 식별 문제
 
-Dependency Container는 레지스트리를 통해의존성을 관리합니다. 
+Dependency Container는 레지스트리를 통해 의존성을 관리합니다. 
 
 인스턴스 획득 시 이미 등록된 의존성을 체크해서 재사용할 수 있도록 합니다.
 
@@ -169,9 +169,11 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 그래서 인스턴스의 Type으로 ObjectIdentifier를 초기화하면 Type 자체가 정의된 메타데이터를 기반으로 키를 생성하기 때문에, 해당 타입의 인스턴스가 이미 레지스트리에 등록되어 있는지를 판단할 수 있습니다.
 
-<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/395994ba-9283-4edf-bb5e-fecb52522ff8">
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/395994ba-9283-4edf-bb5e-fecb52522ff8">
 
-<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/72505233-575f-4a69-a1d0-c6027bceb2c2">
+<br>
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/72505233-575f-4a69-a1d0-c6027bceb2c2">
 
 <br><br>
 
@@ -179,15 +181,15 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 `DependencyContainer`에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
 
-<br><br>
+<br>
 
 **1. Factory 패턴 적용**
 
-<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32">
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32">
 
 우선 적용한 해결책은 `Factory` 패턴입니다. `resolve` 호출 시, 인스턴스가 등록되어있지 않은 경우를 대비해서 새 인스턴스를 초기화하는 클로저를 전달받아서 등록했습니다.
 
-<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
 
 하지만 `Factory` 패턴을 사용하면 인스턴스를 초기화할 때, 연결된 의존성에 대해 모두 `Factory` 클로저를 작성해야하는 문제가 발생했습니다.
 
@@ -199,11 +201,15 @@ ObjectIdentifier는 참조 타입의 객체의 메모리 주소를 통해 키를
 
 하지만 이 방식은 참조 관계를 잘못 설정할 경우 순환참조의 루프로 앱이 크래시될 수 있고, 모든 `Containable` 객체가 파라미터가 없는 `init`을 구현해야하는 큰 단점이 존재했습니다. 이런 경우 이미 구현된 앱의 상당 부분을 변경해야했습니다.
 
-<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a">
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a">
 
-<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
+<br>
 
-<img width="500" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/52932f49-998f-4f21-a5dd-67a6598157ab">
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d87dc87d-434e-48e2-96f9-5bd65c03494c">
+
+<br>
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/52932f49-998f-4f21-a5dd-67a6598157ab">
 
 <br><br>
 
