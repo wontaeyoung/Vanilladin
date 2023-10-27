@@ -81,6 +81,23 @@
 
 <img width="2500" alt="Vanilladin_Architecture" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/f56fe649-4c74-481b-990a-7a3cf035d504">
 
+**MVVM**
+- `ViewContoller`(View)는 UI 코드와 화면을 그리는 로직을 가지고 있습니다.
+- `ViewModel에서는` `ViewController에서` 발생하는 이벤트를 전달하고, UI에 반영할 데이터 가공을 담당합니다.
+- 여러 `ViewModel에서` 공유 데이터를 활용할 수 있도록, `DataSource` 단계를 두어 데이터를 관리하고 `Repository를` 통해 데이터를 요청합니다.
+
+<br>
+
+**Coordinator**
+- 네비게이션 및 사용자 `Alert을` 담당하고 있습니다.
+- `push`, `pop`, `emptyOut` 등 네비게이션을 관리하는 인터페이스 함수를 `ViewModel에` 제공하여, 이벤트에 따라 간편하게 네비게이션 로직을 사용할 수 있도록 합니다.
+
+<br>
+
+**Dependency Container**
+- 앱에서 사용되는 모든 객체의 의존성을 중앙에서 관리합니다.
+- 레지스트리에 인스턴스를 등록하여, 참조가 필요한 다른 객체에게 쉽게 의존성을 전달할 수 있습니다.
+
 <br><br>
 
 # Directory
@@ -242,3 +259,11 @@ Vanilladin
 이렇게 하면 앱 내의 모든 인스턴스를 중앙에서 관리할 수 있고, 동일한 의존성이 필요한 서로 다른 객체에 간편하게 같은 참조를 전달할 수 있는 장점이 있습니다.
 
 `SceneDelegate`에서 앱 시작 시점에 모든 인스턴스 관계를 생성하는 `setDependency`를 호출하여 의존성을 주입하고 레지스트리에 등록하도록 했습니다.
+
+<br>
+
+---
+
+<br>
+
+## 
