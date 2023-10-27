@@ -199,7 +199,7 @@ Vanilladin
 
 <br>
 
-**1. Factory 패턴 적용**
+### **1. Factory 패턴 적용**
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32">
 
@@ -211,7 +211,7 @@ Vanilladin
 
 <br><br>
 
-**2. Lazy Register 로직 구현**
+### **2. Lazy Register 로직 구현**
 
 그 다음 적용한 해결책은 Lazy하게 Register 하는 방법입니다. `Containable`을 채택한 제네릭을 전달해서 인스턴스가 필요한 시점에 자동으로 초기화하여 추가한다는 장점이 있습니다. 또한, 명시적으로 모든 인스턴스의 생성을 직접 작성해주지 않아도 되는 편리함이 있습니다.
 
@@ -229,7 +229,7 @@ Vanilladin
 
 <br><br>
 
-**3. 컴포지션 루트 방식 채택**
+### **3. 컴포지션 루트 방식 채택**
 
 최종적으로 선택한 해결책은 모든 객체와 의존성을 앱 시작지점에 구성하는 컴포지션 루트입니다.
 
