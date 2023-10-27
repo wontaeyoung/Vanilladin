@@ -300,6 +300,24 @@ AsyncManager를 만들고 병렬로 매핑을 수행하는 mapConcurrently 함�
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/0aa9445f-1685-4a91-a32c-7101f7935053">
 
-<br><br>
+<br>
 
 로직 변경 후 테스트를 통해 동일한 조건에서 약 3.6배 정도 응답 시간의 개선을 확인했습니다.
+
+<br>
+
+### 데이터 순서 문제 해결
+
+병렬 처리를 통해 성능은 개선했지만 이번에는 순서 문제가 발생했습니다.
+
+TaskGroup은 비동기 병렬 처리를 수행하기 때문에 요청 결과가 오는 순서대로 배열에 추가됩니다. 그래서 처음 요청한 작업 순서와 결과 순서가 일치하지 않습니다.
+
+검색어와 관련 없는 결과가 응답되는 것은 아니라서 큰 문제가 아닐수도 있지만, API 응답 순서가 검색어의 Accuracy를 기반으로 결정되기 때문에 이 순서를 보장해주는 것이 UX적으로 더 좋을 것이라고 생각했습니다.
+
+그래서 이를 해결하기 위해 요청 전의 index를 획득해서 저장해두고, 매핑 후 결과를 반환하기 전에 index 기준으로 정렬하는 과정을 추가하여 요청 전 순서와 일치하도록 했습니다.
+
+<br>
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d5fb00f7-dead-4242-988f-1264bf44061b">
+
+<br>
