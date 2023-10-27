@@ -63,11 +63,9 @@ final class DependencyContainer: DependencyContainerProtocol {
         let bookListViewController: BookListViewController = .init(
             searchBookViewModel: searchBookViewModel,
             bookListViewModel: bookListViewModel)
-        
         let searchResultContainerViewController: SearchResultContainerViewController = .init(
             searchHistoryViewController: searchHistoryViewController,
             bookListViewController: bookListViewController)
-        
         let searchBookViewController: SearchBookViewController = .init(
             searchBookViewModel: searchBookViewModel,
             searchHistoryViewModel: searchHistoryViewmodel,
@@ -80,6 +78,7 @@ final class DependencyContainer: DependencyContainerProtocol {
             
             // MARK: - Repository
             bookRepository,
+            searchKeywordRepository,
             
             // MARK: - DataSource
             bookDataSource,
