@@ -81,6 +81,8 @@
 
 <img width="2500" alt="Vanilladin_Architecture" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/f56fe649-4c74-481b-990a-7a3cf035d504">
 
+<br>
+
 **MVVM**
 - `ViewContoller`(View)는 UI 코드와 화면을 그리는 로직을 가지고 있습니다.
 - `ViewModel에서는` `ViewController에서` 발생하는 이벤트를 전달하고, UI에 반영할 데이터 가공을 담당합니다.
@@ -266,4 +268,38 @@ Vanilladin
 
 <br>
 
-## 
+## 이미지 동시 요청 순차처리 문제
+
+Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되어 있습니다. 클라이언트에서 사용하기 전에 BookDTO의 이미지 URL을 요청해서 UIImage로 변환한 Book Entity로 변환하는 과정이 필요했습니다.
+
+이 때 응답 단위인 10개의 Image URL을 요청하면 이미지 다운로드가 순차적으로 진행되는 문제가 발생했습니다.
+
+응답 결과가 이후 로직에 활용되는 경우에는 await으로 실행을 중단해야하지만, 각 이미지 요청은 서로에게 의존성이 없기 때문에 병렬로 작업하는 것이 더 적합하다고 판단하여 TaskGroup을 도입했습니다.
+
+<br>
+
+### 병렬 처리 도입 후 성능 개선
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d83be037-5656-4433-b856-f897a0b22d11">
+
+<br>
+
+AsyncManager를 만들고 병렬로 매핑을 수행하는 mapConcurrently 함수를 구현했습니다.
+
+외부에서 주입한 네트워크 요청 매핑 클로저를 작업으로 추가하고, 동시에 수행하여 완료되는 순서대로 결과에 담아 반환하도록 했습니다.
+
+<br>
+
+#### **이미지 직렬 요청**
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/0b01c21c-d86c-4c2a-a5c6-3fe733c30f22">
+
+<br>
+
+#### **이미지 병렬 요청**
+
+<img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/0aa9445f-1685-4a91-a32c-7101f7935053">
+
+<br><br>
+
+로직 변경 후 테스트를 통해 동일한 조건에서 약 3.6배 정도 응답 시간의 개선을 확인했습니다.
