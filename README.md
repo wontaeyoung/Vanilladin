@@ -302,3 +302,11 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d5fb00f7-dead-4242-988f-1264bf44061b">
 
 <br>
+
+## Keyword Cell 버튼 탭 불가 문제
+
+<img width="200" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/95eef726-436f-4c68-b4ea-93fe99b80085">
+
+<br>
+
+위의 화면에서 X 버튼을 눌러도 삭제가 되지 않는 문제가 발생했습니다.
