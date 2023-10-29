@@ -27,6 +27,7 @@
 
 - UIKit (iOS 14.0)
 - MVVM + Coordinator
+- Dependency Container 의존성 관리
 - async-await 비동기 처리
 - TaskGroup 병렬 처리
 - 무한스크롤
