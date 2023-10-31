@@ -310,3 +310,18 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 <br>
 
 위의 화면에서 X 버튼을 눌러도 삭제가 되지 않는 문제가 발생했습니다.
+
+콘솔에서 확인해보니 호출되는 로직 문제가 아니라, 탭 인터랙션 자체가 발생하지 않는 상황이었습니다.
+
+그래서 예상되는 사항들을 모두 확인해봤습니다.
+
+- `Button`의 `Target` 설정
+- `Button`의 `interaction enable` 여부
+- `Button` 사이즈
+- `TableView` `allowsSelection`
+- 오버레이 되어서 인터랙션을 막고 있는 뷰가 존재하는지
+    - <img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/433f02e0-217f-4b26-b132-d59d9323a6db">
+
+
+
+
