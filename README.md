@@ -301,7 +301,8 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d5fb00f7-dead-4242-988f-1264bf44061b">
 
-<br>
+<br><br>
+
 
 ## Keyword Cell 버튼 탭 불가 문제
 
@@ -322,6 +323,8 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 - 오버레이 되어서 인터랙션을 막고 있는 뷰가 존재하는지
     - <img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/433f02e0-217f-4b26-b132-d59d9323a6db">
 
+<br>
+
 ### 원인 확인
 
 삭제 버튼의 View 계층은 아래와 같습니다.
@@ -329,8 +332,12 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 - contentView: Cell 전체
     - paddingView: 하위 UI에 대해 Cell 양 끝에서 padding을 주기 위한 컨테이너 View
         - deleteButton
-     
+
+<br>
+
 이때 paddingView의 제약 조건은 아래와 같이 적용되어있습니다.
+
+<br>
 
 ```swift
 override func setConstraint() {
@@ -340,14 +347,35 @@ override func setConstraint() {
         paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
         
         ...
-    }
+}
 ```
+
+<br>
 
 setPaddingAutoLayout은 제약조건을 간편하게 설정하기 위한 커스텀 메서드로, padding 파라미터에 전달한 값을 superView를 기준으로 모든 방향에 주입합니다.
 
+<br>
+
 <img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/3a30ad54-ae48-48df-b7e7-163a5a4c7869">
+
+<br>
 
 backgroundColor를 통해서 문제를 확인할 수 있었는데, 위 이미지에서 파란색으로 그어져있는 선이 paddingView의 영역입니다. 상하에도 20씩 padding이 적용되고 나머지 영역을 height로 가져가서 선에 가깝게 그려진 것입니다.
 
 UI에서는 정상적으로 deleteButton이 그려졌지만, superView인 paddingView가 정상적으로 그려져있더라도 인터랙션할 수 없는 범위로 인식된 것입니다.
 
+<br>
+
+### 문제 해결
+
+<br>
+
+<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/ce914dbc-7c62-46e5-9f98-90f5ae5d34f4">
+
+<br>
+
+`paddingView.setPaddingAutoLayout(to: contentView, horizontal: 20)`
+
+위와 같이 커스텀 horizontal과 vertical을 분리해서 적용할 수 있도록 커스텀 함수를 수정했습니다.
+
+전체가 아닌 좌우에만 패딩을 적용하니 버튼이 정상적으로 인터랙션되는 점을 확인했고, UI와 상관없이 SuperView의 인터랙션 범위가 Child에 영향을 미치는 점을 학습했습니다.
