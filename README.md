@@ -1,3 +1,19 @@
+# Table of Content
+
+- [Information](#information)
+- [Introduce](#introduce)
+- [Architecture](#architecture)
+- [Directory](#directory)
+- [Trouble Shoot과 고민 지점](#trouble-shoot과-고민-지점)
+	- [싱글톤으로 생성하는 기준?](#싱글톤으로-생성하는-기준)
+	- [의존성 컨테이너의 인스턴스 고유 식별 문제](#의존성-컨테이너의-인스턴스-고유-식별-문제)
+	- [레지스트리 인스턴스 미등록 예외처리 문제](#레지스트리-인스턴스-미등록-예외처리-문제)
+	- [이미지 동시 요청 순차처리 문제](#이미지-동시-요청-순차처리-문제)
+	- [Keyword Cell 버튼 탭 불가 문제](#keyword-cell-버튼-탭-불가-문제)
+	- [검색 버튼 클릭 vs 최근 검색어 터치 포커스 차이](#검색-버튼-클릭-vs-최근-검색어-터치-포커스-차이)
+
+<br><br>
+
 # Information
 보안을 위해 API_Key가 제외되어있습니다. 빌드를 원하시는 분은 아래로 Plist를 요청해주세요!
 
@@ -155,13 +171,19 @@ Vanilladin
 
 # Trouble Shoot과 고민 지점
 
-## Singleton으로 생성하는 기준?
+## 싱글톤으로 생성하는 기준
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
 단일 책임과 기능을 가진 클래스를 사용할 때, 필요한 시점에 인스턴스를 휘발적으로 생성해서 사용하거나 싱글톤으로 단일 인스턴스를 메모리에 올려두고 사용할 수 있습니다.
 
 두 방법 중에 하나를 선택하는 명확한 기준이 필요한데, `DependencyContainer`나 `CacheManager`는 등록 작업을 수행한 스코프가 종료되어도 공유 데이터가 앱 생명주기동안 유지되어야 하고, 해당 데이터를 필요로하는 다른 객체가 불특정한 시점에 조회하더라도 이전에 등록된 데이터를 사용할 수 있어야합니다.
 
 이를 기준으로 다른 객체에서 접근하는 공유 데이터가 있다면 싱글톤으로 구현하고, 단순 기능 책임만 가진 클래스는 휘발적으로 인스턴스를 생성해서 작업이 종료되면 참조 카운트에 의해 자동으로 해제되도록 했습니다.
+
+</details>
 
 <br>
 
@@ -170,6 +192,10 @@ Vanilladin
 <br>
 
 ## 의존성 컨테이너의 인스턴스 고유 식별 문제
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
 `DependencyContainer`는 레지스트리를 통해 의존성을 관리합니다. 인스턴스 획득 시 이미 등록된 의존성을 체크해서 재사용할 수 있도록 합니다.
 
@@ -193,13 +219,19 @@ Vanilladin
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/72505233-575f-4a69-a1d0-c6027bceb2c2">
 
-<br><br>
+</details>
+
+<br>
 
 ---
 
 <br>
 
 ## 레지스트리 인스턴스 미등록 예외처리 문제
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
 `DependencyContainer`에서 의존성을 획득할 때, 등록되어있지 않은 경우에 대한 예외처리가 필요합니다.
 
@@ -243,6 +275,8 @@ Vanilladin
 
 `SceneDelegate`에서 앱 시작 시점에 모든 인스턴스 관계를 생성하는 `setDependency`를 호출하여 의존성을 주입하고 레지스트리에 등록하도록 했습니다.
 
+</details>
+
 <br>
 
 ---
@@ -250,6 +284,10 @@ Vanilladin
 <br>
 
 ## 이미지 동시 요청 순차처리 문제
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
 Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되어 있습니다. 클라이언트에서 사용하기 전에 `BookDTO`의 이미지 URL을 요청해서 `UIImage`로 변환한 `Book Entity`로 변환하는 과정이 필요했습니다.
 
@@ -301,10 +339,19 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/d5fb00f7-dead-4242-988f-1264bf44061b">
 
-<br><br>
+</details>
 
+<br>
+
+---
+
+<br>
 
 ## Keyword Cell 버튼 탭 불가 문제
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
 
 <img width="200" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/95eef726-436f-4c68-b4ea-93fe99b80085">
 
@@ -341,7 +388,6 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 
 ```swift
 override func setConstraint() {
-
         ...
         
         paddingView.setPaddingAutoLayout(to: contentView, padding: 20)
@@ -379,3 +425,113 @@ UI에서는 정상적으로 deleteButton이 그려졌지만, superView인 paddin
 위와 같이 커스텀 horizontal과 vertical을 분리해서 적용할 수 있도록 커스텀 함수를 수정했습니다.
 
 전체가 아닌 좌우에만 패딩을 적용하니 버튼이 정상적으로 인터랙션되는 점을 확인했고, UI와 상관없이 SuperView의 인터랙션 범위가 Child에 영향을 미치는 점을 학습했습니다.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+## 검색 버튼 클릭 vs 최근 검색어 터치 포커스 차이
+
+<details>
+<summary>접기/펼치기</summary>
+<br>
+
+|검색 버튼 클릭|최근 검색어 클릭|
+|-|-|
+|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/e1c198ac-7a46-4442-9fa9-6a50950a50c9">|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/6c29a676-0e34-428a-b5e8-1dbb8145d88d">|
+
+<br>
+
+위 이미지는 검색 기능을 호출할 수 있는 두 가지 UX입니다. 왼쪽은 검색어를 직접 입력하고 검색 버튼을 클릭하는 방식이고, 오른쪽은 최근 검색어 중 하나를 탭해서 해당 검색어로 검색합니다.
+
+<br><br>
+
+### 검색 로직
+
+기본 검색 로직은 아래와 같습니다.
+
+<br>
+
+1. SearchBar의 텍스트를 KeywordHistory에 저장한다.
+2. 텍스트를 쿼리에 담아서 네트워크 콜을 요청한다.
+3. 결과를 응답받으면 Datasource를 업데이트한다.
+4. KeywordHistory View를 BookList View로 전환한다.
+
+<br>
+
+```swift
+// MARK: - Delegate
+extension SearchBookViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // 검색 키워드 저장
+        guard let searchText: String = searchBar.text else { return }
+        searchHistoryViewModel.saveKeyword(searchText)
+        
+        // 검색 내용으로 쿼리 요청 -> 책 리스트 뷰로 전환
+        Task {
+            await searchBookViewModel.fetchBooks(keyword: searchText)
+            searchResultContainerViewController.showBookList()
+        }
+    }
+	// 검색바가 포커스되면 최근 검색어 뷰로 전환
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchResultContainerViewController.showSearchHistory()
+    }
+}
+```
+
+이 때 검색바를 다시 탭하면 `searchBarTextDidBeginEditing` 가 호출되면서 다시 최근 검색어 뷰로 전환됩니다.
+
+<br><br>
+
+### 최근 검색어를 통한 검색의 문제
+
+```swift
+// MARK: - Interface
+extension SearchBookViewController: SearchHistoryViewDelegate {
+    func submitKeyword(_ keyword: String) {
+        guard let searchBar = navigationItem.searchController?.searchBar else { return }
+        searchBar.text = keyword
+
+        searchBarSearchButtonClicked(searchBar)
+    }
+}
+```
+
+<br>
+
+최근 검색어 중에 하나를 탭하면 `submitKeyword` 를 호출하여 검색을 수행합니다.
+
+선택된 검색어를 검색바에 반영하는 것 외에는 기본 검색 로직과 동일하기 때문에, 내부에서 `searchBarSearchButtonClicked` 를 재사용합니다.
+
+이 때 검색은 정상적으로 수행되지만, 기존 검색과 차이가 발생합니다. 검색 키워드를 통해서 검색을 수행하면, 위 검색 이미지의 오른쪽과 같이 검색바의 포커스가 풀리지 않습니다.
+
+검색바의 포커스가 풀리지 않으니, 다시 검색바를 탭해도 `searchBarTextDidBeginEditing` 가 호출되지 않아서 최근 검색어 Table을 볼 수 없습니다.
+
+원인을 확인해보니 `SearchController`에서 검색 버튼을 클릭하면 `searchBarSearchButtonClicked` 이 호출되면서, 내부적으로 포커스가 해제되는 로직이 돌아가고 있었습니다. 그래서 같은 함수를 호출했지만 동일하게 작동하지 않았던 것이었습니다.
+
+<br><br>
+
+### 문제 해결
+
+SearchBar 문서를 확인해보니 포커스를 해제하려면 `resignFirstResponder` 를 사용할 수 있다고 합니다.
+
+submitKeyowrd 내부에 위 함수를 추가하고나니, 최근 검색어를 통해서 검색을 수행하도 기존 검색과 동일하게 작동하는 것을 확인할 수 있었습니다.
+
+<br>
+
+<img width="300" alt="image" src="https://github.com/wontaeyoung/wontaeyoung/assets/45925685/45412eba-1521-4c73-9f91-d90ee5120f36">
+
+<br>
+
+추가적으로 resignFirstResponder라는 이름이 기능 설명에 직관적이지 않은 것 같아서 찾아봤는데, FirstResponder는 현재 사용자의 입력을 받을 수 있는 상태인 뷰를 의미한다고 합니다.
+
+즉, 특정 텍스트필드가 포커스를 받으면 해당 텍스트필드는 FirstResponder가 되는 것입니다.
+
+FirstResponder를 resign한다 == 포커스를 해제한다 라는 의미로 이해할 수 있습니다.
+
+</details>
