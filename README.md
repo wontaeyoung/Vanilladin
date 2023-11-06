@@ -1,16 +1,20 @@
 # Table of Content
 
-- [Information](#information)
-- [Introduce](#introduce)
-- [Architecture](#architecture)
-- [Directory](#directory)
-- [Trouble Shoot과 고민 지점](#trouble-shoot과-고민-지점)
-	- [싱글톤으로 생성하는 기준?](#싱글톤으로-생성하는-기준)
-	- [의존성 컨테이너의 인스턴스 고유 식별 문제](#의존성-컨테이너의-인스턴스-고유-식별-문제)
-	- [레지스트리 인스턴스 미등록 예외처리 문제](#레지스트리-인스턴스-미등록-예외처리-문제)
-	- [이미지 동시 요청 순차처리 문제](#이미지-동시-요청-순차처리-문제)
-	- [Keyword Cell 버튼 탭 불가 문제](#keyword-cell-버튼-탭-불가-문제)
-	- [검색 버튼 클릭 vs 최근 검색어 터치 포커스 차이](#검색-버튼-클릭-vs-최근-검색어-터치-포커스-차이)
+[Information](#information)
+
+[Introduce](#introduce)
+
+[Architecture](#architecture)
+
+[Directory](#directory)
+
+[Trouble Shoot과 고민 지점](#trouble-shoot과-고민-지점)
+- [싱글톤으로 생성하는 기준?](#싱글톤으로-생성하는-기준)
+- [의존성 컨테이너의 인스턴스 고유 식별 문제](#의존성-컨테이너의-인스턴스-고유-식별-문제)
+- [레지스트리 인스턴스 미등록 예외처리 문제](#레지스트리-인스턴스-미등록-예외처리-문제)
+- [이미지 동시 요청 순차처리 문제](#이미지-동시-요청-순차처리-문제)
+- [Keyword Cell 버튼 탭 불가 문제](#keyword-cell-버튼-탭-불가-문제)
+- [검색 버튼 클릭 vs 최근 검색어 터치 포커스 차이](#검색-버튼-클릭-vs-최근-검색어-터치-포커스-차이)
 
 <br><br>
 
