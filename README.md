@@ -23,6 +23,22 @@
 
 <a href="mailto:hexter1994@naver.com">hexter1994@naver.com</a>
 
+<br>
+
+#### 👤 인원
+- 1인
+
+<br>
+
+#### 🗓️ 작업 기간
+- 2023.08 ~ 2023.10 (7주)
+
+<br>
+
+#### 🖥️ 작업 환경
+- iOS 14 +
+- Xcode 15.0.1
+
 <br><br>
 
 # Introduce
@@ -31,39 +47,38 @@
 
 라이브러리를 배제하고 의도적으로 바닐라 기능만 사용하여 구현했습니다.
 
-데이터 업데이트 시 델리게이트 패턴을 통해 UI가 업데이트됩니다.
+<br>
 
-프로젝트 계층은 크게 Data Layer와 Presenter Layer로 구분되어 있고, Presenter Layer는 MVVM 패턴과 Coordinator 패턴을 적용했습니다.
+### Network
+- `Network Provider`가 사용하는 `DTO`와 클라이언트에서 사용하는 `Entity` 모델을 매핑해서 사용
+- `Host`, `Scheme`, `Endpoint`, `Parameter를` 조합하여 추상화된 네트워크 요청 모델 구현
+- `NSCache를` 이용한 이미지 캐싱을 구현하여 이미지 요청 횟수 감소
+- 네트워크 병렬처리 로직을 구현하여 응답 소요시간 약 3.6배 감소
 
 <br>
 
-### 작업 기간
-
-2023.08 ~ 2023.10 (7주)
-
-<br>
-
-### 키워드
-
-- UIKit (iOS 14.0)
-- MVVM + Coordinator
-- Dependency Container 의존성 관리
-- async-await 비동기 처리
-- TaskGroup 병렬 처리
-- 무한스크롤
-- UserDefault
-- NSCache 이미지
+### Data & Presenter
+- `UIKit`의 바닐라 API + 코드베이스 오토레이아웃으로 UI 구현
+- 커스텀 `Delegate를` 사용해서 데이터 변경에 반응하여 `ViewController` 업데이트
+- `TableView`, `CollectionView에서` 무한스크롤을 구현하여 API 요청 횟수 최적화
 
 <br>
 
-### 주요 기능
+### Architecture
+- `Data`, `Presentaion`, `Utility` 레이어를 분리하여 프로젝트 구조화
+- `Coordinator` 패턴으로 네비게이션 및 `Alert` 로직 처리
+- `Dependency Container`를 직접 구현하여 DI 처리 및 의존성 관리 중앙화
+
+<br><br>
+
+# 주요 기능 화면
 
 |검색 화면|List <-> Grid 전환|무한스크롤|
 |-|-|-|
 |<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/c8334f34-7362-4ac7-ad84-bd882f6fb01f" width="200">|<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/83eae6ba-75f2-4a80-8086-07be0ed43857" width="200">|<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/52eac1d6-e237-4c84-a57a-d428950dcde4" width="200">|
 
-- 검색 화면: 검색어를 입력하면 API Endpoint를 생성해서 알라딘 API를 호출하고, 응답 데이터를 화면에 표시합니다.
-- List <-> Grid 전환: UISegmentedControl를 사용하여 목록 화면 스타일을 List / Grid로 전환합니다.
+- 검색 화면: 검색어를 입력하면 `API Endpoint`를 생성해서 알라딘 API를 호출하고, 응답 데이터를 화면에 표시합니다.
+- List <-> Grid 전환: `UISegmentedControl`를 사용하여 목록 화면 스타일을 List / Grid로 전환합니다.
 - 무한스크롤: 스크롤 최하단 1/3 지점을 넘어가면 다음 페이지의 데이터를 요청하여 무한스크롤로 동작합니다.
 
 <br>
@@ -72,9 +87,9 @@
 |-|-|-|
 |<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/304764b4-b15e-4205-ad67-3df334b0e1c0" width="200">|<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/9e95036d-6404-4a39-b506-ae8f41d09fe7" width="200">|<img src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/34ec8214-562f-4c3f-a046-abdaa78df98e" width="200">|
 
-- 상세화면 이동: Cell을 선택하면 Book Detail 정보를 서버에 요청하고, 응답 결과를 포함하는 상세 화면을 Coordinator가 표시합니다.
+- 상세화면 이동: `Cell`을 선택하면 `Book Detail` 정보를 서버에 요청하고, 응답 결과를 포함하는 상세 화면을 `Coordinator`가 표시합니다.
 - 에러 사용자 피드백: ISBN 데이터가 없어서 상세 화면으로 이동할 수 없는 경우, 에러를 방출하여 사용자에게 피드백 팝업을 표시합니다.
-- 최근 검색어 저장: 최근 검색어를 최대 5개까지 저장합니다. UserDefault를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.
+- 최근 검색어 저장: 최근 검색어를 최대 5개까지 저장합니다. `UserDefault`를 사용하여 로컬에 저장하고 앱이 종료되도 기록이 유지됩니다.
 
 <br><br>
 
