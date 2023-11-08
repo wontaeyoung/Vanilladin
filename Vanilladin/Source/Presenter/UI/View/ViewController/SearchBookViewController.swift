@@ -7,6 +7,16 @@ final class SearchBookViewController: BaseViewController {
     private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
+    private let searchBar: UISearchBar = {
+        let searchBar: UISearchBar = .init()
+        searchBar.placeholder = "Search Book"
+        searchBar.autocapitalizationType = .none
+        searchBar.autocorrectionType = .no
+        searchBar.spellCheckingType = .no
+        
+        return searchBar
+    }()
+    
     private let searchGuideImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
