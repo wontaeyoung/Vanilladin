@@ -1,10 +1,10 @@
 final class SearchBookViewModel: ViewModelProtocol {
-    enum RequestType {
+    private enum RequestType {
         case new(keyword: String)
         case more
     }
     
-    enum SetDelegateType {
+    private enum SetDelegateType {
         case searchLoadingIndicator
         case scrollLoadingIndicator
     }
