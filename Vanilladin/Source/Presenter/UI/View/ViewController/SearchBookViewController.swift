@@ -7,6 +7,9 @@ final class SearchBookViewController: BaseViewController {
     private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
+    private var searchGuideView: SearchGuideView = .init()
+    var searchSubView: UIView = .init()
+    
     private let searchBar: UISearchBar = {
         let searchBar: UISearchBar = .init()
         searchBar.placeholder = "Search Book"
@@ -38,27 +41,13 @@ final class SearchBookViewController: BaseViewController {
     }
     
     override func setHierarchy() {
-        view.addSubviews(searchGuideImageView, searchGuideText)
+        view.addSubviews(searchGuideView, searchSubView)
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideImageView, searchGuideText)
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideView, searchSubView)
         
-        NSLayoutConstraint.activate([
-            searchGuideImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchGuideImageView.centerYAnchor.constraint(
-                equalTo: view.centerYAnchor,
-                constant: -50),
-            searchGuideImageView.widthAnchor.constraint(equalToConstant: 200),
-            searchGuideImageView.heightAnchor.constraint(equalToConstant: 200)
-        ])
-        
-        NSLayoutConstraint.activate([
-            searchGuideText.topAnchor.constraint(
-                equalTo: searchGuideImageView.bottomAnchor,
-                constant: 50),
-            searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        searchGuideView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .all)
     }
 }
 
