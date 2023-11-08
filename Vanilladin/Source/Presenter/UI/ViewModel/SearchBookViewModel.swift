@@ -8,6 +8,11 @@ final class SearchBookViewModel: ViewModelProtocol {
         case searchLoadingIndicator
         case scrollLoadingIndicator
     }
+    
+    private enum SearchViewType {
+        case keyword
+        case result
+    }
 
     // MARK: - Property
     private let dataSource: BookDataSource
