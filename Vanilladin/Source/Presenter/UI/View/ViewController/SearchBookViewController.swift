@@ -50,22 +50,8 @@ final class SearchBookViewController: BaseViewController {
     
     // MARK: - Method
     override func setAttribute() {
-        navigationItem.searchController = {
-            // TODO: 작업할거
-            /// Coordinator에서 show 할 때 ViewModel이랑 ViewController 만들도록 변경
-            /// A Controller에서 검색바 터치와 검색 실행을 감지해서 ViewModel -> Coordinator 순으로 C컨트롤러, D컨트롤러 주입하기 요청 (Coordinator한테 searchController는 전달해줘야할것 같음)
-            let searchController: UISearchController = .init(searchResultsController: searchResultContainerViewController)
-            
-            let searchBar: UISearchBar = searchController.searchBar
-            searchBar.placeholder = "Search Book"
-            searchBar.autocapitalizationType = .none
-            searchBar.autocorrectionType = .no
-            searchBar.spellCheckingType = .no
-            searchBar.delegate = self
-            
-            return searchController
-        }()
-        
+        navigationItem.titleView = searchBar
+        searchBar.delegate = self
         searchResultContainerViewController.setViewControllerDelegate(self)
     }
     
@@ -97,10 +83,6 @@ final class SearchBookViewController: BaseViewController {
 // MARK: - Delegate
 extension SearchBookViewController: SearchHistoryViewDelegate {
     func submitKeyword(_ keyword: String) {
-        guard let searchBar = navigationItem.searchController?.searchBar else {
-            return
-        }
-        
         searchBar.text = keyword
         searchBar.resignFirstResponder()
         
