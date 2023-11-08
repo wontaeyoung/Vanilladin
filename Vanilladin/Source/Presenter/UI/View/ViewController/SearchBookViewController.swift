@@ -17,24 +17,6 @@ final class SearchBookViewController: BaseViewController {
         return searchBar
     }()
     
-    private let searchGuideImageView: UIImageView = {
-        let imageView: UIImageView = .init()
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: UIConstant.SFSymbol.booksVerticalCircle)?
-            .colored(with: .black)
-        
-        return imageView
-    }()
-    
-    private lazy var searchGuideText: UILabel = {
-        let label: UILabel = .init()
-        label.text = "찾고싶은 책의 이름을 검색해주세요!"
-        label.textColor = .black
-        
-        return label
-    }()
-    
     // MARK: - Initializer
     init(
         searchBookViewModel: SearchBookViewModel,
