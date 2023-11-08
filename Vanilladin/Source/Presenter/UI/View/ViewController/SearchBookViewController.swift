@@ -10,7 +10,7 @@ final class SearchBookViewController: BaseViewController {
     private let searchGuideImageView: UIImageView = {
         let imageView: UIImageView = .init()
         imageView.contentMode = .scaleAspectFit
-//        imageView.clipsToBounds = true
+        imageView.clipsToBounds = true
         imageView.image = UIImage(systemName: UIConstant.SFSymbol.booksVerticalCircle)?
             .colored(with: .black)
         
