@@ -78,13 +78,17 @@ final class SearchBookViewController: BaseViewController {
         
         NSLayoutConstraint.activate([
             searchGuideImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchGuideImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            searchGuideImageView.centerYAnchor.constraint(
+                equalTo: view.centerYAnchor,
+                constant: -50),
             searchGuideImageView.widthAnchor.constraint(equalToConstant: 200),
             searchGuideImageView.heightAnchor.constraint(equalToConstant: 200)
         ])
         
         NSLayoutConstraint.activate([
-            searchGuideText.topAnchor.constraint(equalTo: searchGuideImageView.bottomAnchor, constant: 50),
+            searchGuideText.topAnchor.constraint(
+                equalTo: searchGuideImageView.bottomAnchor,
+                constant: 50),
             searchGuideText.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
