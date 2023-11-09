@@ -4,6 +4,7 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Property
     private let searchBookViewModel: SearchBookViewModel
     private let searchHistoryViewModel: SearchHistoryViewModel
+    private var hasSearchGuideShown: Bool = false
     
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
@@ -74,15 +75,27 @@ extension SearchBookViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else {
             return
         }
-        
-        // 검색어 업데이트 -> 기존 Book 배열 초기화 -> 검색 페이지 초기화 -> Book 데이터 요청 -> Book List 화면으로 전환 -> 최근 검색어 저장
         searchBar.resignFirstResponder()
         searchBookAndShowResult(searchText: searchText)
+    }
+
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        if hasSearchGuideShown {
+            searchResultNavigationController.popViewController(animated: false)
+        } else {
+            hideSearchGuide()
+            searchBookViewModel.showSearchView(type: .keyword(self))
+        }
     }
 }
 
 // MARK: - Private
 private extension SearchBookViewController {
+    func hideSearchGuide() {
+        hasSearchGuideShown = true
+        searchGuideView.removeFromSuperview()
+    }
+    
     func searchBookAndShowResult(searchText: String) {
         Task {
             await searchBookViewModel.requestBooks(type: .new(keyword: searchText))
