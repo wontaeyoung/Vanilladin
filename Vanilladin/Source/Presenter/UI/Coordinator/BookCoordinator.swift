@@ -25,7 +25,14 @@ final class BookCoordinator: CoordinatorProtocol {
 extension BookCoordinator {
     @MainActor func showSearchBook() {
         do {
-            let searchBookViewController: SearchBookViewController = try DependencyContainer.shared.resolve()
+            let container: DependencyContainer = .shared
+            
+            let searchViewModel: SearchBookViewModel = try container.resolve()
+            let historyViewModel: SearchHistoryViewModel = try container.resolve()
+            let searchBookViewController: SearchBookViewController = .init(
+                searchBookViewModel: searchViewModel,
+                searchHistoryViewModel: historyViewModel)
+            searchViewModel.coordinator = self
             
             push(searchBookViewController)
         } catch {

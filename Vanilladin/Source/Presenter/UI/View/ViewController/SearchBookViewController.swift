@@ -8,6 +8,13 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
     
+    var searchResultNavigationController: UINavigationController = {
+        let navigationController: UINavigationController = .init()
+        navigationController.view.backgroundColor = .white
+        
+        return navigationController
+    }()
+    
     private let searchBar: UISearchBar = {
         let searchBar: UISearchBar = .init()
         searchBar.placeholder = "ex) Vanilladin"
@@ -33,16 +40,22 @@ final class SearchBookViewController: BaseViewController {
     override func setAttribute() {
         navigationItem.titleView = searchBar
         searchBar.delegate = self
+        searchResultNavigationController.navigationBar.isHidden = true
     }
     
     override func setHierarchy() {
-        view.addSubviews(searchGuideView, searchSubView)
+        view.addSubview(searchResultNavigationController.view)
+        searchResultNavigationController.view.addSubview(searchGuideView)
     }
     
     override func setConstraint() {
-        view.setTranslatesAutoresizingMaskIntoConstraintsOff(searchGuideView, searchSubView)
+        view.setTranslatesAutoresizingMaskIntoConstraintsOff(
+            searchResultNavigationController.view,
+            searchGuideView)
+
+        searchResultNavigationController.view.setAutoLayoutAllEqualToSafeArea(to: view)
         
-        searchGuideView.setAutoLayoutAllEqualToMarginGuide(to: view, option: .all)
+        searchGuideView.setAutoLayoutAllEqual(to: searchResultNavigationController.view)
     }
 }
 
