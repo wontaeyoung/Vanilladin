@@ -17,13 +17,13 @@ final class BookCoordinator: CoordinatorProtocol {
     
     // MARK: - Method
     func start() {
-        presentBookListViewController()
+        showSearchBook()
     }
 }
 
-// MARK: 네비게이션 + 에러 핸들링
-private extension BookCoordinator {
-    func presentBookListViewController() {
+// MARK: 네비게이션
+extension BookCoordinator {
+    @MainActor func showSearchBook() {
         do {
             let searchBookViewController: SearchBookViewController = try DependencyContainer.shared.resolve()
             
