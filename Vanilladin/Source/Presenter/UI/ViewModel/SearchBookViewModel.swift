@@ -16,7 +16,7 @@ final class SearchBookViewModel: ViewModelProtocol {
 
     // MARK: - Property
     private let dataSource: BookDataSource
-    private weak var coordinator: BookCoordinator?
+    weak var coordinator: BookCoordinator?
     private weak var searchLoadingDelegate: LoadingIndicatorDelegate?
     private weak var scrollLoadingDelegate: LoadingIndicatorDelegate?
     private(set) var isLoading: Bool

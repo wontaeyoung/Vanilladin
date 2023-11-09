@@ -7,7 +7,7 @@ final class BookListViewModel: ViewModelProtocol {
     }
     
     // MARK: - Property
-    private weak var coordinator: BookCoordinator?
+    weak var coordinator: BookCoordinator?
     private let dataSource: BookDataSource
     private(set) var listType: ListType
     
