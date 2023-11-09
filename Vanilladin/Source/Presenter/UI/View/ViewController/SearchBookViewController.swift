@@ -4,7 +4,6 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Property
     private let searchBookViewModel: SearchBookViewModel
     private let searchHistoryViewModel: SearchHistoryViewModel
-    private let searchResultContainerViewController: SearchResultContainerViewController
     
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
@@ -23,12 +22,10 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - Initializer
     init(
         searchBookViewModel: SearchBookViewModel,
-        searchHistoryViewModel: SearchHistoryViewModel,
-        searchResultContainerViewController: SearchResultContainerViewController
+        searchHistoryViewModel: SearchHistoryViewModel
     ) {
         self.searchBookViewModel = searchBookViewModel
         self.searchHistoryViewModel = searchHistoryViewModel
-        self.searchResultContainerViewController = searchResultContainerViewController
         
         super.init()
     }
@@ -37,7 +34,6 @@ final class SearchBookViewController: BaseViewController {
     override func setAttribute() {
         navigationItem.titleView = searchBar
         searchBar.delegate = self
-        searchResultContainerViewController.setViewControllerDelegate(self)
     }
     
     override func setHierarchy() {
@@ -70,12 +66,8 @@ extension SearchBookViewController: UISearchBarDelegate {
         // 검색어 업데이트 -> 기존 Book 배열 초기화 -> 검색 페이지 초기화 -> Book 데이터 요청 -> Book List 화면으로 전환 -> 최근 검색어 저장
         Task {
             await searchBookViewModel.requestBooks(type: .new(keyword: searchText))
-            searchResultContainerViewController.showBookList()
+            searchBookViewModel.showSearchView(type: .result(searchResultNavigationController))
             searchHistoryViewModel.saveKeyword(searchText)
         }
-    }
-
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchResultContainerViewController.showSearchHistory()
     }
 }

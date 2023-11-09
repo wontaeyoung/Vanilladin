@@ -1,3 +1,7 @@
+/*
+
+ViewController 계층 구조 변경으로 폐기
+ 
 import UIKit
 
 final class SearchResultContainerViewController: BaseViewController {
@@ -59,3 +63,4 @@ extension SearchResultContainerViewController {
         searchHistoryViewController.setDelegate(delegate)
     }
 }
+*/
