@@ -52,21 +52,6 @@ final class DependencyContainer: DependencyContainerProtocol {
         let searchBookViewModel: SearchBookViewModel = .init(dataSource: bookDataSource)
         let bookDetailViewModel: BookDetailViewModel = .init(bookRepository: bookRepository)
         
-        // MARK: - ViewController
-        let searchHistoryViewController: SearchHistoryViewController = .init(
-            searchBookViewModel: searchBookViewModel,
-            searchHistoryViewModel: searchHistoryViewmodel)
-        let bookListViewController: BookListViewController = .init(
-            searchBookViewModel: searchBookViewModel,
-            bookListViewModel: bookListViewModel)
-        let searchResultContainerViewController: SearchResultContainerViewController = .init(
-            searchHistoryViewController: searchHistoryViewController,
-            bookListViewController: bookListViewController)
-        let searchBookViewController: SearchBookViewController = .init(
-            searchBookViewModel: searchBookViewModel,
-            searchHistoryViewModel: searchHistoryViewmodel,
-            searchResultContainerViewController: searchResultContainerViewController)
-        
         let modules: [DependencyContainable] = [
             // MARK: - Netowrk
             httpClient,
@@ -84,13 +69,7 @@ final class DependencyContainer: DependencyContainerProtocol {
             bookListViewModel,
             searchHistoryViewmodel,
             searchBookViewModel,
-            bookDetailViewModel,
-            
-            // MARK: - ViewController
-            bookListViewController,
-            searchHistoryViewController,
-            searchResultContainerViewController,
-            searchBookViewController
+            bookDetailViewModel
         ]
         
         modules.forEach { module in

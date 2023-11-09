@@ -7,7 +7,6 @@ final class SearchBookViewController: BaseViewController {
     
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
-    var searchSubView: UIView = .init()
     
     private let searchBar: UISearchBar = {
         let searchBar: UISearchBar = .init()
