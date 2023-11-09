@@ -11,7 +11,7 @@ final class SearchBookViewController: BaseViewController {
     
     private let searchBar: UISearchBar = {
         let searchBar: UISearchBar = .init()
-        searchBar.placeholder = "Search Book"
+        searchBar.placeholder = "ex) Vanilladin"
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.spellCheckingType = .no
