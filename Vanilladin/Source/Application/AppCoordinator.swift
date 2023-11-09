@@ -17,7 +17,7 @@ final class AppCoordinator: CoordinatorProtocol {
     
     // MARK: - Method
     func start() {
-        pushBookListFlow()
+        showBookFlow()
     }
 }
 
@@ -28,7 +28,7 @@ extension AppCoordinator: CoordinatorDelegate {
 }
 
 private extension AppCoordinator {
-    @MainActor func pushBookListFlow() {
+    @MainActor func showBookFlow() {
         self.emptyOut()
         
         let bookCoordinator: BookCoordinator = .init(self.navigationController)
