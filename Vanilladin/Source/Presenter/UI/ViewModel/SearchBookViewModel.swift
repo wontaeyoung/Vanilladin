@@ -1,3 +1,4 @@
+import UIKit
 final class SearchBookViewModel: ViewModelProtocol {
     enum RequestType {
         case new(keyword: String)
@@ -10,8 +11,8 @@ final class SearchBookViewModel: ViewModelProtocol {
     }
     
     enum SearchViewType {
-        case keyword
-        case result
+        case keyword(SearchBookViewController)
+        case result(UINavigationController)
     }
 
     // MARK: - Property
@@ -66,6 +67,17 @@ final class SearchBookViewModel: ViewModelProtocol {
             
         case .scrollLoadingIndicator:
             self.scrollLoadingDelegate = delegate
+        }
+    }
+    
+    func showSearchView(
+        type: SearchViewType
+    ) {
+        switch type {
+        case let .keyword(searchController):
+            coordinator?.showSearchHistory(to: searchController)
+        case let .result(navigationController):
+            coordinator?.showResult(searchResultNavigationController: navigationController)
         }
     }
 }
