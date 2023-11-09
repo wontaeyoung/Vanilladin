@@ -47,13 +47,9 @@ final class DependencyContainer: DependencyContainerProtocol {
         let searchHistoryDataSource: SearchHistoryDataSource = .init(searchKeywordRepository: searchKeywordRepository)
         
         // MARK: - ViewModel
-        let bookListViewModel: BookListViewModel = .init(
-            coordinator: coordinator as? BookCoordinator,
-            bookDataSource: bookDataSource)
+        let bookListViewModel: BookListViewModel = .init(bookDataSource: bookDataSource)
         let searchHistoryViewmodel: SearchHistoryViewModel = .init(dataSource: searchHistoryDataSource)
-        let searchBookViewModel: SearchBookViewModel = .init(
-            coordinator: coordinator as? BookCoordinator,
-            dataSource: bookDataSource)
+        let searchBookViewModel: SearchBookViewModel = .init(dataSource: bookDataSource)
         let bookDetailViewModel: BookDetailViewModel = .init(bookRepository: bookRepository)
         
         // MARK: - ViewController
