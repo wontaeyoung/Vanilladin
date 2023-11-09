@@ -60,6 +60,17 @@ extension UIView {
         }
     }
     
+    func setAutoLayoutAllEqualToSafeArea(
+        to view: UIView
+    ) {
+        NSLayoutConstraint.activate([
+            self.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            self.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            self.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
+    
     func setPaddingAutoLayout(
         to view: UIView,
         padding: CGFloat = 0
