@@ -39,4 +39,15 @@ extension BookCoordinator {
             handle(error: error)
         }
     }
+    
+    @MainActor func showBookDetail(
+        book: Book,
+        bookDetail: BookDetail
+    ) {
+        let viewController: BookDetailViewController = .init(
+            book: book,
+            bookDetail: bookDetail)
+        
+        push(viewController)
+    }
 }
