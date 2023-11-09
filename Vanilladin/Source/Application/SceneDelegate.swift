@@ -28,7 +28,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        DependencyContainer.shared.setDependency(coordinator: appCoordinator)
         appCoordinator.start()
     }
     
