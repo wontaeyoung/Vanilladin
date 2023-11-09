@@ -33,7 +33,7 @@ final class DependencyContainer: DependencyContainerProtocol {
      
      DependencyModules 열거형 케이스를 전달받아서 자동으로 추가하는 방법을 구현 시도했으나, 인스턴스 초기화 의존성을 추상화하지 못해서 폐기되었습니다.
      */
-    func setDependency(coordinator: CoordinatorProtocol) {
+    func setDependency() {
         // MARK: - Netowrk
         let httpClient: HTTPClient = .init()
         let aladinService: AladinService = .init(httpClient: httpClient)
