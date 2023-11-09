@@ -28,16 +28,13 @@ extension AppCoordinator: CoordinatorDelegate {
 }
 
 private extension AppCoordinator {
-    func pushBookListFlow() {
+    @MainActor func pushBookListFlow() {
         self.emptyOut()
         
         let bookCoordinator: BookCoordinator = .init(self.navigationController)
         bookCoordinator.delegate = self
         self.childCoordinators.append(bookCoordinator)
-        DependencyContainer.shared.register(instance: bookCoordinator)
         
-        Task {
-            await bookCoordinator.start()
-        }
+        bookCoordinator.start()
     }
 }
