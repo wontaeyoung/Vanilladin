@@ -64,8 +64,6 @@ final class SearchBookViewController: BaseViewController {
 extension SearchBookViewController: SearchHistoryViewDelegate {
     func submitKeyword(_ keyword: String) {
         searchBar.text = keyword
-        searchBar.resignFirstResponder()
-        
         searchBarSearchButtonClicked(searchBar)
     }
 }
@@ -75,7 +73,7 @@ extension SearchBookViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else {
             return
         }
-        searchBar.resignFirstResponder()
+        
         searchBookAndShowResult(searchText: searchText)
     }
 
@@ -104,6 +102,7 @@ private extension SearchBookViewController {
         Task {
             await searchBookViewModel.requestBooks(type: .new(keyword: searchText))
             searchHistoryViewModel.saveKeyword(searchText)
+            searchBar.resignFirstResponder()
         }
     }
 }
