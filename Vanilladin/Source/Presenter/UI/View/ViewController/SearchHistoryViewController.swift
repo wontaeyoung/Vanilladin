@@ -12,7 +12,8 @@ final class SearchHistoryViewController: BaseViewController {
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator: UIActivityIndicatorView = .init()
         indicator.style = .large
-        indicator.center = view.center
+        indicator.center.x = view.center.x
+        indicator.center.y = view.center.y - 100
         indicator.hidesWhenStopped = true
         
         return indicator
@@ -33,7 +34,9 @@ final class SearchHistoryViewController: BaseViewController {
     override func setAttribute() {
         searchHistoryViewModel.setDataSourceDelegate(self)
         searchHistoryViewModel.setTableViewDataSource(to: searchHistoryTableView)
-        searchBookViewModel.setDelegate(self, type: .searchLoadingIndicator)
+        searchBookViewModel.setDelegate(
+            self,
+            type: .searchLoadingIndicator)
         searchHistoryTableView.delegate = self
     }
     

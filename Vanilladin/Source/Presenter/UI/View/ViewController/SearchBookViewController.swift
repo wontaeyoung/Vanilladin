@@ -9,7 +9,7 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
     
-    var searchResultNavigationController: UINavigationController = {
+    private(set) var searchResultNavigationController: UINavigationController = {
         let navigationController: UINavigationController = .init()
         navigationController.view.backgroundColor = .white
         
@@ -24,6 +24,26 @@ final class SearchBookViewController: BaseViewController {
         searchBar.spellCheckingType = .no
         
         return searchBar
+    }()
+    
+    private lazy var hideKeyboardToolbar: UIToolbar = {
+        let toolbar: UIToolbar = .init()
+
+        let flexibleSpace: UIBarButtonItem = .init(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil)
+        
+        let hideKeyboardBarButton: UIBarButtonItem = .init(
+            image: UIImage(systemName: UIConstant.SFSymbol.keyboardChevronCompactDown)?.colored(with: .black),
+            style: .plain,
+            target: self,
+            action: #selector(hideKeyboardBarButtonTapped))
+        
+        toolbar.sizeToFit()
+        toolbar.setItems([flexibleSpace, hideKeyboardBarButton], animated: false)
+
+        return toolbar
     }()
     
     // MARK: - Initializer
@@ -42,6 +62,7 @@ final class SearchBookViewController: BaseViewController {
         navigationItem.titleView = searchBar
         searchBar.delegate = self
         searchResultNavigationController.navigationBar.isHidden = true
+        searchBar.searchTextField.inputAccessoryView = hideKeyboardToolbar
     }
     
     override func setHierarchy() {
@@ -64,8 +85,6 @@ final class SearchBookViewController: BaseViewController {
 extension SearchBookViewController: SearchHistoryViewDelegate {
     func submitKeyword(_ keyword: String) {
         searchBar.text = keyword
-        searchBar.resignFirstResponder()
-        
         searchBarSearchButtonClicked(searchBar)
     }
 }
@@ -75,7 +94,7 @@ extension SearchBookViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else {
             return
         }
-        searchBar.resignFirstResponder()
+        
         searchBookAndShowResult(searchText: searchText)
     }
 
@@ -86,6 +105,10 @@ extension SearchBookViewController: UISearchBarDelegate {
             hideSearchGuide()
             searchBookViewModel.showSearchView(type: .keyword(self))
         }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBookViewModel.showSearchView(type: .result(searchResultNavigationController))
     }
 }
 
@@ -99,8 +122,12 @@ private extension SearchBookViewController {
     func searchBookAndShowResult(searchText: String) {
         Task {
             await searchBookViewModel.requestBooks(type: .new(keyword: searchText))
-            searchBookViewModel.showSearchView(type: .result(searchResultNavigationController))
             searchHistoryViewModel.saveKeyword(searchText)
+            searchBar.resignFirstResponder()
         }
+    }
+    
+    @objc func hideKeyboardBarButtonTapped() {
+        searchBar.endEditing(true)
     }
 }
