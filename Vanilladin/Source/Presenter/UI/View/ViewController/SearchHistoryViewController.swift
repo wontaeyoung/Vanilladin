@@ -12,7 +12,8 @@ final class SearchHistoryViewController: BaseViewController {
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator: UIActivityIndicatorView = .init()
         indicator.style = .large
-        indicator.center = view.center
+        indicator.center.x = view.center.x
+        indicator.center.y = view.center.y - 100
         indicator.hidesWhenStopped = true
         
         return indicator
