@@ -51,16 +51,16 @@
 
 ### Network
 - `Network Provider`가 사용하는 `DTO`와 클라이언트에서 사용하는 `Entity` 모델을 매핑해서 사용
-- `Host`, `Scheme`, `Endpoint`, `Parameter를` 조합하여 추상화된 네트워크 요청 모델 구현
-- `NSCache를` 이용한 이미지 캐싱을 구현하여 이미지 요청 횟수 감소
+- `Host`, `Scheme`, `Endpoint`, `Parameter`를 조합하여 추상화된 네트워크 요청 모델 구현
+- `NSCache`를 이용한 이미지 캐싱을 구현하여 이미지 요청 횟수 감소
 - 네트워크 병렬처리 로직을 구현하여 응답 소요시간 약 3.6배 감소
 
 <br>
 
 ### Data & Presenter
 - `UIKit`의 바닐라 API + 코드베이스 오토레이아웃으로 UI 구현
-- 커스텀 `Delegate를` 사용해서 데이터 변경에 반응하여 `ViewController` 업데이트
-- `TableView`, `CollectionView에서` 무한스크롤을 구현하여 API 요청 횟수 최적화
+- 커스텀 `Delegate`를 사용해서 데이터 변경에 반응하여 `ViewController` 업데이트
+- `TableView`, `CollectionView`에서 무한스크롤을 구현하여 API 요청 횟수 최적화
 
 <br>
 
@@ -101,14 +101,14 @@
 
 **MVVM**
 - `ViewContoller`(View)는 UI 코드와 화면을 그리는 로직을 가지고 있습니다.
-- `ViewModel에서는` `ViewController에서` 발생하는 이벤트를 전달하고, UI에 반영할 데이터 가공을 담당합니다.
-- 여러 `ViewModel에서` 공유 데이터를 활용할 수 있도록, `DataSource` 단계를 두어 데이터를 관리하고 `Repository를` 통해 데이터를 요청합니다.
+- `ViewModel`에서는 `ViewController`에서 발생하는 이벤트를 전달하고, UI에 반영할 데이터 가공을 담당합니다.
+- 여러 `ViewModel`에서 공유 데이터를 활용할 수 있도록, `DataSource` 단계를 두어 데이터를 관리하고 `Repository`를 통해 데이터를 요청합니다.
 
 <br>
 
 **Coordinator**
-- 네비게이션 및 사용자 `Alert을` 담당하고 있습니다.
-- `push`, `pop`, `emptyOut` 등 네비게이션을 관리하는 인터페이스 함수를 `ViewModel에` 제공하여, 이벤트에 따라 간편하게 네비게이션 로직을 사용할 수 있도록 합니다.
+- 네비게이션 및 사용자 `Alert`을 담당하고 있습니다.
+- `push`, `pop`, `emptyOut` 등 네비게이션을 관리하는 인터페이스 함수를 `ViewModel`에 제공하여, 이벤트에 따라 간편하게 네비게이션 로직을 사용할 수 있도록 합니다.
 
 <br>
 
