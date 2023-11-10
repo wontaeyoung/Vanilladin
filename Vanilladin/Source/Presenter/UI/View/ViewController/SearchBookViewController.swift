@@ -9,7 +9,7 @@ final class SearchBookViewController: BaseViewController {
     // MARK: - UI
     private var searchGuideView: SearchGuideView = .init()
     
-    var searchResultNavigationController: UINavigationController = {
+    private(set) var searchResultNavigationController: UINavigationController = {
         let navigationController: UINavigationController = .init()
         navigationController.view.backgroundColor = .white
         
