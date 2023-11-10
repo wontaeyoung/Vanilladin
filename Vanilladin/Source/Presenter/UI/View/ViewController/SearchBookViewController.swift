@@ -26,6 +26,26 @@ final class SearchBookViewController: BaseViewController {
         return searchBar
     }()
     
+    private lazy var hideKeyboardToolbar: UIToolbar = {
+        let toolbar: UIToolbar = .init()
+
+        let flexibleSpace: UIBarButtonItem = .init(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil)
+        
+        let hideKeyboardBarButton: UIBarButtonItem = .init(
+            image: UIImage(systemName: UIConstant.SFSymbol.keyboardChevronCompactDown)?.colored(with: .black),
+            style: .plain,
+            target: self,
+            action: #selector(hideKeyboardBarButtonTapped))
+        
+        toolbar.sizeToFit()
+        toolbar.setItems([flexibleSpace, hideKeyboardBarButton], animated: false)
+
+        return toolbar
+    }()
+    
     // MARK: - Initializer
     init(
         searchBookViewModel: SearchBookViewModel,
@@ -42,6 +62,7 @@ final class SearchBookViewController: BaseViewController {
         navigationItem.titleView = searchBar
         searchBar.delegate = self
         searchResultNavigationController.navigationBar.isHidden = true
+        searchBar.searchTextField.inputAccessoryView = hideKeyboardToolbar
     }
     
     override func setHierarchy() {
@@ -104,5 +125,9 @@ private extension SearchBookViewController {
             searchHistoryViewModel.saveKeyword(searchText)
             searchBar.resignFirstResponder()
         }
+    }
+    
+    @objc func hideKeyboardBarButtonTapped() {
+        searchBar.endEditing(true)
     }
 }
