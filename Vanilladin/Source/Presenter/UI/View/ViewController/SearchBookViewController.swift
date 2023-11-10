@@ -87,6 +87,10 @@ extension SearchBookViewController: UISearchBarDelegate {
             searchBookViewModel.showSearchView(type: .keyword(self))
         }
     }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBookViewModel.showSearchView(type: .result(searchResultNavigationController))
+    }
 }
 
 // MARK: - Private
@@ -99,7 +103,6 @@ private extension SearchBookViewController {
     func searchBookAndShowResult(searchText: String) {
         Task {
             await searchBookViewModel.requestBooks(type: .new(keyword: searchText))
-            searchBookViewModel.showSearchView(type: .result(searchResultNavigationController))
             searchHistoryViewModel.saveKeyword(searchText)
         }
     }
