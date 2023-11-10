@@ -34,7 +34,9 @@ final class SearchHistoryViewController: BaseViewController {
     override func setAttribute() {
         searchHistoryViewModel.setDataSourceDelegate(self)
         searchHistoryViewModel.setTableViewDataSource(to: searchHistoryTableView)
-        searchBookViewModel.setDelegate(self, type: .searchLoadingIndicator)
+        searchBookViewModel.setDelegate(
+            self,
+            type: .searchLoadingIndicator)
         searchHistoryTableView.delegate = self
     }
     
