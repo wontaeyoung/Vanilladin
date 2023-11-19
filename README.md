@@ -278,7 +278,9 @@ Vanilladin
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fe4d5340-5d38-4baa-952c-493702535f32">
 
-우선 적용한 해결책은 `Factory` 패턴입니다. `resolve` 호출 시, 인스턴스가 등록되어있지 않은 경우를 대비해서 새 인스턴스를 초기화하는 클로저를 전달받아서 등록했습니다.
+우선 적용한 해결책은 `Factory` 패턴입니다.
+
+`resolve` 호출 시, 인스턴스가 등록되어있지 않은 경우를 대비해서 새 인스턴스를 초기화하는 클로저를 전달받아서 등록했습니다.
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/66a08304-f078-4002-a7cb-8a4694239527">
 
@@ -288,9 +290,15 @@ Vanilladin
 
 ### **2. Lazy Register 로직 구현**
 
-그 다음 적용한 해결책은 Lazy하게 Register 하는 방법입니다. `Containable`을 채택한 제네릭을 전달해서 인스턴스가 필요한 시점에 자동으로 초기화하여 추가한다는 장점이 있습니다. 또한, 명시적으로 모든 인스턴스의 생성을 직접 작성해주지 않아도 되는 편리함이 있습니다.
+그 다음 적용한 해결책은 Lazy하게 Register 하는 방법입니다.
 
-하지만 이 방식은 참조 관계를 잘못 설정할 경우 순환참조의 루프로 앱이 크래시될 수 있고, 모든 `Containable` 객체가 파라미터가 없는 `init`을 구현해야하는 큰 단점이 존재했습니다. 이런 경우 이미 구현된 앱의 상당 부분을 변경해야했습니다.
+`Containable`을 채택한 제네릭을 전달해서 인스턴스가 필요한 시점에 자동으로 초기화하여 추가한다는 장점이 있습니다.
+
+또한, 명시적으로 모든 인스턴스의 생성을 직접 작성해주지 않아도 되는 편리함이 있습니다.
+
+하지만 이 방식은 참조 관계를 잘못 설정할 경우 순환참조의 루프로 앱이 크래시될 수 있고, 모든 `Containable` 객체가 파라미터가 없는 `init`을 구현해야하는 큰 단점이 존재했습니다.
+
+이런 경우 이미 구현된 앱의 상당 부분을 변경해야했습니다.
 
 <img width="600" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/81174119-fa35-4626-83a0-4d8ed3055b5a">
 
@@ -326,7 +334,9 @@ Vanilladin
 <summary>접기/펼치기</summary>
 <br>
 
-Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되어 있습니다. 클라이언트에서 사용하기 전에 `BookDTO`의 이미지 URL을 요청해서 `UIImage`로 변환한 `Book Entity`로 변환하는 과정이 필요했습니다.
+Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되어 있습니다.
+
+클라이언트에서 사용하기 전에 `BookDTO`의 이미지 URL을 요청해서 `UIImage`로 변환한 `Book Entity`로 변환하는 과정이 필요했습니다.
 
 이 때 응답 단위인 10개의 Image URL을 요청하면 이미지 다운로드가 순차적으로 진행되는 문제가 발생했습니다.
 
@@ -366,7 +376,9 @@ Aladin API에서 응답받은 책 데이터에는 책 이미지 URL이 포함되
 
 병렬 처리를 통해 성능은 개선했지만 이번에는 순서 문제가 발생했습니다.
 
-`TaskGroup`은 비동기 병렬 처리를 수행하기 때문에 요청 결과가 오는 순서대로 배열에 추가됩니다. 그래서 처음 요청한 작업 순서와 결과 순서가 일치하지 않습니다.
+`TaskGroup`은 비동기 병렬 처리를 수행하기 때문에 요청 결과가 오는 순서대로 배열에 추가됩니다.
+
+그래서 처음 요청한 작업 순서와 결과 순서가 일치하지 않습니다.
 
 검색어와 관련 없는 결과가 응답되는 것은 아니라서 큰 문제가 아닐수도 있지만, API 응답 순서가 검색어의 Accuracy를 기반으로 결정되기 때문에 이 순서를 보장해주는 것이 UX적으로 더 좋을 것이라고 생각했습니다.
 
@@ -443,7 +455,9 @@ setPaddingAutoLayout은 제약조건을 간편하게 설정하기 위한 커스�
 
 <br>
 
-backgroundColor를 통해서 문제를 확인할 수 있었는데, 위 이미지에서 파란색으로 그어져있는 선이 paddingView의 영역입니다. 상하에도 20씩 padding이 적용되고 나머지 영역을 height로 가져가서 선에 가깝게 그려진 것입니다.
+backgroundColor를 통해서 문제를 확인할 수 있었는데, 위 이미지에서 파란색으로 그어져있는 선이 paddingView의 영역입니다.
+
+상하에도 20씩 padding이 적용되고 나머지 영역을 height로 가져가서 선에 가깝게 그려진 것입니다.
 
 UI에서는 정상적으로 deleteButton이 그려졌지만, superView인 paddingView가 정상적으로 그려져있더라도 인터랙션할 수 없는 범위로 인식된 것입니다.
 
@@ -483,7 +497,9 @@ UI에서는 정상적으로 deleteButton이 그려졌지만, superView인 paddin
 
 <br>
 
-위 이미지는 검색 기능을 호출할 수 있는 두 가지 UX입니다. 왼쪽은 검색어를 직접 입력하고 검색 버튼을 클릭하는 방식이고, 오른쪽은 최근 검색어 중 하나를 탭해서 해당 검색어로 검색합니다.
+위 이미지는 검색 기능을 호출할 수 있는 두 가지 UX입니다.
+
+왼쪽은 검색어를 직접 입력하고 검색 버튼을 클릭하는 방식이고, 오른쪽은 최근 검색어 중 하나를 탭해서 해당 검색어로 검색합니다.
 
 <br><br>
 
@@ -521,7 +537,7 @@ extension SearchBookViewController: UISearchBarDelegate {
 }
 ```
 
-이 때 검색바를 다시 탭하면 `searchBarTextDidBeginEditing` 가 호출되면서 다시 최근 검색어 뷰로 전환됩니다.
+이 때 검색바를 다시 탭하면 `searchBarTextDidBeginEditing`가 호출되면서 다시 최근 검색어 뷰로 전환됩니다.
 
 <br><br>
 
@@ -545,11 +561,15 @@ extension SearchBookViewController: SearchHistoryViewDelegate {
 
 선택된 검색어를 검색바에 반영하는 것 외에는 기본 검색 로직과 동일하기 때문에, 내부에서 `searchBarSearchButtonClicked` 를 재사용합니다.
 
-이 때 검색은 정상적으로 수행되지만, 기존 검색과 차이가 발생합니다. 검색 키워드를 통해서 검색을 수행하면, 위 검색 이미지의 오른쪽과 같이 검색바의 포커스가 풀리지 않습니다.
+이 때 검색은 정상적으로 수행되지만, 기존 검색과 차이가 발생합니다.
+
+검색 키워드를 통해서 검색을 수행하면, 위 검색 이미지의 오른쪽과 같이 검색바의 포커스가 풀리지 않습니다.
 
 검색바의 포커스가 풀리지 않으니, 다시 검색바를 탭해도 `searchBarTextDidBeginEditing` 가 호출되지 않아서 최근 검색어 Table을 볼 수 없습니다.
 
-원인을 확인해보니 `SearchController`에서 검색 버튼을 클릭하면 `searchBarSearchButtonClicked` 이 호출되면서, 내부적으로 포커스가 해제되는 로직이 돌아가고 있었습니다. 그래서 같은 함수를 호출했지만 동일하게 작동하지 않았던 것이었습니다.
+원인을 확인해보니 `SearchController`에서 검색 버튼을 클릭하면 `searchBarSearchButtonClicked` 이 호출되면서, 내부적으로 포커스가 해제되는 로직이 돌아가고 있었습니다.
+
+그래서 같은 함수를 호출했지만 동일하게 작동하지 않았던 것이었습니다.
 
 <br><br>
 
