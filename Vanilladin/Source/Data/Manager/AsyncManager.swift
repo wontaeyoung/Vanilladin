@@ -1,10 +1,4 @@
 final class AsyncManager {
-    // MARK: - Property
-    static let shared: AsyncManager = .init()
-    
-    // MARK: - Initializer
-    private init() { }
-    
     // MARK: - Method
     func mapConcurrently<T, U: Sendable>(
         from items: [T],
