@@ -2,7 +2,7 @@ import Foundation
 
 enum AladinAPIConstant {
     enum Common {
-        static let ttbKey: String? = AppConfigManager.getValue(forKey: LogicConstant.Plist.ttbKey)
+        static let ttbKey: String? = AppConfigManager().getValue(forKey: LogicConstant.Plist.ttbKey)
         static let output: String = "JS"
         static let version: String = "20131101"
     }

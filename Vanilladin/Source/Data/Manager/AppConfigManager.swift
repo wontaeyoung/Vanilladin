@@ -1,7 +1,7 @@
 import Foundation
 
 final class AppConfigManager {
-    static func getValue<T>(forKey key: String) -> T? {
+    func getValue<T>(forKey key: String) -> T? {
         guard
             let path = Bundle.main.path(
                 forResource: LogicConstant.Plist.apiKeyFileName,
