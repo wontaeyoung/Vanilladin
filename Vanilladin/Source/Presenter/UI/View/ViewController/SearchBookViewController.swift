@@ -22,6 +22,7 @@ final class SearchBookViewController: BaseViewController {
         searchBar.autocapitalizationType = .none
         searchBar.autocorrectionType = .no
         searchBar.spellCheckingType = .no
+        searchBar.searchTextField.clearButtonMode = .whileEditing
         
         return searchBar
     }()
