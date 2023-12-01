@@ -493,7 +493,7 @@ UI에서는 정상적으로 deleteButton이 그려졌지만, superView인 paddin
 
 |검색 버튼 클릭|최근 검색어 클릭|
 |-|-|
-|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/e1c198ac-7a46-4442-9fa9-6a50950a50c9">|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/6c29a676-0e34-428a-b5e8-1dbb8145d88d">|
+|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/fbffabb1-2d0b-4c1b-a4a7-0c00d302be0d">|<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/4a26a0d1-5253-43ea-ba54-dcb0f62fe0e7">|
 
 <br>
 
@@ -563,7 +563,9 @@ extension SearchBookViewController: SearchHistoryViewDelegate {
 
 이 때 검색은 정상적으로 수행되지만, 기존 검색과 차이가 발생합니다.
 
-검색 키워드를 통해서 검색을 수행하면, 위 검색 이미지의 오른쪽과 같이 검색바의 포커스가 풀리지 않습니다.
+<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/28a08cd9-2b98-4492-9dca-b8de79ad42d7">
+
+검색 키워드를 통해서 검색을 수행하면, 위 검색 이미지와 같이 검색바의 포커스가 풀리지 않습니다.
 
 검색바의 포커스가 풀리지 않으니, 다시 검색바를 탭해도 `searchBarTextDidBeginEditing` 가 호출되지 않아서 최근 검색어 Table을 볼 수 없습니다.
 
@@ -581,13 +583,13 @@ submitKeyowrd 내부에 위 함수를 추가하고나니, 최근 검색어를 �
 
 <br>
 
-<img width="300" alt="image" src="https://github.com/wontaeyoung/wontaeyoung/assets/45925685/45412eba-1521-4c73-9f91-d90ee5120f36">
+<img width="300" alt="image" src="https://github.com/wontaeyoung/Vanilladin/assets/45925685/4a26a0d1-5253-43ea-ba54-dcb0f62fe0e7">
 
-<br>
+<br><br><br>
 
-추가적으로 resignFirstResponder라는 이름이 기능 설명에 직관적이지 않은 것 같아서 찾아봤는데, FirstResponder는 현재 사용자의 입력을 받을 수 있는 상태인 뷰를 의미한다고 합니다.
+추가적으로 `resignFirstResponder`라는 이름이 기능 설명에 직관적이지 않은 것 같아서 찾아봤는데, `FirstResponder`는 현재 사용자의 입력을 받을 수 있는 상태인 뷰를 의미한다고 합니다.
 
-즉, 특정 텍스트필드가 포커스를 받으면 해당 텍스트필드는 FirstResponder가 되는 것입니다.
+즉, 특정 텍스트필드가 포커스를 받으면 해당 텍스트필드는 `FirstResponder`가 되는 것입니다.
 
 FirstResponder를 resign한다 == 포커스를 해제한다 라는 의미로 이해할 수 있습니다.
 
