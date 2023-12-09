@@ -1,5 +1,5 @@
 protocol WritableEntityProtocol: EntityProtocol {
     associatedtype DTO: DTOProtocol
     
-    func asModel() -> DTO
+    func asDTO() -> DTO
 }
