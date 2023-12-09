@@ -12,4 +12,8 @@ enum LogicConstant {
         static let searchKeywordKey: String = "SearchKeyword"
         static let maxKeywordCount: Int = 5
     }
+    
+    enum ISBN13 {
+        static let favoriteBook: String = "9788970128085"
+    }
 }
