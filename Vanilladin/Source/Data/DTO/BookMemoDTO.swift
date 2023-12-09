@@ -1,4 +1,6 @@
-final class BookMemoDTO {
+import UIKit
+
+final class BookMemoDTO: DTOProtocol {
     let id: String
     let isbn13: String
     let memo: String
@@ -14,5 +16,20 @@ final class BookMemoDTO {
         self.isbn13 = isbn13
         self.memo = memo
         self.state = state
+    }
+    
+    func asModel(with coverImage: UIImage?) -> BookMemo {
+        guard 
+            let uuid = UUID(uuidString: id),
+            let state = BookMemo.ReadState(rawValue: state)
+        else {
+            return .dummy
+        }
+        
+        return .init(
+            id: uuid, 
+            isbn13: isbn13,
+            memo: memo,
+            state: state)
     }
 }
