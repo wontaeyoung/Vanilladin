@@ -23,7 +23,7 @@ struct BookMemo: WritableEntityProtocol {
     
     func asDTO() -> BookMemoDTO {
         .init(
-            id: id.uuidString,
+            id: id,
             isbn13: isbn13,
             memo: memo,
             state: state.rawValue)
