@@ -1,24 +1,14 @@
 import UIKit
+import CoreData
 
-final class BookMemoDTO: DTOProtocol {
-    let id: UUID
-    let isbn13: String
-    let memo: String
-    let state: String
+@objc(BookMemo)
+final class BookMemoDTO: NSManagedObject {
+    @NSManaged var id: UUID
+    @NSManaged var isbn13: String
+    @NSManaged var memo: String
+    @NSManaged var state: String
     
-    init(
-        id: UUID,
-        isbn13: String,
-        memo: String,
-        state: String
-    ) {
-        self.id = id
-        self.isbn13 = isbn13
-        self.memo = memo
-        self.state = state
-    }
-    
-    func asModel(with coverImage: UIImage?) -> BookMemo {
+    func asModel() -> BookMemo {
         guard let state = BookMemo.ReadState(rawValue: state) else {
             return .dummy
         }
