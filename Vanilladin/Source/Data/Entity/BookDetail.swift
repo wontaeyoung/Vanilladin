@@ -1,14 +1,6 @@
 import Foundation
 
 struct BookDetail: EntityProtocol {
-    let id: UUID
-    let itemPage: Int
-    let ratingScore: Double
-    let ratingCount: Int
-    let commentReviewCount: Int
-    let myReviewCount: Int
-    let dimensions: Dimensions
-    
     struct Dimensions {
         let width: Int
         let height: Int
@@ -22,6 +14,14 @@ struct BookDetail: EntityProtocol {
             self.weight = weight
         }
     }
+    
+    let id: UUID
+    let itemPage: Int
+    let ratingScore: Double
+    let ratingCount: Int
+    let commentReviewCount: Int
+    let myReviewCount: Int
+    let dimensions: Dimensions
     
     static var dummy: Self {
         .init(
