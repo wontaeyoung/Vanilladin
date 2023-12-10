@@ -4,7 +4,7 @@ final class BookMemoDTO: DTOProtocol {
     let id: UUID
     let isbn13: String
     let memo: String
-    var state: String
+    let state: String
     
     init(
         id: UUID,

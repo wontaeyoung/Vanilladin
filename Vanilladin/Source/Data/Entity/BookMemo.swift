@@ -10,7 +10,7 @@ struct BookMemo: WritableEntityProtocol {
     
     let id: UUID
     let isbn13: String
-    let memo: String
+    var memo: String
     var state: ReadState
     
     static var dummy: Self {
