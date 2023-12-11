@@ -29,4 +29,16 @@ final class CoreDataService: DependencyContainable {
             throw CoreDataError.storeConnectFailed
         }
     }
+    
+    func fetchBookMemo(isbn13: String) throws -> BookMemoDTO {
+        let context: NSManagedObjectContext = container.viewContext
+        let request: NSFetchRequest<BookMemoDTO> = .init(entityName: LogicConstant.CoreData.bookMemoEntityName)
+        request.predicate = NSPredicate(format: "isbn13 == %@", isbn13)
+
+        guard let bookMemoDTO = try context.fetch(request).first else {
+            throw CoreDataError.noResultWithQuery
+        }
+        
+        return bookMemoDTO
+    }
 }
