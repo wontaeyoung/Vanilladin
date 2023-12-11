@@ -16,4 +16,8 @@ enum LogicConstant {
     enum ISBN13 {
         static let favoriteBook: String = "9788970128085"
     }
+    
+    enum CoreData {
+        static let fileName: String = "Vanilladin"
+    }
 }
