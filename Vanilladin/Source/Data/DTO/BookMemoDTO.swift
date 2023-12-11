@@ -19,4 +19,11 @@ final class BookMemoDTO: NSManagedObject {
             memo: memo,
             state: state)
     }
+    
+    func changeWith(_ another: BookMemoDTO) {
+        self.id = another.id
+        self.isbn13 = another.isbn13
+        self.memo = another.memo
+        self.state = another.state
+    }
 }
