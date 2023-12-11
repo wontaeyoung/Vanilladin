@@ -17,4 +17,12 @@ final class CoreDataService: DependencyContainable {
         
         return container
     }
+    
+    func saveBookMemo(bookMemoDTO: BookMemoDTO) throws {
+        let context: NSManagedObjectContext = container.viewContext
+        let managedBookMemo: BookMemoDTO = .init(context: context)
+        managedBookMemo.changePropertiesWith(bookMemoDTO)
+        
+        try context.save()
+    }
 }
