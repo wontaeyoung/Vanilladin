@@ -23,6 +23,10 @@ final class CoreDataService: DependencyContainable {
         let managedBookMemo: BookMemoDTO = .init(context: context)
         managedBookMemo.changePropertiesWith(bookMemoDTO)
         
-        try context.save()
+        do {
+            try context.save()
+        } catch {
+            throw CoreDataError.storeConnectFailed
+        }
     }
 }
