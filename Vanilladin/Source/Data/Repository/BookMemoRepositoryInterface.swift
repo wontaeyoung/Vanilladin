@@ -1,5 +1,5 @@
 protocol BookMemoRepositoryInterface: DependencyContainable {
     func save(bookMemoDTO: BookMemoDTO) throws
-    func fetchBookMemo(isbn13: String) throws
-    func fetchBookMemos() throws
+    func fetch(isbn13: String) throws -> BookMemoDTO
+    func fetch() throws -> [BookMemoDTO]
 }
