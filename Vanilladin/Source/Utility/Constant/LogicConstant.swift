@@ -19,6 +19,6 @@ enum LogicConstant {
     
     enum CoreData {
         static let fileName: String = "Vanilladin"
-        static let bookMemoEntityName: String = "BookMemo"
+        static let myBookEntityName: String = "MyBook"
     }
 }

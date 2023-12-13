@@ -2,14 +2,14 @@ import UIKit
 import CoreData
 
 @objc(BookMemo)
-final class BookMemoDTO: NSManagedObject {
+final class MyBookDTO: NSManagedObject {
     @NSManaged var id: UUID
     @NSManaged var isbn13: String
     @NSManaged var memo: String
     @NSManaged var state: String
     
-    func asModel() -> BookMemo {
-        guard let state = BookMemo.ReadState(rawValue: state) else {
+    func asModel() -> MyBook {
+        guard let state = MyBook.ReadState(rawValue: state) else {
             return .dummy
         }
         
@@ -20,7 +20,7 @@ final class BookMemoDTO: NSManagedObject {
             state: state)
     }
     
-    func changePropertiesWith(_ another: BookMemoDTO) {
+    func changePropertiesWith(_ another: MyBookDTO) {
         self.id = another.id
         self.isbn13 = another.isbn13
         self.memo = another.memo

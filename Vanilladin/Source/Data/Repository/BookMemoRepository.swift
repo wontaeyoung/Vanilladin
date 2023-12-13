@@ -8,15 +8,15 @@ final class BookMemoRepository: BookMemoRepositoryInterface {
     }
     
     // MARK: - Method
-    func save(bookMemoDTO: BookMemoDTO) throws {
+    func save(bookMemoDTO: MyBookDTO) throws {
         try coreDataService.saveBookMemo(bookMemoDTO: bookMemoDTO)
     }
     
-    func fetch(isbn13: String) throws -> BookMemoDTO {
+    func fetch(isbn13: String) throws -> MyBookDTO {
         return try coreDataService.fetchBookMemo(isbn13: isbn13)
     }
     
-    func fetch() throws -> [BookMemoDTO] {
+    func fetch() throws -> [MyBookDTO] {
         return try coreDataService.fetchBookMemos()
     }
 }

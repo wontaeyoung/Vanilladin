@@ -1,6 +1,6 @@
 import Foundation
 
-struct BookMemo: WritableEntityProtocol {
+struct MyBook: WritableEntityProtocol {
     enum ReadState: String {
         case interested
         case reading
@@ -21,8 +21,8 @@ struct BookMemo: WritableEntityProtocol {
             state: .noState)
     }
     
-    func asDTO() -> BookMemoDTO {
-        let dto: BookMemoDTO = .init()
+    func asDTO() -> MyBookDTO {
+        let dto: MyBookDTO = .init()
         
         dto.id = self.id
         dto.isbn13 = self.isbn13
