@@ -45,8 +45,13 @@ final class CoreDataService: DependencyContainable {
     func fetchBookMemos() throws -> [BookMemoDTO] {
         let context: NSManagedObjectContext = container.viewContext
         let request: NSFetchRequest<BookMemoDTO> = .init(entityName: LogicConstant.CoreData.bookMemoEntityName)
-        let bookMemoDTOs: [BookMemoDTO] = try context.fetch(request)
         
-        return bookMemoDTOs
+        do {
+            let bookMemoDTOs: [BookMemoDTO] = try context.fetch(request)
+            
+            return bookMemoDTOs
+        } catch {
+            throw CoreDataError.entityNotFound
+        }
     }
 }
