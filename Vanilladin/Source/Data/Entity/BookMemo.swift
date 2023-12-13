@@ -1,6 +1,6 @@
 import Foundation
 
-struct BookMemo {
+struct BookMemo: WritableEntityProtocol {
     enum ReadState: String {
         case interested
         case reading

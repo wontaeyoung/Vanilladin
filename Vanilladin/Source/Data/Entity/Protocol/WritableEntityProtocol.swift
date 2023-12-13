@@ -1,5 +1,7 @@
+import CoreData
+
 protocol WritableEntityProtocol: EntityProtocol {
-    associatedtype DTO: DTOProtocol
+    associatedtype DTO: NSManagedObject
     
     func asDTO() -> DTO
 }
