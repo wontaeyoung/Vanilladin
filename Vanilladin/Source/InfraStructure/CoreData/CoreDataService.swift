@@ -2,7 +2,7 @@ import CoreData
 
 final class CoreDataService: DependencyContainable {
     // MARK: - Property
-    lazy var container: NSPersistentContainer = setContainer()
+    private lazy var container: NSPersistentContainer = setContainer()
     
     // MARK: - Initializer
     init() {
