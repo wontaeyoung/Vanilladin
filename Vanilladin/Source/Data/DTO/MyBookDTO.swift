@@ -5,6 +5,10 @@ import CoreData
 final class MyBookDTO: NSManagedObject {
     @NSManaged var id: UUID
     @NSManaged var isbn13: String
+    @NSManaged var title: String
+    @NSManaged var author: String
+    @NSManaged var cover: String
+    @NSManaged var score: Int
     @NSManaged var memo: String
     @NSManaged var state: String
     
