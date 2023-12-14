@@ -12,7 +12,7 @@ final class MyBookDTO: NSManagedObject {
     @NSManaged var memo: String
     @NSManaged var state: String
     
-    func asModel() -> MyBook {
+    func asModel(with coverImage: UIImage) -> MyBook {
         guard let state = MyBook.ReadState(rawValue: state) else {
             return .dummy
         }
@@ -20,6 +20,10 @@ final class MyBookDTO: NSManagedObject {
         return .init(
             id: id,
             isbn13: isbn13,
+            title: title,
+            author: author,
+            cover: coverImage,
+            score: MyBook.starScore(rawValue: score) ?? .noScore,
             memo: memo,
             state: state)
     }
