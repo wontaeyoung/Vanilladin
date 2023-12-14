@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 struct MyBook: WritableEntityProtocol {
     enum ReadState: String {
@@ -8,16 +8,37 @@ struct MyBook: WritableEntityProtocol {
         case noState
     }
     
+    enum starScore: Int {
+        case noScore = 1
+        case one
+        case oneHalf
+        case two
+        case twoHalf
+        case three
+        case threeHalf
+        case four
+        case fourHalf
+        case five
+    }
+    
     let id: UUID
     let isbn13: String
+    let title: String
+    let author: String
+    let cover: UIImage
+    var score: starScore
     var memo: String
     var state: ReadState
     
     static var dummy: Self {
-        .init(
+        return .init(
             id: UUID(),
             isbn13: LogicConstant.ISBN13.favoriteBook,
-            memo: "",
+            title: "제목",
+            author: "작가",
+            cover: .init(),
+            score: .noScore,
+            memo: "메모",
             state: .noState)
     }
     
@@ -26,6 +47,10 @@ struct MyBook: WritableEntityProtocol {
         
         dto.id = self.id
         dto.isbn13 = self.isbn13
+        dto.title = self.title
+        dto.author = self.author
+        dto.cover = self.cover.description
+        dto.score = score.rawValue
         dto.memo = self.memo
         dto.state = self.state.rawValue
         
