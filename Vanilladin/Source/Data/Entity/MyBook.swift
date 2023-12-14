@@ -45,14 +45,14 @@ struct MyBook: WritableEntityProtocol {
     func asDTO() -> MyBookDTO {
         let dto: MyBookDTO = .init()
         
-        dto.id = self.id
-        dto.isbn13 = self.isbn13
-        dto.title = self.title
-        dto.author = self.author
-        dto.cover = self.cover.description
+        dto.id = id
+        dto.isbn13 = isbn13
+        dto.title = title
+        dto.author = author
+        dto.cover = cover.description
         dto.score = score.rawValue
-        dto.memo = self.memo
-        dto.state = self.state.rawValue
+        dto.memo = memo
+        dto.state = state.rawValue
         
         return dto
     }
