@@ -18,10 +18,10 @@ final class CoreDataService: DependencyContainable {
         return container
     }
     
-    func saveBookMemo(bookMemoDTO: MyBookDTO) throws {
+    func saveMyBook(myBookDTO: MyBookDTO) throws {
         let context: NSManagedObjectContext = container.viewContext
         let managedBookMemo: MyBookDTO = .init(context: context)
-        managedBookMemo.changePropertiesWith(bookMemoDTO)
+        managedBookMemo.changePropertiesWith(myBookDTO)
         
         do {
             try context.save()
@@ -30,7 +30,7 @@ final class CoreDataService: DependencyContainable {
         }
     }
     
-    func fetchBookMemo(isbn13: String) throws -> MyBookDTO {
+    func fetchMyBook(isbn13: String) throws -> MyBookDTO {
         let context: NSManagedObjectContext = container.viewContext
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         request.predicate = NSPredicate(format: "isbn13 == %@", isbn13)
@@ -42,7 +42,7 @@ final class CoreDataService: DependencyContainable {
         return bookMemoDTO
     }
     
-    func fetchBookMemos() throws -> [MyBookDTO] {
+    func fetchMyBooks() throws -> [MyBookDTO] {
         let context: NSManagedObjectContext = container.viewContext
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         

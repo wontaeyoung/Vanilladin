@@ -58,7 +58,6 @@ final class MyBookTableCell: BaseTableViewCell {
         bookImageView.image = myBook?.cover
         titleLabel.attributedText = myBook?.title.attributedTitleText
         authorLabel.text = myBook?.author
-        
     }
     
     override func setHierarchy() {
