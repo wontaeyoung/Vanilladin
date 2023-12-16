@@ -1,3 +1,5 @@
+import UIKit
+
 final class MyBookRepository: MyBookRepositoryInterface {
     // MARK: - Property
     private let aladinService: AladinService
@@ -26,7 +28,20 @@ final class MyBookRepository: MyBookRepositoryInterface {
         return myBookDTO.asModel(with: coverImage)
     }
     
-    func fetch() throws -> [MyBookDTO] {
-        return try coreDataService.fetchMyBooks()
+    func fetch() async throws -> [MyBook] {
+        let myBookDTOs: [MyBookDTO] = try coreDataService.fetchMyBooks()
+        
+        let myBooks: [MyBook] = try await AsyncManager().mapConcurrently(from: myBookDTOs) { [weak self] dto in
+            guard let self else {
+                print(#function, AppError.unwrapSelfFailed.errorDescription)
+                throw AppError.unwrapSelfFailed
+            }
+            
+            let coverImage: UIImage = try await aladinService.requestCoverImage(dto.cover)
+            
+            return dto.asModel(with: coverImage)
+        }
+        
+        return myBooks
     }
 }
