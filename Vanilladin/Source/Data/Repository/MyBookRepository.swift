@@ -21,15 +21,9 @@ final class MyBookRepository: MyBookRepositoryInterface {
     
     func fetch(isbn13: String) async throws -> MyBook {
         let myBookDTO: MyBookDTO = try coreDataService.fetchMyBook(isbn13: isbn13)
+        let coverImage: UIImage = try await aladinService.requestCoverImage(myBookDTO.cover)
         
-        guard let cacheImage = ImageCacheManager.shared.getObject(for: myBookDTO.cover) else {
-            let coverImage: UIImage = try await aladinService.requestCoverImage(myBookDTO.cover)
-            ImageCacheManager.shared.setObject(coverImage, for: myBookDTO.cover)
-            
-            return myBookDTO.asModel(with: coverImage)
-        }
-        
-        return myBookDTO.asModel(with: cacheImage)
+        return myBookDTO.asModel(with: coverImage)
     }
     
     func fetch() throws -> [MyBookDTO] {
