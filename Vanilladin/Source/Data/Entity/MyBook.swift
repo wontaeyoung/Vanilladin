@@ -9,15 +9,11 @@ struct MyBook: WritableEntityProtocol {
     }
     
     enum starScore: Int {
-        case noScore = 1
+        case noScore
         case one
-        case oneHalf
         case two
-        case twoHalf
         case three
-        case threeHalf
         case four
-        case fourHalf
         case five
     }
     
