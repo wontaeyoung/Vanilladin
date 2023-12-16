@@ -25,7 +25,7 @@ final class HTTPClient: DependencyContainable {
     }
     
     /// 이미지 URL로 응답받은 이미지 데이터를 UIImage로 변환해서 반환하는 함수
-    func sendImageRequest(urlStr: String) async throws -> UIImage? {
+    func sendImageRequest(urlStr: String) async throws -> UIImage {
         guard let url = URL(string: urlStr) else {
             print(#function, AladinAPIError.invalidURL.errorDescription)
             throw AladinAPIError.invalidURL
@@ -33,7 +33,11 @@ final class HTTPClient: DependencyContainable {
         
         let data: Data = try await sendRequestWithURL(url: url)
         
-        return UIImage(data: data)
+        guard let image = UIImage(data: data) else {
+            throw AladinAPIError.failToDecoding
+        }
+        
+        return image
     }
 }
 
