@@ -23,7 +23,7 @@ final class MyBookDTO: NSManagedObject {
             title: title,
             author: author,
             cover: coverImage,
-            score: MyBook.starScore(rawValue: score) ?? .noScore,
+            score: MyBook.StarScore(rawValue: score) ?? .noScore,
             memo: memo,
             state: state)
     }

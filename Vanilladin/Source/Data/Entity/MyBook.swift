@@ -8,7 +8,7 @@ struct MyBook: WritableEntityProtocol {
         case noState
     }
     
-    enum starScore: Int {
+    enum StarScore: Int {
         case noScore
         case one
         case two
@@ -22,7 +22,7 @@ struct MyBook: WritableEntityProtocol {
     let title: String
     let author: String
     let cover: UIImage
-    var score: starScore
+    var score: StarScore
     var memo: String
     var state: ReadState
     
