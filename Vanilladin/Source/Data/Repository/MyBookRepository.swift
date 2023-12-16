@@ -1,9 +1,14 @@
 final class MyBookRepository: MyBookRepositoryInterface {
     // MARK: - Property
+    private let aladinService: AladinService
     private let coreDataService: CoreDataService
     
     // MARK: - Initializer
-    init(coreDataService: CoreDataService) {
+    init(
+        aladinService: AladinService,
+        coreDataService: CoreDataService
+    ) {
+        self.aladinService = aladinService
         self.coreDataService = coreDataService
     }
     
