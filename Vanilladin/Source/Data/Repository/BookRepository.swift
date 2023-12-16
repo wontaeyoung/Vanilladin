@@ -20,15 +20,15 @@ final class BookRepository: BookRepositoryInterface {
         
         let totalItem: UInt = UInt(bookResult.totalResults)
         
-        let books: [Book] = try await AsyncManager().mapConcurrently(from: bookResult.item) { dto in
-            guard let cacheImage: UIImage = ImageCacheManager.shared.getObject(for: dto.cover) else {
-                let coverImage: UIImage = try await self.aladinService.requestCoverImage(dto.cover)
-                ImageCacheManager.shared.setObject(coverImage, for: dto.cover)
-                
-                return dto.asModel(with: coverImage)
+        let books: [Book] = try await AsyncManager().mapConcurrently(from: bookResult.item) { [weak self] dto in
+            guard let self else {
+                print(#function, AppError.unwrapSelfFailed.errorDescription)
+                throw AppError.unwrapSelfFailed
             }
             
-            return dto.asModel(with: cacheImage)
+            let coverImage: UIImage = try await aladinService.requestCoverImage(dto.cover)
+            
+            return dto.asModel(with: coverImage)
         }
         
         return (totalItem, books)
