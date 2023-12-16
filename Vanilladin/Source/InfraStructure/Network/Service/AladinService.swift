@@ -37,11 +37,14 @@ final class AladinService: DependencyContainable {
     }
     
     func requestCoverImage(_ urlStr: String) async throws -> UIImage {
-        guard let image = try await httpClient.sendImageRequest(urlStr: urlStr) else {
-            return UIImage(systemName: UIConstant.SFSymbol.textBookClosedFill) ?? .actions
+        guard let cacheImage = ImageCacheManager.shared.getObject(for: urlStr) else {
+            let coverImage: UIImage = try await httpClient.sendImageRequest(urlStr: urlStr)
+            ImageCacheManager.shared.setObject(coverImage, for: urlStr)
+            
+            return coverImage
         }
         
-        return image
+        return cacheImage
     }
     
     func requestBookDetail(isbn13: String) async throws -> LookupBookResult {
