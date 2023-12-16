@@ -13,7 +13,9 @@ final class MyBookRepository: MyBookRepositoryInterface {
     }
     
     // MARK: - Method
-    func save(myBookDTO: MyBookDTO) throws {
+    func save(myBook: MyBook) throws {
+        let myBookDTO: MyBookDTO = myBook.asDTO()
+        
         try coreDataService.saveMyBook(myBookDTO: myBookDTO)
     }
     
