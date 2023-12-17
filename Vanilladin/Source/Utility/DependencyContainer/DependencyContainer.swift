@@ -42,7 +42,9 @@ final class DependencyContainer: DependencyContainerProtocol {
         // MARK: - Repository
         let bookRepository: BookRepository = .init(aladinService: aladinService)
         let searchKeywordRepository: SearchKeywordRepository = .init(userDefault: .standard)
-        let bookMemoRepository: BookMemoRepository = .init(coreDataService: coreDataService)
+        let myBookRepository: MyBookRepository = .init(
+            aladinService: aladinService,
+            coreDataService: coreDataService)
         
         // MARK: - DataSource
         let bookDataSource: BookDataSource = .init(bookRepository: bookRepository)
@@ -63,7 +65,7 @@ final class DependencyContainer: DependencyContainerProtocol {
             // MARK: - Repository
             bookRepository,
             searchKeywordRepository,
-            bookMemoRepository,
+            myBookRepository,
             
             // MARK: - DataSource
             bookDataSource,
