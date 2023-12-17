@@ -18,7 +18,7 @@ final class MyBookRepository: MyBookRepositoryInterface {
     func save(myBook: MyBook) throws {
         let myBookDTO: MyBookDTO = myBook.asDTO()
         
-        try coreDataService.saveMyBook(myBookDTO: myBookDTO)
+        try coreDataService.saveMyBook(dto: myBookDTO)
     }
     
     func fetch(isbn13: String) async throws -> MyBook {
