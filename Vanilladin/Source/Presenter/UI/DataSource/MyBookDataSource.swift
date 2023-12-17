@@ -21,4 +21,17 @@ final class MyBookDataSource: DataSourceProtocol {
         self.delegate = delegate
         self.entities = entities
     }
+    
+    // MARK: - Method
+    func fetchMyBooks() async throws {
+        let entities: [Entity] = try await myBookRepository.fetch()
+        
+        updateEntities(with: entities)
+    }
+}
+
+private extension MyBookDataSource {
+    func updateEntities(with myBooks: [MyBook]) {
+        entities = myBooks
+    }
 }
