@@ -4,11 +4,6 @@ final class CoreDataService: DependencyContainable {
     // MARK: - Property
     private lazy var container: NSPersistentContainer = setContainer()
     
-    // MARK: - Initializer
-    init() {
-        container = setContainer()
-    }
-    
     // MARK: - Method
     private func setContainer() -> NSPersistentContainer {
         let container: NSPersistentContainer = .init(name: LogicConstant.CoreData.fileName)
