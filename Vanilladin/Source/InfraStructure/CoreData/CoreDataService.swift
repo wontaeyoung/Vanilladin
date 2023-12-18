@@ -26,11 +26,11 @@ final class CoreDataService: DependencyContainable {
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         request.predicate = NSPredicate(format: "isbn13 == %@", isbn13)
 
-        guard let bookMemoDTO = try context.fetch(request).first else {
+        guard let myBookDTO = try context.fetch(request).first else {
             throw CoreDataError.noResultWithQuery
         }
         
-        return bookMemoDTO
+        return myBookDTO
     }
     
     func fetchMyBooks() throws -> [MyBookDTO] {
