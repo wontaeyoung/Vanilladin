@@ -18,15 +18,9 @@ final class CoreDataService: DependencyContainable {
     }
     
     func updateMyBook(dto: MyBookDTO) throws {
-        let context: NSManagedObjectContext = container.viewContext
-        let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
-        request.predicate = NSPredicate(format: "isbn13 == %@", dto.isbn13)
-        
-        guard let bookMemoDTO = try context.fetch(request).first else {
-            throw CoreDataError.noResultWithQuery
-        }
-        
-        bookMemoDTO.changePropertiesWith(dto)
+        let context = getContext()
+        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: dto.isbn13)
+        myBookDTO.changePropertiesWith(dto)
         
         do {
             try context.save()
