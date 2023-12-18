@@ -12,22 +12,14 @@ final class CoreDataService: DependencyContainable {
         let managedMyBook: MyBookDTO = .init(context: context)
         managedMyBook.changePropertiesWith(dto)
         
-        do {
-            try context.save()
-        } catch {
-            throw CoreDataError.storeConnectFailed
-        }
+        try save()
     }
     
     func updateMyBook(dto: MyBookDTO) throws {
         let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: dto.isbn13)
         myBookDTO.changePropertiesWith(dto)
         
-        do {
-            try context.save()
-        } catch {
-            throw CoreDataError.storeConnectFailed
-        }
+        try save()
     }
     
     func fetchMyBook(isbn13: String) throws -> MyBookDTO {
@@ -64,5 +56,11 @@ private extension CoreDataService {
         return container
     }
     
+    func save() throws {
+        do {
+            try context.save()
+        } catch {
+            throw CoreDataError.storeConnectFailed
+        }
     }
 }
