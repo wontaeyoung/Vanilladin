@@ -7,8 +7,8 @@ final class CoreDataService: DependencyContainable {
     // MARK: - Method
     func saveMyBook(dto: MyBookDTO) throws {
         let context: NSManagedObjectContext = container.viewContext
-        let managedBookMemo: MyBookDTO = .init(context: context)
-        managedBookMemo.changePropertiesWith(dto)
+        let managedMyBook: MyBookDTO = .init(context: context)
+        managedMyBook.changePropertiesWith(dto)
         
         do {
             try context.save()
