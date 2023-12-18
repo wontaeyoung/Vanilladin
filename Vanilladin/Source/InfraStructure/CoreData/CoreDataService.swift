@@ -3,6 +3,9 @@ import CoreData
 final class CoreDataService: DependencyContainable {
     // MARK: - Property
     private lazy var container: NSPersistentContainer = setContainer()
+    private var context: NSManagedObjectContext {
+        return container.viewContext
+    }
     
     // MARK: - Method
     private func setContainer() -> NSPersistentContainer {
