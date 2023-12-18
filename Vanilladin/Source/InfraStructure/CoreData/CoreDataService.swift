@@ -8,14 +8,6 @@ final class CoreDataService: DependencyContainable {
     }
     
     // MARK: - Method
-    private func setContainer() -> NSPersistentContainer {
-        let container: NSPersistentContainer = .init(name: LogicConstant.CoreData.fileName)
-        
-        container.loadPersistentStores(completionHandler: { _, _ in })
-        
-        return container
-    }
-    
     func saveMyBook(dto: MyBookDTO) throws {
         let context: NSManagedObjectContext = container.viewContext
         let managedBookMemo: MyBookDTO = .init(context: context)
@@ -69,5 +61,16 @@ final class CoreDataService: DependencyContainable {
         } catch {
             throw CoreDataError.entityNotFound
         }
+    }
+}
+
+// MARK: - Private
+private extension CoreDataService {
+    func setContainer() -> NSPersistentContainer {
+        let container: NSPersistentContainer = .init(name: LogicConstant.CoreData.fileName)
+        
+        container.loadPersistentStores(completionHandler: { _, _ in })
+        
+        return container
     }
 }
