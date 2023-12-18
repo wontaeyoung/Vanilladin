@@ -37,9 +37,7 @@ final class CoreDataService: DependencyContainable {
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         
         do {
-            let bookMemoDTOs: [MyBookDTO] = try context.fetch(request)
-            
-            return bookMemoDTOs
+            return try context.fetch(request)
         } catch {
             throw CoreDataError.entityNotFound
         }
