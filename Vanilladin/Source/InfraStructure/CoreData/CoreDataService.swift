@@ -54,6 +54,10 @@ private extension CoreDataService {
         return container
     }
     
+    func getBackgroundContext() -> NSManagedObjectContext {
+        return container.newBackgroundContext()
+    }
+    
     func save() throws {
         do {
             try context.save()
