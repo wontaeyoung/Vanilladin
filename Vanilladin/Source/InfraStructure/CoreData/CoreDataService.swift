@@ -33,13 +33,16 @@ final class CoreDataService: DependencyContainable {
         return myBookDTO
     }
     
-    func fetchMyBooks() throws -> [MyBookDTO] {
+    func fetchMyBooks() async throws -> [MyBookDTO] {
+        let backgroundContext = getBackgroundContext()
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         
-        do {
-            return try context.fetch(request)
-        } catch {
-            throw CoreDataError.entityNotFound
+        return try await backgroundContext.perform {
+            do {
+                return try backgroundContext.fetch(request)
+            } catch {
+                throw CoreDataError.entityNotFound
+            }
         }
     }
 }
