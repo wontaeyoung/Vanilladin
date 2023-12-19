@@ -1,7 +1,7 @@
 import UIKit
 import CoreData
 
-@objc(BookMemo)
+@objc(MyBook)
 final class MyBookDTO: NSManagedObject {
     @NSManaged var id: UUID
     @NSManaged var isbn13: String
@@ -31,6 +31,10 @@ final class MyBookDTO: NSManagedObject {
     func changePropertiesWith(_ another: MyBookDTO) {
         self.id = another.id
         self.isbn13 = another.isbn13
+        self.title = another.title
+        self.author = another.author
+        self.cover = another.cover
+        self.score = another.score
         self.memo = another.memo
         self.state = another.state
     }
