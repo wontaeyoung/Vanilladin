@@ -38,6 +38,10 @@ final class CoreDataService: DependencyContainable {
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         
         return try await backgroundContext.perform {
+            defer {
+                backgroundContext.reset()
+            }
+            
             do {
                 return try backgroundContext.fetch(request)
             } catch {
