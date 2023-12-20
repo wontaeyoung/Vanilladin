@@ -29,7 +29,7 @@ final class MyBookRepository: MyBookRepositoryInterface {
     }
     
     func fetch() async throws -> [MyBook] {
-        let myBookDTOs: [MyBookDTO] = try coreDataService.fetchMyBooks()
+        let myBookDTOs: [MyBookDTO] = try await coreDataService.fetchMyBooks()
         
         let myBooks: [MyBook] = try await AsyncManager().mapConcurrently(from: myBookDTOs) { [weak self] dto in
             guard let self else {
