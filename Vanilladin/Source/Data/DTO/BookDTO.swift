@@ -28,6 +28,7 @@ struct BookDTO: DTOProtocol {
             priceStandard: priceStandard,
             mileage: mileage,
             coverImage: coverImage,
+            coverURL: cover,
             publisher: publisher,
             isbn13: isbn13)
     }
