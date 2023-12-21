@@ -7,7 +7,10 @@ protocol CoordinatorProtocol: AnyObject, DependencyContainable {
     var childCoordinators: [CoordinatorProtocol] { get set }
     
     // MARK: - Initializer
-    init(_ navigationController: UINavigationController, childCoordinators: [CoordinatorProtocol])
+    init(
+        _ navigationController: UINavigationController,
+        childCoordinators: [CoordinatorProtocol]
+    )
     
     // MARK: - Method
     @MainActor func start()
