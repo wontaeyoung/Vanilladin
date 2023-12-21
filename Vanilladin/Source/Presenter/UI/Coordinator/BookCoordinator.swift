@@ -23,7 +23,8 @@ final class BookCoordinator: CoordinatorProtocol {
 
 // MARK: 네비게이션
 extension BookCoordinator {
-    @MainActor func showSearchBook() {
+    @MainActor 
+    func showSearchBook() {
         do {
             let container: DependencyContainer = .shared
             
@@ -74,14 +75,22 @@ extension BookCoordinator {
         }
     }
     
-    @MainActor func showBookDetail(
+    @MainActor 
+    func showBookDetail(
         book: Book,
         bookDetail: BookDetail
     ) {
-        let viewController: BookDetailViewController = .init(
-            book: book,
-            bookDetail: bookDetail)
-        
-        push(viewController)
+        do {
+            let viewModel: BookDetailViewModel = try DependencyContainer.shared.resolve()
+            
+            let viewController: BookDetailViewController = .init(
+                book: book,
+                bookDetail: bookDetail,
+                bookDetailViewModel: viewModel)
+            
+            push(viewController)
+        } catch {
+            handle(error: error)
+        }
     }
 }
