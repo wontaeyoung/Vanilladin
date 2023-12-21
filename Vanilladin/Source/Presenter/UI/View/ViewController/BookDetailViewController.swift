@@ -4,8 +4,9 @@ final class BookDetailViewController: BaseViewController {
     // MARK: - Property
     private let book: Book
     private let bookDetail: BookDetail
+    private let bookDetailViewModel: BookDetailViewModel
     private var descriptionState: DescriptionState
-    private var isBookmark: Bool = false {
+    private var isBookmark: Bool {
         didSet {
             updateBookmarkImage()
         }
@@ -82,11 +83,14 @@ final class BookDetailViewController: BaseViewController {
     // MARK: - Initializer
     init(
         book: Book,
-        bookDetail: BookDetail
+        bookDetail: BookDetail,
+        bookDetailViewModel: BookDetailViewModel
     ) {
         self.book = book
         self.bookDetail = bookDetail
+        self.bookDetailViewModel = bookDetailViewModel
         self.descriptionState = .notDetermined
+        self.isBookmark = false
         
         super.init()
     }
