@@ -1,14 +1,14 @@
 final class BookDetailViewModel: ViewModelProtocol {
     // MARK: - Property
-    private let bookRepository: BookRepository
+    private let dataSource: MyBookDataSource
     
     // MARK: - Initializer
-    init(bookRepository: BookRepository) {
-        self.bookRepository = bookRepository
+    init(dataSource: MyBookDataSource) {
+        self.dataSource = dataSource
     }
     
     // MARK: - Method
-    func requestBookDetail(isbn13: String) async throws -> BookDetail {
-        return try await bookRepository.fetchBookDetail(isbn13: isbn13)
+    func isRegister(isbn13: String) -> Bool {
+        return dataSource.isRegistered(isbn13: isbn13)
     }
 }

@@ -44,4 +44,8 @@ final class MyBookRepository: MyBookRepositoryInterface {
         
         return myBooks
     }
+    
+    func isRegistered(isbn13: String) -> Bool {
+        return coreDataService.isRegistered(isbn13: isbn13)
+    }
 }

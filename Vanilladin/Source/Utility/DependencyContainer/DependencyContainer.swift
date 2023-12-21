@@ -49,12 +49,13 @@ final class DependencyContainer: DependencyContainerProtocol {
         // MARK: - DataSource
         let bookDataSource: BookDataSource = .init(bookRepository: bookRepository)
         let searchHistoryDataSource: SearchHistoryDataSource = .init(searchKeywordRepository: searchKeywordRepository)
+        let myBookDataSource: MyBookDataSource = .init(myBookRepository: myBookRepository)
         
         // MARK: - ViewModel
         let bookListViewModel: BookListViewModel = .init(bookDataSource: bookDataSource)
         let searchHistoryViewmodel: SearchHistoryViewModel = .init(dataSource: searchHistoryDataSource)
         let searchBookViewModel: SearchBookViewModel = .init(dataSource: bookDataSource)
-        let bookDetailViewModel: BookDetailViewModel = .init(bookRepository: bookRepository)
+        let bookDetailViewModel: BookDetailViewModel = .init(dataSource: myBookDataSource)
         
         let modules: [DependencyContainable] = [
             // MARK: - InfraStructure

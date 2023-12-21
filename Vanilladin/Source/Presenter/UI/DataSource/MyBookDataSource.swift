@@ -28,6 +28,10 @@ final class MyBookDataSource: DataSourceProtocol {
         
         updateEntities(with: entities)
     }
+    
+    func isRegistered(isbn13: String) -> Bool {
+        return myBookRepository.isRegistered(isbn13: isbn13)
+    }
 }
 
 private extension MyBookDataSource {
