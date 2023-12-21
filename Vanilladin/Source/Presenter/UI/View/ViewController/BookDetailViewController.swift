@@ -285,6 +285,11 @@ private extension BookDetailViewController {
     }
     
     @objc func didTapBookmark() {
-        
+        switch isBookmark {
+            case true:
+                
+            case false:
+                bookDetailViewModel.saveMyBook(book: book)
+        }
     }
 }

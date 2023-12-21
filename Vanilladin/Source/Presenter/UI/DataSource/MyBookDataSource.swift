@@ -23,6 +23,12 @@ final class MyBookDataSource: DataSourceProtocol {
     }
     
     // MARK: - Method
+    func saveMyBook(book: Book) throws {
+        let myBook: MyBook = .init(book: book)
+        
+        try myBookRepository.save(myBook: myBook)
+    }
+    
     func fetchMyBooks() async throws {
         let entities: [Entity] = try await myBookRepository.fetch()
         
