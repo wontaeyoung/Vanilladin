@@ -6,7 +6,7 @@ final class BookDetailViewController: BaseViewController {
     private let bookDetail: BookDetail
     private let bookDetailViewModel: BookDetailViewModel
     private var descriptionState: DescriptionState
-    private var isBookmark: Bool? {
+    private var isBookmark: Bool {
         didSet {
             updateBookmarkImage()
         }
@@ -90,9 +90,10 @@ final class BookDetailViewController: BaseViewController {
         self.bookDetail = bookDetail
         self.bookDetailViewModel = bookDetailViewModel
         self.descriptionState = .notDetermined
+        self.isBookmark = false
         
         super.init()
-        self.isBookmark = isRegistered()
+        setBookmark()
     }
     
     // MARK: - Method
@@ -262,14 +263,15 @@ private extension BookDetailViewController {
         }
     }
     
-    func isRegistered() -> Bool {
-        return bookDetailViewModel.isRegister(isbn13: book.isbn13)
+    func setBookmark() {
+        self.isBookmark = bookDetailViewModel.isRegister(isbn13: book.isbn13)
     }
     
+    @MainActor
     func updateBookmarkImage() {
         let Symbol = UIConstant.SFSymbol.self
         let image: UIImage? = .init(
-            systemName: isBookmark ?? false
+            systemName: isBookmark
             ? Symbol.bookmarkFill
             : Symbol.bookmark)
         
