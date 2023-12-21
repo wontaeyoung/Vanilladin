@@ -5,6 +5,11 @@ final class BookDetailViewController: BaseViewController {
     private let book: Book
     private let bookDetail: BookDetail
     private var descriptionState: DescriptionState
+    private var isBookmark: Bool = false {
+        didSet {
+            updateBookmarkImage()
+        }
+    }
     
     // MARK: - UI
     private let scrollView: UIScrollView = {
@@ -251,5 +256,21 @@ private extension BookDetailViewController {
         default:
             moreDescriptionButton.isEnabled = false
         }
+    }
+    
+    func updateBookmarkImage() {
+        let Symbol = UIConstant.SFSymbol.self
+        let image: UIImage? = .init(systemName: isBookmark ? Symbol.bookmarkFill : Symbol.bookmark)
+        let barButtonItem: UIBarButtonItem = .init(
+            image: image,
+            style: .plain,
+            target: self,
+            action: #selector(didTapBookmark))
+        
+        navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    @objc func didTapBookmark() {
+        
     }
 }
