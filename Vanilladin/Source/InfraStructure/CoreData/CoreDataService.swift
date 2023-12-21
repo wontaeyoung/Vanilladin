@@ -52,7 +52,7 @@ final class CoreDataService: DependencyContainable {
     
     func isRegistered(isbn13: String) -> Bool {
         do {
-            let dto: MyBookDTO = try fetchMyBook(isbn13: isbn13)
+            let _ = try fetchMyBook(isbn13: isbn13)
             
             return true
         } catch {
