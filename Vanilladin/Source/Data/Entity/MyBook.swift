@@ -17,6 +17,7 @@ struct MyBook: WritableEntityProtocol {
         case five
     }
     
+    // MARK: - Property
     let id: UUID
     let isbn13: String
     let title: String
@@ -27,6 +28,7 @@ struct MyBook: WritableEntityProtocol {
     var memo: String
     var state: ReadState
     
+    // MARK: - Initializer
     init(
         id: UUID,
         isbn13: String,
@@ -49,6 +51,19 @@ struct MyBook: WritableEntityProtocol {
         self.state = state
     }
     
+    init(book: Book) {
+        self.id = UUID()
+        self.isbn13 = book.isbn13
+        self.title = book.title
+        self.author = book.author
+        self.cover = book.coverImage ?? .init()
+        self.coverURL = book.coverURL
+        self.score = .noScore
+        self.memo = ""
+        self.state = .noState
+    }
+    
+    // MARK: - Method
     static var dummy: Self {
         return .init(
             id: UUID(),
