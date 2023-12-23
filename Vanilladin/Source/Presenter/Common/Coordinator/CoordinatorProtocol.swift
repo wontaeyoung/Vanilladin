@@ -29,19 +29,23 @@ extension CoordinatorProtocol {
         delegate?.coordinatorDidEnd(self)
     }
     
-    @MainActor func push(_ viewController: BaseViewController) {
+    @MainActor 
+    func push(_ viewController: BaseViewController) {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    @MainActor func pop() {
+    @MainActor 
+    func pop() {
         navigationController.popViewController(animated: true)
     }
     
-    @MainActor func dismissModal() {
+    @MainActor 
+    func dismissModal() {
         navigationController.dismiss(animated: true)
     }
     
-    @MainActor func emptyOut() {
+    @MainActor 
+    func emptyOut() {
         navigationController.viewControllers.removeAll()
     }
     
