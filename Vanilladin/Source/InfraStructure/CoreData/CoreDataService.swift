@@ -22,6 +22,13 @@ final class CoreDataService: DependencyContainable {
         try save()
     }
     
+    func removeMyBook(dto: MyBookDTO) throws {
+        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: dto.isbn13)
+        context.delete(myBookDTO)
+        
+        try save()
+    }
+    
     func fetchMyBook(isbn13: String) throws -> MyBookDTO {
         let request: NSFetchRequest<MyBookDTO> = .init(entityName: LogicConstant.CoreData.myBookEntityName)
         request.predicate = NSPredicate(format: "isbn13 == %@", isbn13)
