@@ -49,6 +49,29 @@ extension CoordinatorProtocol {
         navigationController.viewControllers.removeAll()
     }
     
+    @MainActor
+    func showAlert(
+        title: String,
+        message: String,
+        okTitle: String,
+        action: () -> Void
+    ) {
+        let alertController: UIAlertController = .init(
+            title: title,
+            message: message,
+            preferredStyle: .alert)
+        
+        let okAction: UIAlertAction = .init(
+            title: okTitle,
+            style: .default) { _ in
+                action()
+            }
+        
+        alertController.addAction(okAction)
+        
+        self.navigationController.present(alertController, animated: true)
+    }
+    
     func handle(error: Error) {
         guard let appError = error as? AppErrorProtocol else {
             showErrorAlert(error: CoordinatorError.undefiendError)
