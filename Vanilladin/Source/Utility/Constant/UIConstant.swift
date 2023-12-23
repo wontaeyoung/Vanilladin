@@ -34,4 +34,9 @@ enum UIConstant {
     enum Rating {
         static let maxStarRatingCount: Int = 5
     }
+    
+    enum Alert {
+        static let removeMyBookTitle: String = "내 서재에서 꺼내기"
+        static let removeMyBookMessage: String = "내 서재에서 책을 꺼내면 메모한 내용이 삭제됩니다. 정말 꺼내시겠어요?"
+    }
 }
