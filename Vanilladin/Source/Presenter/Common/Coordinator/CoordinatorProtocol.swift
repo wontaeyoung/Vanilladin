@@ -49,7 +49,6 @@ extension CoordinatorProtocol {
         navigationController.viewControllers.removeAll()
     }
     
-    @MainActor
     func showAlert(
         title: String,
         message: String,
@@ -69,7 +68,9 @@ extension CoordinatorProtocol {
         
         alertController.addAction(okAction)
         
-        self.navigationController.present(alertController, animated: true)
+        DispatchQueue.main.async {
+            self.navigationController.present(alertController, animated: true)
+        }
     }
     
     func handle(error: Error) {
