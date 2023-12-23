@@ -17,6 +17,20 @@ final class BookDetailViewModel: ViewModelProtocol {
         }
     }
     
+    func removeMyBook(book: Book) {
+        coordinator?.showAlert(
+            title: UIConstant.Alert.removeMyBookTitle,
+            message: UIConstant.Alert.removeMyBookMessage,
+            okTitle: "꺼내기"
+        ) {
+            do {
+                try dataSource.removeMyBook(book: book)
+            } catch {
+                coordinator?.handle(error: error)
+            }
+        }
+    }
+    
     func isRegister(isbn13: String) -> Bool {
         return dataSource.isRegistered(isbn13: isbn13)
     }

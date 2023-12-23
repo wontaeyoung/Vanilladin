@@ -21,6 +21,12 @@ final class MyBookRepository: MyBookRepositoryInterface {
         try coreDataService.saveMyBook(dto: myBookDTO)
     }
     
+    func remove(myBook: MyBook) throws {
+        let myBookDTO: MyBookDTO = myBook.asDTO()
+        
+        try coreDataService.removeMyBook(dto: myBookDTO)
+    }
+    
     func fetch(isbn13: String) async throws -> MyBook {
         let myBookDTO: MyBookDTO = try coreDataService.fetchMyBook(isbn13: isbn13)
         let coverImage: UIImage = try await aladinService.requestCoverImage(myBookDTO.cover)
