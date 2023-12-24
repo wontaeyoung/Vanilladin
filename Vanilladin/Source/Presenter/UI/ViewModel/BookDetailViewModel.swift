@@ -22,7 +22,9 @@ final class BookDetailViewModel: ViewModelProtocol {
             title: UIConstant.Alert.removeMyBookTitle,
             message: UIConstant.Alert.removeMyBookMessage,
             okTitle: "꺼내기"
-        ) {
+        ) { [weak self] in
+            guard let self else { return }
+            
             do {
                 try dataSource.removeMyBook(book: book)
             } catch {
