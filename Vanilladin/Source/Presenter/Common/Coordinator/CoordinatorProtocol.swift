@@ -53,7 +53,7 @@ extension CoordinatorProtocol {
         title: String,
         message: String,
         okTitle: String,
-        action: () -> Void
+        action: @escaping () -> Void
     ) {
         let alertController: UIAlertController = .init(
             title: title,
