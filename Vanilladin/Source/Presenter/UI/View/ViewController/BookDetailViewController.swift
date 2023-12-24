@@ -287,6 +287,7 @@ private extension BookDetailViewController {
     @objc func didTapBookmark() {
         switch isBookmark {
             case true:
+                bookDetailViewModel.removeMyBook(book: book)
                 
             case false:
                 bookDetailViewModel.saveMyBook(book: book)
