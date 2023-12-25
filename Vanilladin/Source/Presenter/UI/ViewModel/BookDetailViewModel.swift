@@ -29,7 +29,8 @@ final class BookDetailViewModel: ViewModelProtocol {
         coordinator?.showAlert(
             title: UIConstant.Alert.removeMyBookTitle,
             message: UIConstant.Alert.removeMyBookMessage,
-            okTitle: "꺼내기"
+            okTitle: "확인",
+            cancelTitle: "취소"
         ) { [weak self] in
             guard let self else { return }
             
