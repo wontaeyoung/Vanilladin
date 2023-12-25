@@ -63,7 +63,7 @@ extension CoordinatorProtocol {
         
         let okAction: UIAlertAction = .init(
             title: okTitle,
-            style: .default
+            style: .destructive
         ) { _ in
             action()
         }
