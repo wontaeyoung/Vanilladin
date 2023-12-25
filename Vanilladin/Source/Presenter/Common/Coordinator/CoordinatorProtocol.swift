@@ -62,9 +62,10 @@ extension CoordinatorProtocol {
         
         let okAction: UIAlertAction = .init(
             title: okTitle,
-            style: .default) { _ in
-                action()
-            }
+            style: .default
+        ) { _ in
+            action()
+        }
         
         alertController.addAction(okAction)
         
