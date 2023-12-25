@@ -16,15 +16,11 @@ final class MyBookRepository: MyBookRepositoryInterface {
     
     // MARK: - Method
     func save(myBook: MyBook) throws {
-        let myBookDTO: MyBookDTO = myBook.asDTO()
-        
-        try coreDataService.saveMyBook(dto: myBookDTO)
+        try coreDataService.saveMyBook(myBook: myBook)
     }
     
     func remove(myBook: MyBook) throws {
-        let myBookDTO: MyBookDTO = myBook.asDTO()
-        
-        try coreDataService.removeMyBook(dto: myBookDTO)
+        try coreDataService.removeMyBook(myBook: myBook)
     }
     
     func fetch(isbn13: String) async throws -> MyBook {

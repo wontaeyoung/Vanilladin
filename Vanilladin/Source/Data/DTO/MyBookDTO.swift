@@ -29,14 +29,14 @@ final class MyBookDTO: NSManagedObject {
             state: state)
     }
     
-    func changePropertiesWith(_ another: MyBookDTO) {
+    func changePropertiesWith(_ another: MyBook) {
         self.id = another.id
         self.isbn13 = another.isbn13
         self.title = another.title
         self.author = another.author
-        self.cover = another.cover
-        self.score = another.score
+        self.cover = another.coverURL
+        self.score = another.score.rawValue
         self.memo = another.memo
-        self.state = another.state
+        self.state = another.state.rawValue
     }
 }

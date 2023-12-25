@@ -8,22 +8,22 @@ final class CoreDataService: DependencyContainable {
     }
     
     // MARK: - Method
-    func saveMyBook(dto: MyBookDTO) throws {
+    func saveMyBook(myBook: MyBook) throws {
         let managedMyBook: MyBookDTO = .init(context: context)
-        managedMyBook.changePropertiesWith(dto)
+        managedMyBook.changePropertiesWith(myBook)
         
         try save()
     }
     
-    func updateMyBook(dto: MyBookDTO) throws {
-        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: dto.isbn13)
-        myBookDTO.changePropertiesWith(dto)
+    func updateMyBook(myBook: MyBook) throws {
+        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: myBook.isbn13)
+        myBookDTO.changePropertiesWith(myBook)
         
         try save()
     }
     
-    func removeMyBook(dto: MyBookDTO) throws {
-        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: dto.isbn13)
+    func removeMyBook(myBook: MyBook) throws {
+        let myBookDTO: MyBookDTO = try fetchMyBook(isbn13: myBook.isbn13)
         context.delete(myBookDTO)
         
         try save()
