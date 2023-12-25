@@ -288,9 +288,11 @@ private extension BookDetailViewController {
         switch isBookmark {
             case true:
                 bookDetailViewModel.removeMyBook(book: book)
+                isBookmark = false
                 
             case false:
                 bookDetailViewModel.saveMyBook(book: book)
+                isBookmark = true
         }
     }
 }
