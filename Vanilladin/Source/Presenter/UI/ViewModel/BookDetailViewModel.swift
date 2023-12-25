@@ -9,9 +9,14 @@ final class BookDetailViewModel: ViewModelProtocol {
     }
     
     // MARK: - Method
-    func saveMyBook(book: Book) {
+    func saveMyBook(
+        book: Book,
+        isBookmark: inout Bool
+    ) {
         do {
             try dataSource.saveMyBook(book: book)
+            
+            isBookmark = true
         } catch {
             coordinator?.handle(error: error)
         }

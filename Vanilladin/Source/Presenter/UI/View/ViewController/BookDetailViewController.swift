@@ -291,8 +291,9 @@ private extension BookDetailViewController {
                 isBookmark = false
                 
             case false:
-                bookDetailViewModel.saveMyBook(book: book)
-                isBookmark = true
+                bookDetailViewModel.saveMyBook(
+                    book: book,
+                    isBookmark: &isBookmark)
         }
     }
 }
