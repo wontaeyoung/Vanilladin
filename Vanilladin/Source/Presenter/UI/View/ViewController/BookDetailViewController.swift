@@ -272,8 +272,8 @@ private extension BookDetailViewController {
         let Symbol = UIConstant.SFSymbol.self
         let image: UIImage? = .init(
             systemName: isBookmark
-            ? Symbol.bookmarkFill
-            : Symbol.bookmark)
+            ? Symbol.bookVerticalFill
+            : Symbol.booksVertical)
         
         let barButtonItem: UIBarButtonItem = .init(
             image: image,
