@@ -82,6 +82,7 @@ extension BookCoordinator {
     ) {
         do {
             let viewModel: BookDetailViewModel = try DependencyContainer.shared.resolve()
+            viewModel.coordinator = self
             
             let viewController: BookDetailViewController = .init(
                 book: book,
