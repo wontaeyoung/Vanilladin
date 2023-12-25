@@ -22,7 +22,10 @@ final class BookDetailViewModel: ViewModelProtocol {
         }
     }
     
-    func removeMyBook(book: Book) {
+    func removeMyBook(
+        book: Book,
+        completion: @escaping (Bool) -> Void
+    ) {
         coordinator?.showAlert(
             title: UIConstant.Alert.removeMyBookTitle,
             message: UIConstant.Alert.removeMyBookMessage,
@@ -32,6 +35,8 @@ final class BookDetailViewModel: ViewModelProtocol {
             
             do {
                 try dataSource.removeMyBook(book: book)
+                
+                completion(false)
             } catch {
                 coordinator?.handle(error: error)
             }

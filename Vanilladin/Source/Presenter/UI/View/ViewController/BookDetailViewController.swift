@@ -287,8 +287,11 @@ private extension BookDetailViewController {
     @objc func didTapBookmark() {
         switch isBookmark {
             case true:
-                bookDetailViewModel.removeMyBook(book: book)
-                isBookmark = false
+                bookDetailViewModel.removeMyBook(book: book) { [weak self] state in
+                    guard let self else { return }
+                    
+                    isBookmark = state
+                }
                 
             case false:
                 bookDetailViewModel.saveMyBook(
