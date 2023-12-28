@@ -53,25 +53,12 @@
 
 <br>
 
-### Network
-- `Network Provider`가 사용하는 `DTO`와 클라이언트에서 사용하는 `Entity` 모델을 매핑해서 사용
-- `Host`, `Scheme`, `Endpoint`, `Parameter`를 조합하여 추상화된 네트워크 요청 모델 구현
-- `NSCache`를 이용한 이미지 캐싱을 구현하여 이미지 요청 횟수 감소
-- 네트워크 병렬처리 로직을 구현하여 응답 소요시간 약 3.6배 감소
-
-<br>
-
-### Data & Presenter
-- `UIKit`의 바닐라 API + 코드베이스 오토레이아웃으로 UI 구현
-- 커스텀 `Delegate`를 사용해서 데이터 변경에 반응하여 `ViewController` 업데이트
-- `TableView`, `CollectionView`에서 무한스크롤을 구현하여 API 요청 횟수 최적화
-
-<br>
-
-### Architecture
-- `Data`, `Presentaion`, `Utility` 레이어를 분리하여 프로젝트 구조화
-- `Coordinator` 패턴으로 네비게이션 및 `Alert` 로직 처리
-- `Dependency Container`를 직접 구현하여 DI 처리 및 의존성 관리 중앙화
+- 의존성 주입에 사용한 `DI Container`를 라이브러리를 사용하지 않고 직접 구현해서 사용했습니다.
+- `NSCache`를 이용한 이미지 캐싱을 구현하여 이미지 요청 횟수를 감소시켰습니다.
+- 네트워크 병렬처리 로직을 구현하여 응답 소요시간을 약 3.6배 감소시켰습니다.
+- `Coordinator` 패턴으로 화면 네비게이션을 관리하는 방법을 학습했습니다.
+- 커스텀 `Delegate`를 만들어 사용하면서 델리게이트 패턴 사용법에 익숙해졌습니다.
+- `TableView`, `CollectionView`에서 무한스크롤을 구현하여 API 요청 횟수를 최적화했습니다.
 
 <br><br>
 
